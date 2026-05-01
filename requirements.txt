@@ -1,0 +1,18 @@
+# Samsung On-Device GenAI Health Assistant
+# Core dependencies
+pandas>=2.0.0
+numpy>=1.24.0
+scikit-learn>=1.3.0
+scipy>=1.11.0
+
+# Optional: FAISS for efficient RAG similarity search
+# Install CPU version: pip install faiss-cpu
+# faiss-cpu>=1.7.4
+
+# Optional: Ollama for on-device LLM inference
+# Install: https://ollama.ai/download
+# Then run: ollama pull gemma3:4b
+#           ollama pull nomic-embed-text
+
+# Optional: PyTorch for advanced ML models
+# pip install torch --index-url https://download.pytorch.org/whl/cpu
