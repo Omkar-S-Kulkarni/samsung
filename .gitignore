@@ -1,0 +1,28 @@
+# ── Large generated output CSVs (regenerate with: python run_pipeline.py) ──
+output/cleaned_data.csv
+output/feature_data.csv
+output/aggregation_5min.csv
+output/aggregation_15min.csv
+output/aggregation_1hour.csv
+
+# ── Keep these (small enough or needed for demo) ──
+!output/aggregation_daily.csv
+!output/*_sample.csv
+!output/data_quality_report.json
+!output/feature_descriptions.json
+!output/pipeline_results.json
+!output/pipeline_logs.txt
+!output/models/
+!output/rag_memory/
+
+# ── Python ──
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+.venv/
+venv/
+*.egg-info/
+
+# ── macOS ──
+.DS_Store
