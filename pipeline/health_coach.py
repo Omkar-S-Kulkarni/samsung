@@ -131,30 +131,52 @@ class HealthCoach:
 
         # ── Phase 3: ML Models + RAG + LLM ─────────────────────────────
         log("\n" + "=" * 70)
-        log("PHASE 3: MODEL TRAINING + RAG + LLM REASONING")
+        log("PHASE 3: ML MODELS + RAG + LLM REASONING")
         log("=" * 70)
 
-        # Train ML models
-        log("\n[3a] Training ML models...")
-        stress_metrics = self.ml_predictor.train_stress_model(self.feature_data)
-        anomaly_metrics = self.ml_predictor.train_anomaly_model(self.feature_data)
-        log(f"Stress model: {stress_metrics}")
-        log(f"Anomaly model: {anomaly_metrics}")
-
-        # Save models
+        # Load or train ML models
         model_dir = os.path.join(output_dir, "models")
-        self.ml_predictor.save_models(model_dir)
+        stress_pkl = os.path.join(model_dir, "stress_model.pkl")
+        anomaly_pkl = os.path.join(model_dir, "anomaly_model.pkl")
+
+        if os.path.exists(stress_pkl) and os.path.exists(anomaly_pkl):
+            # ── Fast path: models already exist on disk ──
+            log("\n[3a] Pre-trained models found — loading from disk (skipping training)...")
+            self.ml_predictor.load_models(model_dir)
+            stress_metrics = {"status": "loaded", "path": stress_pkl}
+            anomaly_metrics = {"status": "loaded", "path": anomaly_pkl}
+            log(f"  Stress model loaded:  {stress_pkl}")
+            log(f"  Anomaly model loaded: {anomaly_pkl}")
+        else:
+            # ── Cold path: train from scratch and save ──
+            log("\n[3a] No saved models found — training ML models...")
+            stress_metrics = self.ml_predictor.train_stress_model(self.feature_data)
+            anomaly_metrics = self.ml_predictor.train_anomaly_model(self.feature_data)
+            log(f"  Stress model: {stress_metrics}")
+            log(f"  Anomaly model: {anomaly_metrics}")
+            self.ml_predictor.save_models(model_dir)
+            log(f"  Models saved to: {model_dir}")
 
         results["ml_models"] = {
             "stress": stress_metrics,
             "anomaly": anomaly_metrics,
         }
 
-        # Populate RAG memory with representative states
-        log("\n[3b] Building RAG memory...")
-        self._populate_rag_memory()
-        self.memory.save(os.path.join(output_dir, "rag_memory"))
-        log(f"RAG memory: {self.memory.get_stats()}")
+        # Load or build RAG memory
+        rag_dir = os.path.join(output_dir, "rag_memory")
+        rag_entries_file = os.path.join(rag_dir, "rag_entries.json")
+
+        if os.path.exists(rag_entries_file):
+            # ── Fast path: RAG memory already persisted ──
+            log("\n[3b] Existing RAG memory found — loading from disk (skipping rebuild)...")
+            self.memory.load(rag_dir)
+            log(f"  RAG memory loaded: {self.memory.get_stats()}")
+        else:
+            # ── Cold path: build and persist ──
+            log("\n[3b] Building RAG memory from scratch...")
+            self._populate_rag_memory()
+            self.memory.save(rag_dir)
+            log(f"  RAG memory built & saved: {self.memory.get_stats()}")
 
         results["rag"] = self.memory.get_stats()
 
