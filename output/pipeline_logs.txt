@@ -48,15 +48,15 @@ Aggregation [daily] saved: output/aggregation_daily.csv
 Feature descriptions saved: output/feature_descriptions.json
 
 ======================================================================
-PHASE 3: MODEL TRAINING + RAG + LLM REASONING
+PHASE 3: ML MODELS + RAG + LLM REASONING
 ======================================================================
 
-[3a] Training ML models...
-Stress model: {'mse': 12.8597, 'rmse': np.float64(3.586), 'r2': 0.7099, 'feature_count': 24}
-Anomaly model: {'anomaly_rate': np.float64(0.05), 'score_mean': np.float64(0.0901), 'score_std': np.float64(0.0457)}
+[3a] Pre-trained models found — loading from disk (skipping training)...
+  Stress model loaded:  output/models/stress_model.pkl
+  Anomaly model loaded: output/models/anomaly_model.pkl
 
-[3b] Building RAG memory...
-RAG memory: {'total_entries': 2502, 'users': 3, 'use_faiss': False, 'embedding_dim': 768}
+[3b] Existing RAG memory found — loading from disk (skipping rebuild)...
+  RAG memory loaded: {'total_entries': 2502, 'users': 3, 'use_faiss': False, 'embedding_dim': 768}
 
 [3c] Generating sample health insights...
 

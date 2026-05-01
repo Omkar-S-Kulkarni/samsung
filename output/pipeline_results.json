@@ -1,5 +1,5 @@
 {
-  "start_time": 1777627135.615361,
+  "start_time": 1777633759.387841,
   "preprocessing": {
     "rows": 150000,
     "columns": 19,
@@ -123,15 +123,12 @@
   },
   "ml_models": {
     "stress": {
-      "mse": 12.8597,
-      "rmse": 3.586,
-      "r2": 0.7099,
-      "feature_count": 24
+      "status": "loaded",
+      "path": "output/models/stress_model.pkl"
     },
     "anomaly": {
-      "anomaly_rate": 0.05,
-      "score_mean": 0.0901,
-      "score_std": 0.0457
+      "status": "loaded",
+      "path": "output/models/anomaly_model.pkl"
     }
   },
   "rag": {
@@ -196,6 +193,6 @@
       "daily_summary": "\ud83d\udcca Daily Health Summary\n\n\u2764\ufe0f Heart Rate: 70 bpm avg (resting: 50.29235808301627 bpm)\n\ud83d\udc93 HRV: 46 ms (good)\n\ud83d\udeb6 Steps: 155,457 (100% of 10K goal)\n\ud83d\ude34 Sleep: 7.0 hours (quality: 71.7/100)\n\n\ud83c\udfc6 Health Score: 61/100\n\n\ud83d\udca1 Recommendations:"
     }
   ],
-  "end_time": 1777627204.772147,
-  "duration_seconds": 69.16
+  "end_time": 1777633766.580868,
+  "duration_seconds": 7.19
 }
