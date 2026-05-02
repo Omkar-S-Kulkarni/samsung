@@ -21,6 +21,7 @@ from .feature_engineering import HealthFeatureEngine
 from .ml_models import EdgeMLPredictor, RuleEngine
 from .rag_system import HealthMemory
 from .llm_reasoning import HealthLLMReasoner
+from .multimodal_fusion import MultimodalFusionEngine
 
 logger = logging.getLogger(__name__)
 
@@ -43,6 +44,7 @@ class HealthCoach:
         )
         self.memory = HealthMemory(self.config)
         self.reasoner = HealthLLMReasoner(self.config)
+        self.fusion = MultimodalFusionEngine(self.config)
 
         # State
         self.processed_data: Optional[pd.DataFrame] = None
@@ -242,6 +244,7 @@ class HealthCoach:
 
         # Step 5: Generate insight (only if significant event)
         insight = None
+        fusion_result = None
         if alerts or is_anomaly or abs(deviation.get("stress_deviation", 0)) > 20:
             # Store in RAG memory
             summary = self._create_state_summary(cleaned)
@@ -250,8 +253,13 @@ class HealthCoach:
             # Retrieve similar past states
             rag_context = self.memory.retrieve(summary, user_id=user_id, top_k=3)
 
-            # Generate LLM insight
-            insight = self.reasoner.generate_insight(cleaned, rag_context, alerts)
+            # Multimodal fusion (cross-modal LLM reasoning)
+            fusion_result = self.fusion.fuse(
+                data=cleaned,
+                rag_context=rag_context,
+                alerts=alerts,
+            )
+            insight = fusion_result["fused_insight"]
 
         return {
             "cleaned": cleaned,
@@ -261,6 +269,7 @@ class HealthCoach:
             "anomaly_score": round(anomaly_score, 4),
             "deviation": deviation,
             "insight": insight,
+            "fusion": fusion_result,
         }
 
     # =========================================================================
@@ -370,8 +379,14 @@ class HealthCoach:
             summary = self._create_state_summary(latest)
             rag_context = self.memory.retrieve(summary, user_id=user_id, top_k=3)
 
-            # Generate insight
-            insight = self.reasoner.generate_insight(latest, rag_context, alerts)
+            # Multimodal fusion insight (replaces single-model generate_insight)
+            fusion_result = self.fusion.fuse(
+                data=latest,
+                rag_context=rag_context,
+                alerts=alerts,
+                use_deep_model=True,  # Use gemma3:12b for batch insights
+            )
+            insight = fusion_result["fused_insight"]
             daily_summary = self.reasoner.generate_daily_summary(daily_stats, user_id)
 
             insights.append({
@@ -381,6 +396,8 @@ class HealthCoach:
                 "alerts": alerts,
                 "insight": insight,
                 "daily_summary": daily_summary,
+                "fusion_consistency": fusion_result["consistency"]["consistency_score"],
+                "model_used": fusion_result["model_used"],
             })
 
         return insights
