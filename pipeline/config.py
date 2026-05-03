@@ -9,7 +9,6 @@ All thresholds are based on clinical/physiological standards.
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional
 
-
 @dataclass
 class PhysiologicalThresholds:
     """
