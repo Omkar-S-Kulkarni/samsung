@@ -1,73 +1,78 @@
 # =========================================================================
-# ADEO Health Intelligence Pipeline - Git Ignore
+# ADEO Health Intelligence Pipeline - Full Stack Git Ignore
 # =========================================================================
 
-# --- User Data & Privacy (Phase M) ---
-# NEVER commit raw or encrypted user data
-output/vault/
-output/user_profiles/
-output/goals/
-output/rewards/
-output/learning/
-data/master.key
-data/sync_queue.json
-
-# --- Large Generated Outputs ---
-output/*.csv
-output/*.npy
-output/*.joblib
-!output/aggregation_daily.csv
-!output/*_sample.csv
-
-# --- Logs & Metadata ---
-*.log
-output/pipeline_logs.txt
-output/data_quality_report.json
-output/feature_descriptions.json
-output/pipeline_results.json
-
-# --- Python ---
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-env/
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-.env
-.venv/
-venv/
-venv.bak/
-
-# --- IDEs & System ---
-.DS_Store
-.idea/
-.vscode/
-*.swp
-*.swo
-
-# --- Frontend (if applicable) ---
+# --- React/Frontend ---
 node_modules/
+dist/
+dist-ssr/
 dist-frontend/
 .parcel-cache
 .cache
+*.local
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# --- Health Pipeline Specific ---
-output/rag_memory/
-output/models/
-!output/models/.gitkeep
-!output/rag_memory/.gitkeep
+# --- Python/Backend ---
+backend/__pycache__/
+backend/*.py[cod]
+backend/*$py.class
+backend/.Python
+backend/env/
+backend/venv/
+backend/.venv/
+backend/venv.bak/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# --- ADEO Intelligence Data & Privacy ---
+# NEVER commit raw or encrypted user data or keys
+**/output/vault/
+**/output/user_profiles/
+**/output/goals/
+**/output/rewards/
+**/output/learning/
+**/output/rag_memory/
+**/output/models/
+**/data/master.key
+**/data/sync_queue.json
+**/output/*.csv
+**/output/*.npy
+**/output/*.joblib
+
+# Keep necessary descriptors but ignore generated content
+!**/output/aggregation_daily.csv
+!**/output/*_sample.csv
+!**/output/models/.gitkeep
+!**/output/rag_memory/.gitkeep
+
+# --- Logs & Metadata ---
+logs/
+*.log
+**/output/pipeline_logs.txt
+**/output/data_quality_report.json
+**/output/feature_descriptions.json
+**/output/pipeline_results.json
+
+# --- Editor & System ---
+.DS_Store
+.idea/
+.vscode/
+!.vscode/extensions.json
+*.swp
+*.swo
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
