@@ -1,0 +1,25 @@
+{
+  "sessions": {
+    "agent_user_1777916723": {
+      "user_id": "agent_user",
+      "created_at": "2026-05-04T23:15:23.195625",
+      "updated_at": "2026-05-04T23:15:23.318047",
+      "interactions": [
+        {
+          "timestamp": "2026-05-04T23:15:23.318047",
+          "user_message": "I feel stressed and my heart is racing. Help me.",
+          "assistant_response": "\u26a0\ufe0f SAFETY ALERT: \n\n\n\n\nBackground: ...\n\n\nDisclaimer: Not medical advice. Consult a professional if symptoms persist.",
+          "metadata": {
+            "confidence": 0.85,
+            "response_type": "insight",
+            "tone": "coach"
+          }
+        }
+      ],
+      "metadata": {},
+      "user_preferences": {},
+      "context_variables": {}
+    }
+  },
+  "last_updated": "2026-05-04T23:15:23.319714"
+}

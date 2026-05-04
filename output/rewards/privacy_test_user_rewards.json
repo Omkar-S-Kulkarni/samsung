@@ -1,0 +1,17 @@
+{
+  "user_id": "privacy_test_user",
+  "points": 50,
+  "badges": [
+    {
+      "id": "first_goal",
+      "name": "Goal Getter",
+      "description": "Set your first health goal.",
+      "icon": "\ud83c\udfaf",
+      "date_earned": "2026-05-05T00:48:43.519668"
+    }
+  ],
+  "milestones_reached": 0,
+  "daily_streak": 1,
+  "last_activity_date": "2026-05-05T00:48:47.556054",
+  "level": 1
+}

@@ -1,0 +1,167 @@
+[
+  {
+    "id": "step_count_20260505004138",
+    "user_id": "test_user_kl",
+    "type": "step_count",
+    "target_value": 10000,
+    "current_value": 5500,
+    "start_value": 2000,
+    "unit": "steps",
+    "start_date": "2026-05-05T00:41:38.130040",
+    "target_date": "2026-06-04T00:41:38.130040",
+    "status": "active",
+    "progress_history": [
+      {
+        "timestamp": "2026-05-05T00:41:38.141458",
+        "value": 5500,
+        "delta": 3500
+      },
+      {
+        "timestamp": "2026-05-05T00:43:23.270657",
+        "value": 5500,
+        "delta": 0
+      },
+      {
+        "timestamp": "2026-05-05T00:44:09.864729",
+        "value": 5500,
+        "delta": 0
+      },
+      {
+        "timestamp": "2026-05-05T00:44:31.311008",
+        "value": 5500,
+        "delta": 0
+      }
+    ],
+    "milestones": []
+  },
+  {
+    "id": "step_count_20260505004259",
+    "user_id": "test_user_kl",
+    "type": "step_count",
+    "target_value": 10000,
+    "current_value": 5500,
+    "start_value": 2000,
+    "unit": "steps",
+    "start_date": "2026-05-05T00:42:59.583009",
+    "target_date": "2026-06-04T00:42:59.583009",
+    "status": "active",
+    "progress_history": [
+      {
+        "timestamp": "2026-05-05T00:43:23.270657",
+        "value": 5500,
+        "delta": 3500
+      },
+      {
+        "timestamp": "2026-05-05T00:44:09.864729",
+        "value": 5500,
+        "delta": 0
+      },
+      {
+        "timestamp": "2026-05-05T00:44:31.311008",
+        "value": 5500,
+        "delta": 0
+      }
+    ],
+    "milestones": []
+  },
+  {
+    "id": "step_count_20260505004323",
+    "user_id": "test_user_kl",
+    "type": "step_count",
+    "target_value": 10000,
+    "current_value": 5500,
+    "start_value": 2000,
+    "unit": "steps",
+    "start_date": "2026-05-05T00:43:23.240888",
+    "target_date": "2026-06-04T00:43:23.240888",
+    "status": "active",
+    "progress_history": [
+      {
+        "timestamp": "2026-05-05T00:43:23.270657",
+        "value": 5500,
+        "delta": 3500
+      },
+      {
+        "timestamp": "2026-05-05T00:44:09.864729",
+        "value": 5500,
+        "delta": 0
+      },
+      {
+        "timestamp": "2026-05-05T00:44:31.311008",
+        "value": 5500,
+        "delta": 0
+      }
+    ],
+    "milestones": []
+  },
+  {
+    "id": "step_count_20260505004355",
+    "user_id": "test_user_kl",
+    "type": "step_count",
+    "target_value": 10000,
+    "current_value": 5500,
+    "start_value": 2000,
+    "unit": "steps",
+    "start_date": "2026-05-05T00:43:55.437979",
+    "target_date": "2026-06-04T00:43:55.437979",
+    "status": "active",
+    "progress_history": [
+      {
+        "timestamp": "2026-05-05T00:44:09.864729",
+        "value": 5500,
+        "delta": 3500
+      },
+      {
+        "timestamp": "2026-05-05T00:44:31.311008",
+        "value": 5500,
+        "delta": 0
+      }
+    ],
+    "milestones": []
+  },
+  {
+    "id": "step_count_20260505004409",
+    "user_id": "test_user_kl",
+    "type": "step_count",
+    "target_value": 10000,
+    "current_value": 5500,
+    "start_value": 2000,
+    "unit": "steps",
+    "start_date": "2026-05-05T00:44:09.851734",
+    "target_date": "2026-06-04T00:44:09.851734",
+    "status": "active",
+    "progress_history": [
+      {
+        "timestamp": "2026-05-05T00:44:09.864729",
+        "value": 5500,
+        "delta": 3500
+      },
+      {
+        "timestamp": "2026-05-05T00:44:31.311008",
+        "value": 5500,
+        "delta": 0
+      }
+    ],
+    "milestones": []
+  },
+  {
+    "id": "step_count_20260505004431",
+    "user_id": "test_user_kl",
+    "type": "step_count",
+    "target_value": 10000,
+    "current_value": 5500,
+    "start_value": 2000,
+    "unit": "steps",
+    "start_date": "2026-05-05T00:44:31.291768",
+    "target_date": "2026-06-04T00:44:31.291768",
+    "status": "active",
+    "progress_history": [
+      {
+        "timestamp": "2026-05-05T00:44:31.311008",
+        "value": 5500,
+        "delta": 3500
+      }
+    ],
+    "milestones": []
+  }
+]

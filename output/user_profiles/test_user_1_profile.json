@@ -1,0 +1,43 @@
+{
+  "user_id": "test_user_1",
+  "age": 30,
+  "fitness_level": "advanced",
+  "primary_goals": [
+    "fat_loss",
+    "better_sleep"
+  ],
+  "baselines": {
+    "heart_rate_bpm": {
+      "mean": 60.8,
+      "std": 2.0976176963403033,
+      "p10": 58.9,
+      "p90": 63.2
+    },
+    "hrv_ms": {
+      "mean": 82.2,
+      "std": 2.2997584414213783,
+      "p10": 79.9,
+      "p90": 85.1
+    },
+    "computed_stress": {
+      "mean": 30.9,
+      "std": 2.0248456731316584,
+      "p10": 28.9,
+      "p90": 33.2
+    },
+    "sleep_duration_min": {
+      "mean": 317.0,
+      "std": 13.374935098492585,
+      "p10": 300.0,
+      "p90": 331.0
+    }
+  },
+  "habits": [],
+  "personalized_thresholds": {
+    "hr_resting_low": 40.0,
+    "hr_critical_high": 180.0,
+    "hrv_low_threshold": 20.0
+  },
+  "last_updated": "2026-05-04T23:00:44.324272",
+  "profile_version": 1
+}

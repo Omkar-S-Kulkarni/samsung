@@ -95,20 +95,28 @@ class HealthMemory:
             embedding /= norm
         return embedding
 
-    def store(self, health_state: Dict, summary: str, user_id: str = "default"):
+    def store(self, health_state: Dict, summary: str, user_id: str = "default", 
+              importance: Optional[float] = None, tier: str = "short-term"):
         """
         Store a health state snapshot with its embedding in memory.
-
+        
         Args:
             health_state: Dict of current health metrics
             summary: Text description of the health state
-            user_id: User identifier for filtering
+            user_id: User identifier
+            importance: Optional importance score (0-1)
+            tier: Memory tier ('short-term', 'long-term', 'event')
         """
+        if importance is None:
+            importance = self._calculate_importance(health_state)
+
         entry = {
             "user_id": user_id,
             "timestamp": time.time(),
-            "health_state": health_state,
+            "health_state": health_state.copy() if isinstance(health_state, dict) else health_state,
             "summary": summary,
+            "importance_score": float(importance),
+            "tier": tier,
         }
 
         embedding = self._get_embedding(summary)
@@ -120,24 +128,107 @@ class HealthMemory:
 
         self.entries.append(entry)
 
-        # Evict old entries if over limit
-        if len(self.entries) > self.max_entries:
-            self._evict_oldest()
+        # Hierarchical Management: Move important STM to LTM
+        self._manage_hierarchical_memory()
 
-        logger.debug(f"Stored health state for {user_id}, total entries: {len(self.entries)}")
+        logger.debug(f"Stored {tier} memory for {user_id}, importance: {importance:.2f}")
+
+    def _calculate_importance(self, state: Dict) -> float:
+        """Calculate importance score based on health significance."""
+        score = 0.1  # Base importance
+        
+        # Anomaly flags increase importance significantly
+        if state.get("anomaly_score", 0) > 0:
+            score += 0.4 * min(state["anomaly_score"], 2.0)
+            
+        # Critical alerts make it high importance
+        if "CRITICAL" in str(state.get("alerts", "")):
+            score += 0.5
+            
+        # High risk scores
+        if state.get("risk_score", 0) > 70:
+            score += 0.3
+            
+        return min(1.0, score)
+
+    def _manage_hierarchical_memory(self):
+        """Manage memory tiers and limits."""
+        # Split by tier
+        stm = [e for e in self.entries if e["tier"] == "short-term"]
+        ltm = [e for e in self.entries if e["tier"] == "long-term"]
+        events = [e for e in self.entries if e["tier"] == "event"]
+        
+        # 1. STM Limit
+        if len(stm) > self.config.memory.short_term_limit:
+            # Move important STM to LTM, discard others
+            for entry in stm[:-self.config.memory.short_term_limit]:
+                if entry["importance_score"] >= self.config.memory.importance_threshold:
+                    entry["tier"] = "long-term"
+                    ltm.append(entry)
+            stm = stm[-self.config.memory.short_term_limit:]
+            
+        # 2. LTM Limit
+        if len(ltm) > self.config.memory.long_term_limit:
+            # Sort by importance and keep best
+            ltm = sorted(ltm, key=lambda x: x["importance_score"], reverse=True)[:self.config.memory.long_term_limit]
+            
+        # Re-assemble entries
+        self.entries = events + ltm + stm
+        
+        # For simplicity in this phase, we rebuild if entries were removed
+        # but in a production system we'd use a more efficient index.
+        if self.use_faiss:
+             self._init_index()
+             all_embeddings = np.array([self._get_embedding(e["summary"]) for e in self.entries])
+             if len(all_embeddings) > 0:
+                 self.index.add(all_embeddings)
+        elif self.embeddings is not None:
+             self.embeddings = np.array([self._get_embedding(e["summary"]) for e in self.entries])
+
+    def apply_decay(self):
+        """Apply importance decay to all entries."""
+        for entry in self.entries:
+            # Events don't decay
+            if entry.get("tier") == "event":
+                continue
+                
+            entry["importance_score"] *= (1 - self.config.memory.decay_rate)
+            
+        # Remove entries that fell below absolute minimum
+        self.entries = [e for e in self.entries if e.get("importance_score", 0) > 0.05 or e.get("tier") == "event"]
+        self._manage_hierarchical_memory()
+
+    def summarize_memories(self, user_id: str):
+        """Consolidate old memories into thematic summaries."""
+        # Get LTM older than window
+        cutoff = time.time() - (self.config.memory.summarization_window_days * 86400)
+        old_ltm = [e for e in self.entries if e.get("tier") == "long-term" and e.get("timestamp", 0) < cutoff]
+        
+        if len(old_ltm) < 5:
+            return
+            
+        # Simple template-based consolidation
+        summary_text = f"Consolidated summary of {len(old_ltm)} past interactions: "
+        summary_text += "; ".join([e["summary"] for e in old_ltm[:5]])
+        
+        # Store as new event memory
+        self.store(
+            health_state={}, 
+            summary=summary_text, 
+            user_id=user_id, 
+            importance=0.6, 
+            tier="event"
+        )
+        
+        # Remove old ones
+        old_timestamps = [e["timestamp"] for e in old_ltm]
+        self.entries = [e for e in self.entries if e.get("timestamp") not in old_timestamps]
+        self._manage_hierarchical_memory()
 
     def retrieve(self, query: str, user_id: Optional[str] = None,
-                 top_k: Optional[int] = None) -> List[Dict]:
+                 top_k: Optional[int] = None, include_temporal: bool = True) -> List[Dict]:
         """
-        Retrieve the most similar past health states.
-
-        Args:
-            query: Text description of current state
-            user_id: Optional filter to only search user's own history
-            top_k: Number of results to return
-
-        Returns:
-            List of matching entries with similarity scores
+        Retrieve memories using semantic + temporal weighting.
         """
         k = top_k or self.top_k
         if len(self.entries) == 0:
@@ -146,29 +237,41 @@ class HealthMemory:
         query_embedding = self._get_embedding(query)
 
         if self.use_faiss:
-            scores, indices = self.index.search(query_embedding.reshape(1, -1), min(k, len(self.entries)))
+            # FAISS search returns top K semantically similar
+            # We search more than K to allow temporal re-ranking
+            search_k = min(k * 3, len(self.entries))
+            scores, indices = self.index.search(query_embedding.reshape(1, -1), search_k)
             scores = scores[0]
             indices = indices[0]
         else:
-            # Numpy cosine similarity
             similarities = np.dot(self.embeddings, query_embedding)
-            k_actual = min(k, len(similarities))
-            indices = np.argsort(similarities)[-k_actual:][::-1]
+            indices = np.argsort(similarities)[::-1]
             scores = similarities[indices]
 
         results = []
-        for idx, score in zip(indices, scores):
+        now = time.time()
+        for idx, s_score in zip(indices, scores):
             if idx < 0 or idx >= len(self.entries):
                 continue
+            
             entry = self.entries[idx].copy()
-            entry["similarity_score"] = float(score)
-
-            # Filter by user if requested
             if user_id and entry["user_id"] != user_id:
                 continue
-
+                
+            # Hybrid Score = Semantic + Temporal + Importance
+            final_score = float(s_score)
+            
+            if include_temporal:
+                time_diff = (now - entry["timestamp"]) / 86400 # days
+                temporal_decay = np.exp(-0.1 * time_diff) # decay over days
+                final_score = (final_score * 0.5) + (temporal_decay * 0.3) + (entry["importance_score"] * 0.2)
+            
+            entry["similarity_score"] = float(s_score)
+            entry["hybrid_score"] = final_score
             results.append(entry)
 
+        # Re-sort by hybrid score
+        results = sorted(results, key=lambda x: x.get("hybrid_score", 0), reverse=True)
         return results[:k]
 
     def _evict_oldest(self):

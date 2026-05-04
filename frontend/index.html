@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADEO | Multi-Agent Health Co-pilot</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">ADEO</div>
+            <div class="nav-links">
+                <button class="nav-item active" id="nav-dashboard">Dashboard</button>
+                <button class="nav-item" id="nav-reports">Reports</button>
+                <button class="nav-item" id="nav-settings">Settings</button>
+            </div>
+            <div class="battery-status">
+                <span id="battery-icon">🔋</span>
+                <span id="battery-level">100%</span>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header with Alerts -->
+            <header class="top-bar">
+                <div class="status-pill" id="system-status">System Nominal</div>
+                <div id="active-alerts-container"></div>
+            </header>
+
+            <!-- Dashboard Grid -->
+            <section class="dashboard-grid" id="dashboard-view">
+                <div class="card metric-card" id="card-hr">
+                    <h3>Heart Rate</h3>
+                    <div class="value-container">
+                        <span class="value" id="val-hr">72</span>
+                        <span class="unit">bpm</span>
+                    </div>
+                    <div class="mini-chart" id="chart-hr"></div>
+                </div>
+                <div class="card metric-card" id="card-stress">
+                    <h3>Stress Level</h3>
+                    <div class="value-container">
+                        <span class="value" id="val-stress">24</span>
+                        <span class="unit">/100</span>
+                    </div>
+                </div>
+                <div class="card metric-card" id="card-hrv">
+                    <h3>HRV (RMSSD)</h3>
+                    <div class="value-container">
+                        <span class="value" id="val-hrv">55</span>
+                        <span class="unit">ms</span>
+                    </div>
+                </div>
+
+                <!-- Explainable Insight Card -->
+                <div class="card insight-card span-2" id="insight-container">
+                    <div class="card-header">
+                        <h3>AI Insight</h3>
+                        <button class="btn-why" id="btn-why">Why this suggestion?</button>
+                    </div>
+                    <p id="insight-text">Welcome back. Initializing health analysis...</p>
+                    <div class="transparency-modal" id="modal-why" style="display:none;">
+                        <h4>Explainability Report</h4>
+                        <div id="modal-content"></div>
+                        <button class="btn-close" onclick="document.getElementById('modal-why').style.display='none'">Close</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reports View (Hidden by default) -->
+            <section class="reports-grid hidden" id="reports-view">
+                <div class="card daily-report">
+                    <h3>Daily AI Summary</h3>
+                    <div id="daily-summary-content">Generating...</div>
+                </div>
+                <div class="card weekly-report">
+                    <h3>Weekly AI Outlook</h3>
+                    <div id="weekly-report-content">Processing week 18 data...</div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Chat Assistant Panel -->
+        <aside class="chat-panel">
+            <div class="chat-header">
+                <h3>Health Assistant</h3>
+                <button id="btn-voice-toggle">🎤</button>
+            </div>
+            <div class="chat-history" id="chat-history">
+                <div class="msg system">Hello! I'm ADEO. How are you feeling today?</div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Type or use voice...">
+                <button id="btn-send">Send</button>
+            </div>
+        </aside>
+    </div>
+    <script src="app.js?v=4"></script>
+</body>
+</html>

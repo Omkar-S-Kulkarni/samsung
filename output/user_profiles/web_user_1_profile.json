@@ -1,0 +1,13 @@
+{
+  "user_id": "web_user_1",
+  "age": 30,
+  "fitness_level": "intermediate",
+  "primary_goals": [
+    "general_health"
+  ],
+  "baselines": {},
+  "habits": [],
+  "personalized_thresholds": {},
+  "last_updated": "2026-05-04T23:38:26.771276",
+  "profile_version": 1
+}

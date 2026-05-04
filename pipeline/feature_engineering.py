@@ -415,6 +415,40 @@ class HealthFeatureEngine:
         return df
 
     # =========================================================================
+    # Predictive Features
+    # =========================================================================
+    def compute_predictive_features(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Compute features specifically for predictive modeling."""
+        for uid, udf in df.groupby("user_id"):
+            idx = udf.index
+            
+            # 1. Fatigue Index (Cumulative activity vs recovery)
+            if "energy_expenditure_proxy" in udf.columns:
+                activity_load = udf["energy_expenditure_proxy"].rolling(window=1440, min_periods=1).sum()
+                recovery_potential = df.loc[idx, "recovery_score"].fillna(50).rolling(window=1440, min_periods=1).mean()
+                df.loc[idx, "fatigue_index"] = (activity_load / (recovery_potential + 1)).clip(0, 100)
+
+            # 2. Acute:Chronic Workload Ratio (ACWR)
+            # Acute (7 days) vs Chronic (28 days) - here scaled for available data
+            if "steps_per_min" in udf.columns:
+                steps = udf["steps_per_min"]
+                acute_load = steps.rolling(window=60*24*7, min_periods=1).mean()
+                chronic_load = steps.rolling(window=60*24*28, min_periods=1).mean()
+                df.loc[idx, "acwr"] = (acute_load / (chronic_load + 0.1)).fillna(1.0)
+
+            # 3. HRV Stability
+            if "hrv_ms" in udf.columns:
+                df.loc[idx, "hrv_stability"] = udf["hrv_ms"].rolling(window=60, min_periods=1).std().fillna(0)
+
+        self.feature_descriptions.update({
+            "fatigue_index": "Cumulative fatigue based on activity vs. recovery",
+            "acwr": "Acute:Chronic Workload Ratio for overtraining detection",
+            "hrv_stability": "Rolling stability of HRV (lower std = more stable)",
+        })
+        logger.info("Predictive features computed")
+        return df
+
+    # =========================================================================
     # Full Pipeline
     # =========================================================================
     def engineer_features(self, df: pd.DataFrame) -> Tuple[pd.DataFrame, Dict[str, pd.DataFrame], Dict[str, str]]:
@@ -429,6 +463,7 @@ class HealthFeatureEngine:
         df = self.compute_stress_recovery(df)
         df = self.detect_anomalies(df)
         df = self.compute_health_score(df)
+        df = self.compute_predictive_features(df)
 
         # Temporal aggregations
         aggregations = self.compute_temporal_aggregations(df)

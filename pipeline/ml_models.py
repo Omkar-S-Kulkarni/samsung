@@ -179,7 +179,7 @@ class EdgeMLPredictor:
     def load_models(self, path: str):
         """Load trained models from disk."""
         import os
-        for name in ["stress", "anomaly"]:
+        for name in ["stress", "anomaly", "forecaster"]:
             model_path = os.path.join(path, f"{name}_model.pkl")
             scaler_path = os.path.join(path, f"{name}_scaler.pkl")
             if os.path.exists(model_path):
@@ -190,6 +190,37 @@ class EdgeMLPredictor:
                         self.scalers[name] = pickle.load(f)
         self.is_trained = len(self.models) > 0
         logger.info(f"Models loaded: {list(self.models.keys())}")
+
+    def forecast_future_value(self, series: List[float], horizon: int = 60) -> List[float]:
+        """Simple trend-based forecasting using linear extrapolation of recent trend."""
+        if len(series) < 5:
+            return [series[-1]] * horizon if series else [0.0] * horizon
+            
+        # Use last 10 points to determine trend
+        recent = series[-10:]
+        x = np.arange(len(recent))
+        y = np.array(recent)
+        
+        # Fit linear trend
+        z = np.polyfit(x, y, 1)
+        p = np.poly1d(z)
+        
+        # Forecast
+        future_x = np.arange(len(recent), len(recent) + horizon)
+        return p(future_x).tolist()
+
+
+class AnomalyForecaster:
+    """Predicts likelihood of future anomalies based on current trends."""
+    
+    @staticmethod
+    def predict_risk(current_score: float, trend: float) -> float:
+        """Calculate risk score (0-100) based on current anomaly score and its trend."""
+        # score is typically decision_function (higher is more normal)
+        # We invert it for risk
+        base_risk = max(0, -current_score * 100)
+        trend_risk = max(0, -trend * 50)
+        return min(100.0, base_risk + trend_risk)
 
 
 class RuleEngine:
