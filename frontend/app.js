@@ -27,9 +27,11 @@ const elements = {
     navDashboard: document.getElementById('nav-dashboard'),
     navReports: document.getElementById('nav-reports'),
     navMemory: document.getElementById('nav-memory'),
+    navGoals: document.getElementById('nav-goals'),
     dashboardView: document.getElementById('dashboard-view'),
     reportsView: document.getElementById('reports-view'),
     memoryView: document.getElementById('memory-view'),
+    goalsView: document.getElementById('goals-view'),
     systemStatus: document.getElementById('system-status'),
     aiMemorySummary: document.getElementById('ai-memory-summary'),
     insightsTimeline: document.getElementById('insights-timeline'),
@@ -40,6 +42,18 @@ const elements = {
     btnWeeklySummary: document.getElementById('btn-weekly-summary'),
     btnMonthlySummary: document.getElementById('btn-monthly-summary'),
     editableMemoryList: document.getElementById('editable-memory-list'),
+    goalForm: document.getElementById('goal-form'),
+    goalCategory: document.getElementById('goal-category'),
+    goalTarget: document.getElementById('goal-target'),
+    goalUnit: document.getElementById('goal-unit'),
+    goalUrgency: document.getElementById('goal-urgency'),
+    goalsList: document.getElementById('goals-list'),
+    dailyPlan: document.getElementById('daily-plan'),
+    habitList: document.getElementById('habit-list'),
+    progressCharts: document.getElementById('progress-charts'),
+    streakInfo: document.getElementById('streak-info'),
+    badgesList: document.getElementById('badges-list'),
+    adaptiveUpdates: document.getElementById('adaptive-updates'),
 };
 
 // Initialize
@@ -94,12 +108,14 @@ function setupEventListeners() {
     elements.navDashboard.onclick = () => switchTab('dashboard');
     elements.navReports.onclick = () => switchTab('reports');
     elements.navMemory.onclick = () => switchTab('memory');
+    elements.navGoals.onclick = () => switchTab('goals');
     elements.btnSend.onclick = sendMessage;
     elements.chatInput.onkeypress = (e) => { if (e.key === 'Enter') sendMessage(); };
     elements.btnVoice.onclick = toggleVoice;
     elements.btnWhy.onclick = showTransparencyModal;
     elements.btnWeeklySummary.onclick = () => loadSummary('weekly');
     elements.btnMonthlySummary.onclick = () => loadSummary('monthly');
+    elements.goalForm.onsubmit = setGoal;
 }
 
 function switchTab(tab) {
@@ -107,25 +123,41 @@ function switchTab(tab) {
         elements.dashboardView.classList.remove('hidden');
         elements.reportsView.classList.add('hidden');
         elements.memoryView.classList.add('hidden');
+        elements.goalsView.classList.add('hidden');
         elements.navDashboard.classList.add('active');
         elements.navReports.classList.remove('active');
         elements.navMemory.classList.remove('active');
+        elements.navGoals.classList.remove('active');
     } else if (tab === 'reports') {
         elements.dashboardView.classList.add('hidden');
         elements.reportsView.classList.remove('hidden');
         elements.memoryView.classList.add('hidden');
+        elements.goalsView.classList.add('hidden');
         elements.navDashboard.classList.remove('active');
         elements.navReports.classList.add('active');
         elements.navMemory.classList.remove('active');
+        elements.navGoals.classList.remove('active');
         generateReports();
     } else if (tab === 'memory') {
         elements.dashboardView.classList.add('hidden');
         elements.reportsView.classList.add('hidden');
         elements.memoryView.classList.remove('hidden');
+        elements.goalsView.classList.add('hidden');
         elements.navDashboard.classList.remove('active');
         elements.navReports.classList.remove('active');
         elements.navMemory.classList.add('active');
+        elements.navGoals.classList.remove('active');
         loadMemoryData();
+    } else if (tab === 'goals') {
+        elements.dashboardView.classList.add('hidden');
+        elements.reportsView.classList.add('hidden');
+        elements.memoryView.classList.add('hidden');
+        elements.goalsView.classList.remove('hidden');
+        elements.navDashboard.classList.remove('active');
+        elements.navReports.classList.remove('active');
+        elements.navMemory.classList.remove('active');
+        elements.navGoals.classList.add('active');
+        loadGoalsData();
     }
 }
 
@@ -289,6 +321,92 @@ function editMemory(index) {
 function deleteMemory(index) {
     // Placeholder for delete functionality
     alert(`Delete memory at index ${index}`);
+}
+
+async function loadGoalsData() {
+    try {
+        // Fetch goals from dashboard API
+        const resp = await fetch('/api/dashboard/default_user');
+        const data = await resp.json();
+        
+        // Goals List
+        const goals = data.goals || {};
+        elements.goalsList.innerHTML = Object.entries(goals).map(([category, goal]) => `
+            <div class="goal-item">
+                <h4>${category}</h4>
+                <p>Target: ${goal.target} ${goal.unit}</p>
+                <p>Progress: ${goal.current || 0}/${goal.target} (${goal.progress || 0}%)</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: ${goal.progress || 0}%"></div>
+                </div>
+            </div>
+        `).join('') || "No goals set.";
+        
+        // Daily Plan
+        elements.dailyPlan.innerHTML = data.plan || "Generating daily plan...";
+        
+        // Habit Tracking (mock for now)
+        elements.habitList.innerHTML = `
+            <div class="habit-item">🏃 Morning Run: 5/7 days</div>
+            <div class="habit-item">💧 Water Intake: 6/8 glasses</div>
+            <div class="habit-item">😴 Sleep: 7/7 hours</div>
+        `;
+        
+        // Progress Charts (simple text for now)
+        elements.progressCharts.innerHTML = `
+            <div>HRV Trend: Improving 📈</div>
+            <div>Stress Levels: Decreasing 📉</div>
+            <div>Activity: Consistent 📊</div>
+        `;
+        
+        // Streak System
+        elements.streakInfo.innerHTML = `
+            <div>Current Streak: 12 days 🔥</div>
+            <div>Longest Streak: 28 days 🏆</div>
+        `;
+        
+        // Achievement Badges
+        elements.badgesList.innerHTML = `
+            <div class="badge">🏃 Fitness Warrior</div>
+            <div class="badge">😴 Sleep Champion</div>
+            <div class="badge">💪 Goal Crusher</div>
+        `;
+        
+        // Adaptive Updates
+        elements.adaptiveUpdates.innerHTML = "AI is monitoring your progress and will update plans as needed.";
+        
+    } catch (e) {
+        console.error("Failed to load goals data", e);
+    }
+}
+
+async function setGoal(e) {
+    e.preventDefault();
+    const category = elements.goalCategory.value;
+    const target = parseFloat(elements.goalTarget.value);
+    const unit = elements.goalUnit.value;
+    const urgency = parseInt(elements.goalUrgency.value);
+    
+    try {
+        const resp = await fetch('/api/goals', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                user_id: 'default_user',
+                category,
+                target,
+                unit,
+                urgency
+            })
+        });
+        const result = await resp.json();
+        alert('Goal set successfully!');
+        elements.goalForm.reset();
+        loadGoalsData(); // Refresh
+    } catch (e) {
+        console.error("Failed to set goal", e);
+        alert('Failed to set goal.');
+    }
 }
 
 init();

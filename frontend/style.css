@@ -118,6 +118,12 @@ body {
     gap: 1.5rem;
 }
 
+.goals-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
 .card {
     background: var(--card-bg);
     backdrop-filter: blur(12px);
@@ -317,4 +323,57 @@ body {
 
 .memory-item button:hover {
     background: #3730a3;
+}
+
+/* Goals Styles */
+#goal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#goal-form input, #goal-form select {
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: white;
+}
+
+#goal-form button {
+    background: var(--accent-color);
+    border: none;
+    padding: 0.5rem;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+}
+
+.goal-item {
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.habit-item, .badge {
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
 }

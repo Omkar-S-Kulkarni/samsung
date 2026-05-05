@@ -16,6 +16,7 @@
                 <button class="nav-item active" id="nav-dashboard">Dashboard</button>
                 <button class="nav-item" id="nav-reports">Reports</button>
                 <button class="nav-item" id="nav-memory">Memory & History</button>
+                <button class="nav-item" id="nav-goals">Goals & Coaching</button>
                 <button class="nav-item" id="nav-settings">Settings</button>
             </div>
             <div class="battery-status">
@@ -113,6 +114,52 @@
                 <div class="card editable-memory-card">
                     <h3>Editable Memory</h3>
                     <div id="editable-memory-list">Loading...</div>
+                </div>
+            </section>
+
+            <!-- Goals & Coaching View (Hidden by default) -->
+            <section class="goals-grid hidden" id="goals-view">
+                <div class="card goal-setting-card">
+                    <h3>Goal Setting</h3>
+                    <form id="goal-form">
+                        <input type="text" id="goal-category" placeholder="Category (e.g., Fitness, Sleep)" required>
+                        <input type="number" id="goal-target" placeholder="Target Value" required>
+                        <input type="text" id="goal-unit" placeholder="Unit (e.g., hours, steps)" required>
+                        <select id="goal-urgency">
+                            <option value="1">Low</option>
+                            <option value="5" selected>Medium</option>
+                            <option value="10">High</option>
+                        </select>
+                        <button type="submit">Set Goal</button>
+                    </form>
+                </div>
+                <div class="card progress-tracker-card">
+                    <h3>Goal Progress Tracker</h3>
+                    <div id="goals-list">Loading...</div>
+                </div>
+                <div class="card daily-plan-card">
+                    <h3>Daily Plan by AI</h3>
+                    <div id="daily-plan">Generating...</div>
+                </div>
+                <div class="card habit-tracking-card">
+                    <h3>Habit Tracking</h3>
+                    <div id="habit-list">Loading...</div>
+                </div>
+                <div class="card progress-charts-card">
+                    <h3>Progress Charts</h3>
+                    <div id="progress-charts">Loading...</div>
+                </div>
+                <div class="card streak-system-card">
+                    <h3>Streak System</h3>
+                    <div id="streak-info">Loading...</div>
+                </div>
+                <div class="card achievements-card">
+                    <h3>Achievement Badges</h3>
+                    <div id="badges-list">Loading...</div>
+                </div>
+                <div class="card adaptive-updates-card">
+                    <h3>Adaptive Plan Updates</h3>
+                    <div id="adaptive-updates">Monitoring...</div>
                 </div>
             </section>
         </main>
