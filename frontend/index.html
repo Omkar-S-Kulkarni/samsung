@@ -15,6 +15,7 @@
             <div class="nav-links">
                 <button class="nav-item active" id="nav-dashboard">Dashboard</button>
                 <button class="nav-item" id="nav-reports">Reports</button>
+                <button class="nav-item" id="nav-memory">Memory & History</button>
                 <button class="nav-item" id="nav-settings">Settings</button>
             </div>
             <div class="battery-status">
@@ -80,6 +81,38 @@
                 <div class="card weekly-report">
                     <h3>Weekly AI Outlook</h3>
                     <div id="weekly-report-content">Processing week 18 data...</div>
+                </div>
+            </section>
+
+            <!-- Memory & History View (Hidden by default) -->
+            <section class="memory-grid hidden" id="memory-view">
+                <div class="card memory-card">
+                    <h3>What AI Remembers About You</h3>
+                    <div id="ai-memory-summary">Loading...</div>
+                </div>
+                <div class="card timeline-card">
+                    <h3>Past Insights Timeline</h3>
+                    <div id="insights-timeline">Loading...</div>
+                </div>
+                <div class="card events-card">
+                    <h3>Important Events History</h3>
+                    <div id="events-history">Loading...</div>
+                </div>
+                <div class="card patterns-card">
+                    <h3>Behavioral Pattern View</h3>
+                    <div id="behavioral-patterns">Loading...</div>
+                </div>
+                <div class="card summaries-card">
+                    <h3>Memory Summaries</h3>
+                    <div id="memory-summaries">
+                        <button id="btn-weekly-summary">Weekly</button>
+                        <button id="btn-monthly-summary">Monthly</button>
+                        <div id="summary-content">Select a period...</div>
+                    </div>
+                </div>
+                <div class="card editable-memory-card">
+                    <h3>Editable Memory</h3>
+                    <div id="editable-memory-list">Loading...</div>
                 </div>
             </section>
         </main>

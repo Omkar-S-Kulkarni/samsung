@@ -26,9 +26,20 @@ const elements = {
     modalContent: document.getElementById('modal-content'),
     navDashboard: document.getElementById('nav-dashboard'),
     navReports: document.getElementById('nav-reports'),
+    navMemory: document.getElementById('nav-memory'),
     dashboardView: document.getElementById('dashboard-view'),
     reportsView: document.getElementById('reports-view'),
+    memoryView: document.getElementById('memory-view'),
     systemStatus: document.getElementById('system-status'),
+    aiMemorySummary: document.getElementById('ai-memory-summary'),
+    insightsTimeline: document.getElementById('insights-timeline'),
+    eventsHistory: document.getElementById('events-history'),
+    behavioralPatterns: document.getElementById('behavioral-patterns'),
+    memorySummaries: document.getElementById('memory-summaries'),
+    summaryContent: document.getElementById('summary-content'),
+    btnWeeklySummary: document.getElementById('btn-weekly-summary'),
+    btnMonthlySummary: document.getElementById('btn-monthly-summary'),
+    editableMemoryList: document.getElementById('editable-memory-list'),
 };
 
 // Initialize
@@ -82,24 +93,39 @@ function updateUI() {
 function setupEventListeners() {
     elements.navDashboard.onclick = () => switchTab('dashboard');
     elements.navReports.onclick = () => switchTab('reports');
+    elements.navMemory.onclick = () => switchTab('memory');
     elements.btnSend.onclick = sendMessage;
     elements.chatInput.onkeypress = (e) => { if (e.key === 'Enter') sendMessage(); };
     elements.btnVoice.onclick = toggleVoice;
     elements.btnWhy.onclick = showTransparencyModal;
+    elements.btnWeeklySummary.onclick = () => loadSummary('weekly');
+    elements.btnMonthlySummary.onclick = () => loadSummary('monthly');
 }
 
 function switchTab(tab) {
     if (tab === 'dashboard') {
         elements.dashboardView.classList.remove('hidden');
         elements.reportsView.classList.add('hidden');
+        elements.memoryView.classList.add('hidden');
         elements.navDashboard.classList.add('active');
         elements.navReports.classList.remove('active');
-    } else {
+        elements.navMemory.classList.remove('active');
+    } else if (tab === 'reports') {
         elements.dashboardView.classList.add('hidden');
         elements.reportsView.classList.remove('hidden');
+        elements.memoryView.classList.add('hidden');
         elements.navDashboard.classList.remove('active');
         elements.navReports.classList.add('active');
+        elements.navMemory.classList.remove('active');
         generateReports();
+    } else if (tab === 'memory') {
+        elements.dashboardView.classList.add('hidden');
+        elements.reportsView.classList.add('hidden');
+        elements.memoryView.classList.remove('hidden');
+        elements.navDashboard.classList.remove('active');
+        elements.navReports.classList.remove('active');
+        elements.navMemory.classList.add('active');
+        loadMemoryData();
     }
 }
 
@@ -212,6 +238,57 @@ async function generateReports() {
     } catch (e) {
         console.error("Failed to load insights", e);
     }
+}
+
+async function loadMemoryData() {
+    try {
+        const resp = await fetch('/api/memory/default_user');
+        const data = await resp.json();
+        
+        // AI Memory Summary
+        elements.aiMemorySummary.innerHTML = data.ai_memory || "No summary available.";
+        
+        // Insights Timeline
+        elements.insightsTimeline.innerHTML = (data.insights || []).map(insight => `<div class="timeline-item">📅 ${insight}</div>`).join('');
+        
+        // Events History
+        elements.eventsHistory.innerHTML = (data.events || []).map(event => `<div class="event-item">⚡ ${event}</div>`).join('');
+        
+        // Behavioral Patterns
+        elements.behavioralPatterns.innerHTML = (data.patterns || []).map(pattern => `<div class="pattern-item">🔄 ${pattern}</div>`).join('');
+        
+        // Editable Memory
+        elements.editableMemoryList.innerHTML = (data.memories || []).map((memory, index) => `
+            <div class="memory-item">
+                <span>${memory}</span>
+                <button onclick="editMemory(${index})">Edit</button>
+                <button onclick="deleteMemory(${index})">Delete</button>
+            </div>
+        `).join('');
+        
+    } catch (e) {
+        console.error("Failed to load memory data", e);
+        elements.aiMemorySummary.innerHTML = "Error loading memory data.";
+    }
+}
+
+function loadSummary(period) {
+    // Mock summaries, in real app fetch from API
+    const summaries = {
+        weekly: "This week, your average stress levels decreased by 15%, and you maintained consistent HRV. Great job on the evening walks!",
+        monthly: "Over the past month, you've shown improved recovery patterns. Anomalies detected: 3 (all resolved). Focus on sleep quality next."
+    };
+    elements.summaryContent.innerHTML = summaries[period] || "No summary available.";
+}
+
+function editMemory(index) {
+    // Placeholder for edit functionality
+    alert(`Edit memory at index ${index}`);
+}
+
+function deleteMemory(index) {
+    // Placeholder for delete functionality
+    alert(`Delete memory at index ${index}`);
 }
 
 init();

@@ -112,6 +112,12 @@ body {
     gap: 1.5rem;
 }
 
+.memory-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
 .card {
     background: var(--card-bg);
     backdrop-filter: blur(12px);
@@ -279,4 +285,36 @@ body {
     background: rgba(239, 68, 68, 0.1) !important;
     color: var(--critical-color) !important;
     border-color: rgba(239, 68, 68, 0.2) !important;
+}
+
+/* Memory Styles */
+.timeline-item, .event-item, .pattern-item {
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.memory-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.memory-item button {
+    background: var(--accent-color);
+    border: none;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    margin-left: 0.5rem;
+}
+
+.memory-item button:hover {
+    background: #3730a3;
 }
