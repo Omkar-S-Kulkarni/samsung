@@ -11,6 +11,8 @@ import Progress from './Progress';
 import DigitalTwin from './DigitalTwin';
 import Vault from './Vault';
 import Terminal from './Terminal';
+import VitalsPanel from './VitalsPanel';
+import AICoach from './AICoach';
 
 // Utility for Tailwind classes
 function cn(...inputs) {
@@ -326,7 +328,8 @@ export default function App() {
 
   const navItems = [
     { id: 'dashboard', label: 'Home', icon: Home },
-    { id: 'twin', label: 'Twin', icon: Activity },
+    { id: 'vitals', label: 'Vitals', icon: Activity },
+    { id: 'twin', label: 'Twin', icon: Brain },
     { id: 'progress', label: 'Progress', icon: Trophy },
     { id: 'coach', label: 'Coach', icon: Brain },
     { id: 'signals', label: 'Signals', icon: Zap },
@@ -360,18 +363,18 @@ export default function App() {
       {/* Main Content */}
       <main className="flex-1 flex flex-col min-h-screen relative overflow-hidden">
         {activeTab === 'dashboard' ? <Dashboard hr={hr} hrData={hrData} twin={backendState?.twin} rewards={backendState?.rewards} backendState={backendState} /> :
+         activeTab === 'vitals' ? <VitalsPanel hr={hr} hrData={hrData} steps={backendState?.twin?.daily_steps || 4500} spO2={98} hrv={52} activityIntensity={45} /> :
          activeTab === 'twin' ? <DigitalTwin twin={backendState?.twin} /> :
          activeTab === 'progress' ? <Progress goals={backendState?.goals} rewards={backendState?.rewards} /> :
          activeTab === 'signals' ? <Signals /> :
          activeTab === 'memory' ? <Memory /> :
          activeTab === 'vault' ? <Vault privacy={backendState?.privacy} /> :
          activeTab === 'terminal' ? <Terminal /> :
-         activeTab === 'coach' ? <Dashboard hr={hr} hrData={hrData} twin={backendState?.twin} rewards={backendState?.rewards} backendState={backendState} /> :
+         activeTab === 'coach' ? <AICoach hr={hr} twin={backendState?.twin} backendState={backendState} /> :
          <div className="flex-1 flex items-center justify-center text-gray-500 font-mono">Module Initializing...</div>}
       </main>
 
-      {/* Coach Drawer */}
-      <CoachPanel hr={hr} isOpen={activeTab === 'coach'} onClose={() => setActiveTab('dashboard')} twin={backendState?.twin} />
+      {/* Coach Drawer removed — AICoach is now a full page tab */}
 
       {/* Mobile Nav */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 glass-card rounded-t-3xl border-none p-3 z-[70] bg-[var(--color-pulse-bg)]/90 backdrop-blur-xl">

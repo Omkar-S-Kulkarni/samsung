@@ -1,43 +1,100 @@
-# =========================================================================
-# ADEO Health Intelligence Pipeline - Full Stack Git Ignore
-# =========================================================================
+# =============================================================================
+# ADEO Health Intelligence Platform — Full Stack .gitignore
+# React (Vite) + FastAPI + Ollama
+# =============================================================================
 
-# --- React/Frontend ---
+# ─── Node / Frontend ─────────────────────────────────────────────────────────
 node_modules/
 dist/
 dist-ssr/
 dist-frontend/
-.parcel-cache
-.cache
+.parcel-cache/
+.cache/
 *.local
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+
+# Vite build artifacts
+vite.config.js.timestamp-*
+*.tsbuildinfo
+
+# Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# --- Python/Backend ---
-backend/__pycache__/
-backend/*.py[cod]
-backend/*$py.class
-backend/.Python
-backend/env/
-backend/venv/
-backend/.venv/
-backend/venv.bak/
+# ─── Environment / Secrets ───────────────────────────────────────────────────
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+*.pem
+*.key
+*.p8
+*.p12
+*.pfx
+
+# ─── Python / Backend ────────────────────────────────────────────────────────
 __pycache__/
 *.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
 .venv/
 venv/
 env/
+ENV/
+venv.bak/
+backend/.venv/
+backend/venv/
+backend/env/
 
-# --- ADEO Intelligence Data & Privacy ---
-# NEVER commit raw or encrypted user data or keys
+# Packaging / distribution
+build/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+nosetests.xml
+
+# MyPy / Pyright
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pytype/
+pyrightconfig.json
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints/
+
+# ─── ADEO Intelligence Data & Privacy ────────────────────────────────────────
+# NEVER commit raw user data, profiles, or encryption keys
 **/output/vault/
 **/output/user_profiles/
 **/output/goals/
@@ -47,32 +104,64 @@ env/
 **/output/models/
 **/data/master.key
 **/data/sync_queue.json
+
+# Generated data files
 **/output/*.csv
 **/output/*.npy
 **/output/*.joblib
+**/output/*.pkl
+**/output/*.h5
+**/output/*.pt
+**/output/*.onnx
 
-# Keep necessary descriptors but ignore generated content
-!**/output/aggregation_daily.csv
-!**/output/*_sample.csv
+# Keep placeholder files
 !**/output/models/.gitkeep
 !**/output/rag_memory/.gitkeep
+!**/output/**/.gitkeep
 
-# --- Logs & Metadata ---
+# ─── Logs & Pipeline Artifacts ───────────────────────────────────────────────
 logs/
 *.log
+log/
 **/output/pipeline_logs.txt
 **/output/data_quality_report.json
 **/output/feature_descriptions.json
 **/output/pipeline_results.json
 
-# --- Editor & System ---
+# ─── Ollama ──────────────────────────────────────────────────────────────────
+# Don't commit local model weights or Ollama config
+.ollama/
+ollama_models/
+
+# ─── Editor & IDEs ───────────────────────────────────────────────────────────
 .DS_Store
+Thumbs.db
 .idea/
 .vscode/
 !.vscode/extensions.json
+!.vscode/settings.json
 *.swp
 *.swo
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
+*.user
+
+# ─── OS ──────────────────────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ─── Misc ────────────────────────────────────────────────────────────────────
+*.tmp
+*.temp
+*.bak
+*.orig
+*.rej
+.sass-cache/

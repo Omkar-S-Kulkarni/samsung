@@ -32,6 +32,8 @@ class HealthSample(BaseModel):
     user_id: str = "default_user"
     heart_rate_bpm: float
     hrv_ms: float
+    spO2: Optional[float] = 98.0
+    activity_intensity: Optional[float] = 0.0
     computed_stress: Optional[float] = 40.0
     total_steps_today: Optional[int] = 0
 
