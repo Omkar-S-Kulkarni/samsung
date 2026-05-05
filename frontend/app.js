@@ -28,11 +28,49 @@ const elements = {
     navReports: document.getElementById('nav-reports'),
     navMemory: document.getElementById('nav-memory'),
     navGoals: document.getElementById('nav-goals'),
+    navSettings: document.getElementById('nav-settings'),
     dashboardView: document.getElementById('dashboard-view'),
     reportsView: document.getElementById('reports-view'),
     memoryView: document.getElementById('memory-view'),
     goalsView: document.getElementById('goals-view'),
+    settingsView: document.getElementById('settings-view'),
     systemStatus: document.getElementById('system-status'),
+    aiMemorySummary: document.getElementById('ai-memory-summary'),
+    insightsTimeline: document.getElementById('insights-timeline'),
+    eventsHistory: document.getElementById('events-history'),
+    behavioralPatterns: document.getElementById('behavioral-patterns'),
+    memorySummaries: document.getElementById('memory-summaries'),
+    summaryContent: document.getElementById('summary-content'),
+    btnWeeklySummary: document.getElementById('btn-weekly-summary'),
+    btnMonthlySummary: document.getElementById('btn-monthly-summary'),
+    editableMemoryList: document.getElementById('editable-memory-list'),
+    goalForm: document.getElementById('goal-form'),
+    goalCategory: document.getElementById('goal-category'),
+    goalTarget: document.getElementById('goal-target'),
+    goalUnit: document.getElementById('goal-unit'),
+    goalUrgency: document.getElementById('goal-urgency'),
+    goalsList: document.getElementById('goals-list'),
+    dailyPlan: document.getElementById('daily-plan'),
+    habitList: document.getElementById('habit-list'),
+    progressCharts: document.getElementById('progress-charts'),
+    streakInfo: document.getElementById('streak-info'),
+    badgesList: document.getElementById('badges-list'),
+    adaptiveUpdates: document.getElementById('adaptive-updates'),
+    personalityMode: document.getElementById('personality-mode'),
+    coachingStyle: document.getElementById('coaching-style'),
+    notifEmail: document.getElementById('notif-email'),
+    notifPush: document.getElementById('notif-push'),
+    notifSMS: document.getElementById('notif-sms'),
+    sensitivityLevel: document.getElementById('sensitivity-level'),
+    sensitivityDisplay: document.getElementById('sensitivity-display'),
+    privacyBio: document.getElementById('privacy-bio'),
+    privacyLocation: document.getElementById('privacy-location'),
+    privacyUsage: document.getElementById('privacy-usage'),
+    dataVisibilityInsights: document.getElementById('data-visibility-insights'),
+    dataVisibilityDashboard: document.getElementById('data-visibility-dashboard'),
+    dataVisibilityShare: document.getElementById('data-visibility-share'),
+    btnSaveSettings: document.getElementById('btn-save-settings'),
+    settingsStatus: document.getElementById('settings-status'),
     aiMemorySummary: document.getElementById('ai-memory-summary'),
     insightsTimeline: document.getElementById('insights-timeline'),
     eventsHistory: document.getElementById('events-history'),
@@ -109,6 +147,7 @@ function setupEventListeners() {
     elements.navReports.onclick = () => switchTab('reports');
     elements.navMemory.onclick = () => switchTab('memory');
     elements.navGoals.onclick = () => switchTab('goals');
+    elements.navSettings.onclick = () => switchTab('settings');
     elements.btnSend.onclick = sendMessage;
     elements.chatInput.onkeypress = (e) => { if (e.key === 'Enter') sendMessage(); };
     elements.btnVoice.onclick = toggleVoice;
@@ -116,6 +155,10 @@ function setupEventListeners() {
     elements.btnWeeklySummary.onclick = () => loadSummary('weekly');
     elements.btnMonthlySummary.onclick = () => loadSummary('monthly');
     elements.goalForm.onsubmit = setGoal;
+    elements.btnSaveSettings.onclick = saveSettingsData;
+    elements.sensitivityLevel.oninput = () => {
+        elements.sensitivityDisplay.innerText = elements.sensitivityLevel.value;
+    };
 }
 
 function switchTab(tab) {
@@ -153,11 +196,25 @@ function switchTab(tab) {
         elements.reportsView.classList.add('hidden');
         elements.memoryView.classList.add('hidden');
         elements.goalsView.classList.remove('hidden');
+        elements.settingsView.classList.add('hidden');
         elements.navDashboard.classList.remove('active');
         elements.navReports.classList.remove('active');
         elements.navMemory.classList.remove('active');
         elements.navGoals.classList.add('active');
+        elements.navSettings.classList.remove('active');
         loadGoalsData();
+    } else if (tab === 'settings') {
+        elements.dashboardView.classList.add('hidden');
+        elements.reportsView.classList.add('hidden');
+        elements.memoryView.classList.add('hidden');
+        elements.goalsView.classList.add('hidden');
+        elements.settingsView.classList.remove('hidden');
+        elements.navDashboard.classList.remove('active');
+        elements.navReports.classList.remove('active');
+        elements.navMemory.classList.remove('active');
+        elements.navGoals.classList.remove('active');
+        elements.navSettings.classList.add('active');
+        loadSettingsData();
     }
 }
 
@@ -378,6 +435,58 @@ async function loadGoalsData() {
     } catch (e) {
         console.error("Failed to load goals data", e);
     }
+}
+
+function loadSettingsData() {
+    const defaults = JSON.parse(localStorage.getItem('adeoSettings') || JSON.stringify({
+        personalityMode: 'friendly',
+        coachingStyle: 'nudging',
+        notifEmail: true,
+        notifPush: true,
+        notifSMS: false,
+        sensitivityLevel: 5,
+        privacyBio: false,
+        privacyLocation: false,
+        privacyUsage: true,
+        dataVisibilityInsights: true,
+        dataVisibilityDashboard: true,
+        dataVisibilityShare: false
+    }));
+
+    elements.personalityMode.value = defaults.personalityMode;
+    elements.coachingStyle.value = defaults.coachingStyle;
+    elements.notifEmail.checked = defaults.notifEmail;
+    elements.notifPush.checked = defaults.notifPush;
+    elements.notifSMS.checked = defaults.notifSMS;
+    elements.sensitivityLevel.value = defaults.sensitivityLevel;
+    elements.sensitivityDisplay.innerText = defaults.sensitivityLevel;
+    elements.privacyBio.checked = defaults.privacyBio;
+    elements.privacyLocation.checked = defaults.privacyLocation;
+    elements.privacyUsage.checked = defaults.privacyUsage;
+    elements.dataVisibilityInsights.checked = defaults.dataVisibilityInsights;
+    elements.dataVisibilityDashboard.checked = defaults.dataVisibilityDashboard;
+    elements.dataVisibilityShare.checked = defaults.dataVisibilityShare;
+    elements.settingsStatus.innerText = 'Settings loaded. Edit and save to update your personalization.';
+}
+
+function saveSettingsData() {
+    const settings = {
+        personalityMode: elements.personalityMode.value,
+        coachingStyle: elements.coachingStyle.value,
+        notifEmail: elements.notifEmail.checked,
+        notifPush: elements.notifPush.checked,
+        notifSMS: elements.notifSMS.checked,
+        sensitivityLevel: parseInt(elements.sensitivityLevel.value, 10),
+        privacyBio: elements.privacyBio.checked,
+        privacyLocation: elements.privacyLocation.checked,
+        privacyUsage: elements.privacyUsage.checked,
+        dataVisibilityInsights: elements.dataVisibilityInsights.checked,
+        dataVisibilityDashboard: elements.dataVisibilityDashboard.checked,
+        dataVisibilityShare: elements.dataVisibilityShare.checked
+    };
+
+    localStorage.setItem('adeoSettings', JSON.stringify(settings));
+    elements.settingsStatus.innerText = 'Personalization settings saved successfully.';
 }
 
 async function setGoal(e) {

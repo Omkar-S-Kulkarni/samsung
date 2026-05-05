@@ -162,6 +162,60 @@
                     <div id="adaptive-updates">Monitoring...</div>
                 </div>
             </section>
+
+            <!-- Personalization Settings View (Hidden by default) -->
+            <section class="settings-grid hidden" id="settings-view">
+                <div class="card personalization-card">
+                    <h3>Personality & Coaching Style</h3>
+                    <label for="personality-mode">Personality Mode</label>
+                    <select id="personality-mode">
+                        <option value="friendly">Friendly</option>
+                        <option value="strict">Strict</option>
+                        <option value="balanced">Balanced</option>
+                        <option value="energetic">Energetic</option>
+                    </select>
+                    <label for="coaching-style">Coaching Style</label>
+                    <select id="coaching-style">
+                        <option value="nudging">Nudging</option>
+                        <option value="supportive">Supportive</option>
+                        <option value="analytical">Analytical</option>
+                        <option value="motivational">Motivational</option>
+                    </select>
+                </div>
+
+                <div class="card notifications-card">
+                    <h3>Notification Preferences</h3>
+                    <label><input type="checkbox" id="notif-email"> Email Alerts</label>
+                    <label><input type="checkbox" id="notif-push"> Push Notifications</label>
+                    <label><input type="checkbox" id="notif-sms"> SMS Alerts</label>
+                </div>
+
+                <div class="card sensitivity-card">
+                    <h3>Sensitivity Level</h3>
+                    <input type="range" id="sensitivity-level" min="1" max="10" value="5">
+                    <div class="range-value">Alerts Frequency: <span id="sensitivity-display">5</span></div>
+                </div>
+
+                <div class="card privacy-card">
+                    <h3>Privacy Settings</h3>
+                    <label><input type="checkbox" id="privacy-bio"> Share Biometric Data</label>
+                    <label><input type="checkbox" id="privacy-location"> Share Location</label>
+                    <label><input type="checkbox" id="privacy-usage"> Share Usage Insights</label>
+                </div>
+
+                <div class="card visibility-card">
+                    <h3>Data Visibility Controls</h3>
+                    <label><input type="checkbox" id="data-visibility-insights"> Insights Only</label>
+                    <label><input type="checkbox" id="data-visibility-dashboard"> Dashboard Access</label>
+                    <label><input type="checkbox" id="data-visibility-share"> Share Anonymized</label>
+                </div>
+
+                <div class="card settings-action-card">
+                    <h3>Save Personalization</h3>
+                    <button id="btn-save-settings">Save Settings</button>
+                    <p id="settings-status">Your preferences are not saved yet.</p>
+                </div>
+            </section>
         </main>
 
         <!-- Chat Assistant Panel -->

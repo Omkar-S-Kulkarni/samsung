@@ -118,7 +118,8 @@ body {
     gap: 1.5rem;
 }
 
-.goals-grid {
+.goals-grid,
+.settings-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
@@ -132,6 +133,54 @@ body {
     padding: 1.5rem;
     transition: transform 0.3s ease;
 }
+
+.settings-grid .card label,
+.settings-grid .card select,
+.settings-grid .card input[type="checkbox"] {
+    display: block;
+    margin-bottom: 0.8rem;
+    color: var(--text-primary);
+}
+
+.settings-grid .card select,
+.settings-grid .card input[type="range"] {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: white;
+    padding: 0.8rem;
+}
+
+.settings-grid .card input[type="checkbox"] {
+    width: auto;
+    margin-right: 0.75rem;
+}
+
+.settings-grid .card .range-value {
+    margin-top: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.settings-grid .settings-action-card button {
+    background: var(--accent-color);
+    border: none;
+    padding: 0.85rem 1rem;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+}
+
+.settings-grid .settings-action-card button:hover {
+    background: #3730a3;
+}
+
+.settings-grid .settings-action-card p {
+    margin-top: 1rem;
+    color: var(--text-secondary);
+}
+
 
 .card:hover {
     transform: translateY(-5px);
