@@ -65,6 +65,18 @@ class InterventionRequest(BaseModel):
     user_id: str = "default_user"
     suggestion: str                 # e.g., "sleep more", "meditate", "walk"
 
+class AnomalyExplanationRequest(BaseModel):
+    """Request body for explaining an anomaly."""
+    user_id: str = "default_user"
+    anomaly_id: str
+    metrics: Dict
+    rule: str
+
+class TrendInsightRequest(BaseModel):
+    """Request body for trend insights."""
+    user_id: str = "default_user"
+    timeframe: str = "7d"
+
 
 @app.get("/")
 async def root():
@@ -400,6 +412,256 @@ async def get_twin_baseline(user_id: str):
         }
     except Exception as e:
         logger.error(f"Baseline error: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# =============================================================================
+# 🚨 ANOMALY & ALERT CENTER ENDPOINTS
+# =============================================================================
+
+@app.get("/anomalies/{user_id}")
+async def get_anomaly_history(user_id: str):
+    """
+    Returns simulated historical anomalies for the timeline and list.
+    """
+    try:
+        from pipeline.ml_models import AnomalyForecaster
+        current = coach.get_readiness_report(user_id)
+        
+        # Simulate some recent anomalies
+        now = time.time()
+        anomalies = [
+            {
+                "id": f"anom_{int(now - 86400 * 1.5)}",
+                "timestamp": time.strftime("%Y-%m-%d %H:%M", time.localtime(now - 86400 * 1.5)),
+                "rule": "sustained_high_stress",
+                "severity": "WARNING",
+                "metrics": {"stress_score": 88.0, "hrv_ms": 18.0},
+                "risk_score": round(AnomalyForecaster.predict_risk(-0.8, -0.2), 1)
+            },
+            {
+                "id": f"anom_{int(now - 86400 * 0.2)}",
+                "timestamp": time.strftime("%Y-%m-%d %H:%M", time.localtime(now - 86400 * 0.2)),
+                "rule": "poor_sleep_pattern",
+                "severity": "INFO",
+                "metrics": {"sleep_duration_min": 210.0},
+                "risk_score": round(AnomalyForecaster.predict_risk(-0.5, 0.1), 1)
+            },
+            {
+                "id": f"anom_{int(now - 3600 * 2)}",
+                "timestamp": time.strftime("%Y-%m-%d %H:%M", time.localtime(now - 3600 * 2)),
+                "rule": "critical_high_hr",
+                "severity": "CRITICAL",
+                "metrics": {"heart_rate_bpm": 185.0},
+                "risk_score": round(AnomalyForecaster.predict_risk(-1.2, -0.5), 1)
+            }
+        ]
+        return {"user_id": user_id, "anomalies": anomalies}
+    except Exception as e:
+        logger.error(f"Anomaly history error: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/alerts/{user_id}")
+async def get_active_alerts(user_id: str):
+    """
+    Evaluates current metrics against RuleEngine and returns active alerts.
+    """
+    try:
+        from pipeline.ml_models import RuleEngine
+        
+        # Mock some current data based on user state
+        twin_state = coach.get_readiness_report(user_id)
+        current_metrics = {
+            "heart_rate_bpm": 72.0,
+            "hrv_ms": 19.0, # Intentional trigger for sustained_high_stress if stress > 85
+            "spo2_pct": 98.0,
+            "stress_score": 86.0, # Intentional trigger for sustained_high_stress
+            "sleep_duration_min": 420.0
+        }
+        
+        alerts = RuleEngine.evaluate(current_metrics)
+        return {"user_id": user_id, "alerts": alerts, "timestamp": time.strftime("%H:%M:%S")}
+    except Exception as e:
+        logger.error(f"Alerts error: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/anomalies/{user_id}/explain")
+async def explain_anomaly(req: AnomalyExplanationRequest):
+    """
+    Uses the Intelligent Engine LLM to explain why an anomaly occurred and suggest actions.
+    """
+    try:
+        context = {
+            "anomaly_rule": req.rule,
+            "metrics": req.metrics,
+            "user_profile": coach.personalization_engine.get_profile(req.user_id).__dict__
+        }
+        
+        # Use reasoner directly for the explanation
+        prompt = (
+            f"An anomaly was detected: {req.rule}.\n"
+            f"Metrics recorded during anomaly: {req.metrics}\n"
+            f"Based on physiological principles, explain briefly in 2-3 sentences why this might have happened. "
+            f"Then list 3 short, actionable suggestions to resolve it. "
+            f"Format the output as valid JSON with two keys: 'explanation' (string) and 'actions' (list of strings)."
+        )
+        
+        try:
+            response = coach.reasoner.llm.invoke(prompt)
+            # Try to parse JSON from response
+            import re
+            json_match = re.search(r'\{.*\}', response, re.DOTALL)
+            if json_match:
+                result = json.loads(json_match.group(0))
+            else:
+                result = {"explanation": response.strip(), "actions": ["Rest and recover", "Hydrate well", "Monitor your vitals"]}
+        except Exception as e:
+            logger.error(f"LLM generation failed: {e}")
+            result = {
+                "explanation": f"The system detected a deviation matching the '{req.rule}' pattern based on your current biometric load. This typically occurs when your physiological stress exceeds recovery capacity.",
+                "actions": ["Prioritize deep sleep tonight", "Avoid high-intensity workouts today", "Practice 10 minutes of box breathing"]
+            }
+        
+        # Compute contributing factors (mocked based on metrics)
+        factors = []
+        for key, val in req.metrics.items():
+            factors.append({
+                "metric": key.replace("_", " ").title(),
+                "value": val,
+                "contribution": min(100, int(val) % 50 + 40) # Mock contribution percentage
+            })
+            
+        return {
+            "anomaly_id": req.anomaly_id,
+            "explanation": result.get("explanation", ""),
+            "actions": result.get("actions", []),
+            "factors": factors
+        }
+    except Exception as e:
+        logger.error(f"Explain anomaly error: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# =============================================================================
+# 📈 TRENDS & ANALYTICS ENDPOINTS
+# =============================================================================
+
+def generate_trend_data(days: int, base_readiness: float, base_sleep: float, base_stress: float):
+    """Procedurally generate realistic trend data."""
+    data = []
+    now = time.time()
+    for i in range(days, -1, -1):
+        # Add some sine wave seasonality + noise
+        t = (days - i) / 7.0
+        r = min(100, max(0, base_readiness + np.sin(t) * 10 + np.random.normal(0, 5)))
+        sl = min(12, max(4, base_sleep + np.cos(t) * 1.5 + np.random.normal(0, 0.8)))
+        st = min(100, max(0, base_stress - np.sin(t) * 15 + np.random.normal(0, 8)))
+        hr = min(100, max(40, 65 - np.sin(t) * 5 + np.random.normal(0, 3)))
+        
+        data.append({
+            "date": time.strftime("%b %d", time.localtime(now - i * 86400)),
+            "readiness": round(r, 1),
+            "sleep_hrs": round(sl, 1),
+            "stress": round(st, 1),
+            "hr": round(hr, 1)
+        })
+    return data
+
+@app.get("/trends/{user_id}")
+async def get_trends(user_id: str, timeframe: str = "7d"):
+    """Returns historical trend data based on timeframe."""
+    try:
+        current = coach.get_readiness_report(user_id)
+        br = float(current.get("readiness_score", 75))
+        bs = 7.5
+        bst = 40.0
+        
+        if timeframe == "7d":
+            data = generate_trend_data(7, br, bs, bst)
+        elif timeframe == "30d":
+            data = generate_trend_data(30, br, bs, bst)
+        elif timeframe == "6m":
+            # For 6m, group by month (mocking 6 points)
+            data = []
+            now = time.time()
+            for i in range(6, -1, -1):
+                t = (6 - i)
+                data.append({
+                    "date": time.strftime("%b %Y", time.localtime(now - i * 30 * 86400)),
+                    "readiness": round(float(br + t*2 + np.random.normal(0, 3)), 1),
+                    "sleep_hrs": round(float(bs + t*0.2 + np.random.normal(0, 0.5)), 1),
+                    "stress": round(float(bst - t*3 + np.random.normal(0, 4)), 1),
+                    "hr": round(float(65 - t + np.random.normal(0, 2)), 1)
+                })
+        else:
+            data = generate_trend_data(7, br, bs, bst)
+            
+        # Calculate indicators (compare last vs first)
+        if len(data) >= 2:
+            first, last = data[0], data[-1]
+            indicators = {
+                "readiness": {"value": last["readiness"], "delta": round(last["readiness"] - first["readiness"], 1)},
+                "sleep": {"value": last["sleep_hrs"], "delta": round(last["sleep_hrs"] - first["sleep_hrs"], 1)},
+                "stress": {"value": last["stress"], "delta": round(last["stress"] - first["stress"], 1)},
+                "hr": {"value": last["hr"], "delta": round(last["hr"] - first["hr"], 1)}
+            }
+        else:
+            indicators = {}
+            
+        return {"user_id": user_id, "timeframe": timeframe, "data": data, "indicators": indicators}
+    except Exception as e:
+        logger.error(f"Trends error: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/trends/correlations/{user_id}")
+async def get_correlations(user_id: str):
+    """Returns scatter plot data for correlations (Sleep vs HRV, Stress vs Readiness)."""
+    try:
+        data = []
+        for _ in range(30):
+            sleep = float(np.random.uniform(4, 10))
+            hrv = float(sleep * 8 + np.random.normal(0, 10))
+            stress = float(100 - (sleep * 8) + np.random.normal(0, 15))
+            readiness = float(sleep * 9 + np.random.normal(0, 8))
+            
+            data.append({
+                "sleep": round(sleep, 1),
+                "hrv": round(hrv, 1),
+                "stress": round(stress, 1),
+                "readiness": round(readiness, 1)
+            })
+        return {"user_id": user_id, "data": data}
+    except Exception as e:
+        logger.error(f"Correlations error: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/trends/insights")
+async def generate_trend_insights(req: TrendInsightRequest):
+    """Use LLM to explain the trends."""
+    try:
+        current = coach.get_readiness_report(req.user_id)
+        prompt = (
+            f"The user has requested a trend analysis. Their current readiness is {current.get('readiness_score', 75)}. "
+            f"Over the last {req.timeframe}, their sleep has slightly improved and stress has decreased, leading to better HRV. "
+            f"Write a short, encouraging 3-sentence insight explaining how their sleep improvements are driving better cardiovascular recovery (HRV) and overall readiness. "
+            f"Format as valid JSON with an 'insight' key (string)."
+        )
+        
+        try:
+            response = coach.reasoner.llm.invoke(prompt)
+            import re
+            json_match = re.search(r'\{.*\}', response, re.DOTALL)
+            if json_match:
+                result = json.loads(json_match.group(0))
+            else:
+                result = {"insight": response.strip()}
+        except Exception as e:
+            logger.error(f"LLM trend insight failed: {e}")
+            result = {"insight": "Your recent data shows a strong positive correlation between your sleep duration and HRV. By maintaining this consistent sleep schedule, you are actively lowering your physiological stress and boosting your daily readiness."}
+            
+        return {"user_id": req.user_id, "insight": result.get("insight", "")}
+    except Exception as e:
+        logger.error(f"Trend insights error: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
 
 
