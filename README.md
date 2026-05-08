@@ -194,3 +194,12 @@ The **Coach** tab (`AICoach.jsx`) is a fully on-device AI health coach:
 - The frontend polls `/dashboard/{user_id}` every **5 seconds** and POSTs to `/process` every **1 second**
 - Run `python3 -m uvicorn ...` (not bare `uvicorn`) — the binary path may not be in `$PATH` on macOS
 - Ollama must be running separately (`ollama serve`) for the AI Coach to work
+
+
+
+
+
+PRESENTATION : [https://drive.google.com/file/d/1OGkNB02rZOVbbrVPQVsNtPGjOkm8cVsr/view?usp=drive_link](https://drive.google.com/file/d/1OGkNB02rZOVbbrVPQVsNtPGjOkm8cVsr/view?usp=sharing)
+
+DEMO : (https://drive.google.com/file/d/1_-9bYNZBxLapqfemvsb792DfkUj33Mm6/view?usp=sharing)
+
