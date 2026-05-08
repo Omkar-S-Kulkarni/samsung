@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const signalData = {
@@ -61,25 +61,25 @@ export default function Signals() {
             <AreaChart data={signalData[activeSignal]} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
               <defs>
                 <linearGradient id={`color-${activeSignal}`} x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor={signalColors[activeSignal]} stopOpacity={0.3}/>
-                  <stop offset="95%" stopColor={signalColors[activeSignal]} stopOpacity={0}/>
+                  <stop offset="5%" stopColor={signalColors[activeSignal]} stopOpacity={0.3} />
+                  <stop offset="95%" stopColor={signalColors[activeSignal]} stopOpacity={0} />
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
               <XAxis dataKey="day" stroke="rgba(255,255,255,0.3)" fontSize={12} tickLine={false} axisLine={false} dy={10} />
               <YAxis stroke="rgba(255,255,255,0.3)" fontSize={12} tickLine={false} axisLine={false} dx={-10} />
-              <Tooltip 
+              <Tooltip
                 contentStyle={{ backgroundColor: 'rgba(8,12,20,0.9)', borderColor: 'rgba(255,255,255,0.1)', borderRadius: '12px', backdropFilter: 'blur(10px)' }}
                 itemStyle={{ color: signalColors[activeSignal], fontWeight: 'bold' }}
                 labelStyle={{ color: '#9ca3af', marginBottom: '4px' }}
               />
-              <Area 
-                type="monotone" 
-                dataKey="value" 
-                stroke={signalColors[activeSignal]} 
-                fillOpacity={1} 
-                fill={`url(#color-${activeSignal})`} 
-                strokeWidth={3} 
+              <Area
+                type="monotone"
+                dataKey="value"
+                stroke={signalColors[activeSignal]}
+                fillOpacity={1}
+                fill={`url(#color-${activeSignal})`}
+                strokeWidth={3}
                 activeDot={{ r: 6, fill: signalColors[activeSignal], stroke: '#080C14', strokeWidth: 2 }}
               />
             </AreaChart>

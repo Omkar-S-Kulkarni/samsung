@@ -138,6 +138,34 @@ body {
 .animate-fade-up    { animation: fade-up 0.5s ease-out forwards; }
 .animate-draw       { animation: draw-line 2s ease-out forwards; }
 
+/* ── Vitals Component Animations (replaces framer-motion) ──── */
+@keyframes vitals-slide-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes vitals-fade-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes vitals-pop-in {
+  from { transform: scale(1.15); }
+  to   { transform: scale(1); }
+}
+@keyframes vitals-scale-in {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes vitals-slide-in-right {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.vitals-slide-up      { animation: vitals-slide-up 0.5s ease-out both; }
+.vitals-fade-in       { animation: vitals-fade-in 0.3s ease-out both; }
+.vitals-pop-in        { animation: vitals-pop-in 0.25s ease-out both; }
+.vitals-scale-in      { animation: vitals-scale-in 0.3s ease-out both; }
+.vitals-slide-in-right { animation: vitals-slide-in-right 0.4s ease-out both; }
+
 /* ── Shimmer Skeleton ─────────────────────────────────────── */
 .shimmer {
   background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.07) 50%, rgba(255,255,255,0.03) 75%);

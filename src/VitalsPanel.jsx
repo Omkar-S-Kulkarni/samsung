@@ -4,21 +4,21 @@
  * Composed of modular sub-components, driven by Zustand store.
  * All graphs update live without reloads.
  */
-import React, { useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, Activity, Droplets, Footprints, Wifi, WifiOff, Zap, AlertTriangle } from 'lucide-react';
+import { useCallback } from 'react';
+
+import { Heart, Activity, Droplets, Footprints, Wifi, WifiOff, Zap } from 'lucide-react';
 
 // Store
 import useVitalsStore from './store/vitalsStore';
 
 // Components
 import { StatCard, SignalBadge, LiveBadge, AlertBanner } from './components/VitalsComponents';
-import LiveHeartRateGraph     from './components/LiveHeartRateGraph';
-import HRVTrendGraph          from './components/HRVTrendGraph';
+import LiveHeartRateGraph from './components/LiveHeartRateGraph';
+import HRVTrendGraph from './components/HRVTrendGraph';
 import ActivityIntensityGraph from './components/ActivityIntensityGraph';
-import StepCountTracker       from './components/StepCountTracker';
-import SpO2Display            from './components/SpO2Display';
-import MultiSignalChart       from './components/MultiSignalChart';
+import StepCountTracker from './components/StepCountTracker';
+import SpO2Display from './components/SpO2Display';
+import MultiSignalChart from './components/MultiSignalChart';
 
 /* ── Helper: format time ────────────────────────────────────── */
 function fmtTime(date) {
@@ -29,7 +29,7 @@ function fmtTime(date) {
 /* ── Vitals summary cards row ───────────────────────────────── */
 function VitalsSummaryRow({ hr, hrv, spO2, activityIntensity, activityZone }) {
   const hrStatus = hr > 100 ? 'High' : hr < 50 ? 'Low' : 'Normal';
-  const hrColor  = hr > 100 ? '#FF4560' : hr < 50 ? '#fbbf24' : 'var(--color-pulse-cyan)';
+  const hrColor = hr > 100 ? '#FF4560' : hr < 50 ? '#fbbf24' : 'var(--color-pulse-cyan)';
 
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
@@ -66,9 +66,9 @@ function VitalsSummaryRow({ hr, hrv, spO2, activityIntensity, activityZone }) {
         badge={
           <span className="text-[9px] font-mono px-2 py-0.5 rounded-full border"
             style={{
-              color:            spO2 >= 95 ? '#39FF6A' : spO2 >= 90 ? '#fbbf24' : '#FF4560',
-              borderColor:      spO2 >= 95 ? '#39FF6A33' : spO2 >= 90 ? '#fbbf2433' : '#FF456033',
-              backgroundColor:  spO2 >= 95 ? '#39FF6A10' : spO2 >= 90 ? '#fbbf2410' : '#FF456010',
+              color: spO2 >= 95 ? '#39FF6A' : spO2 >= 90 ? '#fbbf24' : '#FF4560',
+              borderColor: spO2 >= 95 ? '#39FF6A33' : spO2 >= 90 ? '#fbbf2433' : '#FF456033',
+              backgroundColor: spO2 >= 95 ? '#39FF6A10' : spO2 >= 90 ? '#fbbf2410' : '#FF456010',
             }}>
             SpO₂
           </span>
@@ -101,7 +101,7 @@ export default function VitalsPanel() {
     hr, hrv, spO2, activityIntensity, steps,
     hrHistory, hrvHistory, intensityHistory, spO2History,
     activityZone, signalQuality, lastUpdated, isConnected,
-    alerts, clearAlerts,
+    alerts,
     timeWindow, setTimeWindow,
   } = useVitalsStore();
 
@@ -115,10 +115,8 @@ export default function VitalsPanel() {
     <div className="flex-1 overflow-y-auto hide-scrollbar p-4 pb-28 md:pb-6 w-full max-w-7xl mx-auto space-y-5">
 
       {/* ── Header ─────────────────────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: -12 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pt-2"
+      <div
+        className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pt-2 vitals-fade-in"
       >
         <div>
           <div className="flex items-center gap-3 mb-1">
@@ -148,14 +146,14 @@ export default function VitalsPanel() {
             </span>
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Alerts ─────────────────────────────────────────────── */}
-      <AnimatePresence>
+      <>
         {alerts.map((alert, i) => (
           <AlertBanner key={i} alert={alert} onDismiss={() => handleDismissAlert(i)} />
         ))}
-      </AnimatePresence>
+      </>
 
       {/* ── Summary Cards ──────────────────────────────────────── */}
       <VitalsSummaryRow
@@ -199,11 +197,9 @@ export default function VitalsPanel() {
       />
 
       {/* ── Neural Insights ─────────────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
-        className="glass-card rounded-3xl p-5"
+      <div
+        className="glass-card rounded-3xl p-5 vitals-slide-up"
+        style={{ animationDelay: '0.4s' }}
       >
         <div className="flex items-center gap-3 mb-4">
           <div className="p-2 rounded-xl bg-[var(--color-pulse-cyan)]/10 border border-[var(--color-pulse-cyan)]/20">
@@ -249,7 +245,7 @@ export default function VitalsPanel() {
             </div>
           ))}
         </div>
-      </motion.div>
+      </div>
 
       {/* Spacer for mobile nav */}
       <div className="h-4" />

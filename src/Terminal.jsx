@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Terminal as TerminalIcon, Cpu, Database, Zap, Shield } from 'lucide-react';
 
 const Step = ({ icon: Icon, label, status, detail, color }) => (
@@ -19,9 +19,8 @@ const Step = ({ icon: Icon, label, status, detail, color }) => (
   </div>
 );
 
-export default function Terminal({ logs }) {
+export default function Terminal() {
   const [activeStep, setActiveStep] = useState(0);
-  const scrollRef = useRef(null);
 
   const steps = [
     { id: 'preprocess', label: 'Adaptive Preprocessing', icon: Zap, color: 'var(--color-pulse-cyan)', detail: 'Cleaning noise from sensor stream, aligning frequencies...' },
@@ -35,7 +34,7 @@ export default function Terminal({ logs }) {
       setActiveStep(prev => (prev + 1) % steps.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [steps.length]);
 
   return (
     <div className="flex-1 overflow-y-auto p-4 pb-28 md:pb-6 hide-scrollbar flex flex-col w-full max-w-5xl mx-auto">
@@ -52,10 +51,10 @@ export default function Terminal({ logs }) {
       <div className="glass-card rounded-2xl p-6 mb-8">
         <div className="flex flex-col">
           {steps.map((step, i) => (
-            <Step 
-              key={step.id} 
-              {...step} 
-              status={i === activeStep ? 'active' : (i < activeStep ? 'complete' : 'pending')} 
+            <Step
+              key={step.id}
+              {...step}
+              status={i === activeStep ? 'active' : (i < activeStep ? 'complete' : 'pending')}
             />
           ))}
         </div>

@@ -1,21 +1,16 @@
 /**
  * Shared reusable components for the ADEO Vitals Dashboard
  */
-import React from 'react';
-import { motion } from 'framer-motion';
 
 /* ── Animated Counter ─────────────────────────────────────────── */
 export function AnimatedValue({ value, decimals = 0, className = '' }) {
   return (
-    <motion.span
+    <span
       key={value}
-      initial={{ opacity: 0, y: -8 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, ease: 'easeOut' }}
-      className={className}
+      className={`vitals-fade-in ${className}`}
     >
       {typeof value === 'number' ? value.toFixed(decimals) : value}
-    </motion.span>
+    </span>
   );
 }
 
@@ -54,11 +49,8 @@ export function SignalBadge({ quality }) {
 /* ── Stat Card ─────────────────────────────────────────────────── */
 export function StatCard({ icon: Icon, title, value, unit, color, subtext, badge, pulse = false, children }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4 }}
-      className="glass-card glass-card-hover rounded-2xl p-5 flex flex-col relative overflow-hidden"
+    <div
+      className="glass-card glass-card-hover rounded-2xl p-5 flex flex-col relative overflow-hidden vitals-slide-up"
       style={{ borderBottom: `2px solid ${color}60` }}
     >
       {/* Top accent line */}
@@ -86,7 +78,7 @@ export function StatCard({ icon: Icon, title, value, unit, color, subtext, badge
       )}
 
       {children}
-    </motion.div>
+    </div>
   );
 }
 
@@ -138,15 +130,13 @@ export function ProgressRing({ value, max = 100, size = 80, strokeWidth = 6, col
 /* ── Zone Badge ──────────────────────────────────────────────── */
 export function ZoneBadge({ zone }) {
   return (
-    <motion.span
+    <span
       key={zone.name}
-      initial={{ scale: 0.85, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border font-mono"
+      className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border font-mono vitals-scale-in"
       style={{ color: zone.color, backgroundColor: `${zone.color}15`, borderColor: `${zone.color}30` }}
     >
       {zone.name}
-    </motion.span>
+    </span>
   );
 }
 
@@ -179,8 +169,8 @@ export function ChartToggle({ options, value, onChange }) {
           className="px-3 py-1 rounded-lg text-[10px] font-bold font-mono uppercase transition-all"
           style={{
             background: value === o.id ? `${o.color}18` : 'transparent',
-            color:      value === o.id ? o.color : '#6b7280',
-            border:     value === o.id ? `1px solid ${o.color}30` : '1px solid transparent',
+            color: value === o.id ? o.color : '#6b7280',
+            border: value === o.id ? `1px solid ${o.color}30` : '1px solid transparent',
           }}>
           {o.label}
         </button>
@@ -194,11 +184,8 @@ export function AlertBanner({ alert, onDismiss }) {
   const isWarn = alert.severity === 'CRITICAL';
   const color = isWarn ? '#FF4560' : '#fbbf24';
   return (
-    <motion.div
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: 20 }}
-      className="flex items-start gap-3 rounded-xl p-3 border text-xs"
+    <div
+      className="flex items-start gap-3 rounded-xl p-3 border text-xs vitals-slide-in-right"
       style={{ background: `${color}10`, borderColor: `${color}30` }}
     >
       <span className="animate-live w-2 h-2 rounded-full mt-0.5 flex-shrink-0" style={{ backgroundColor: color }} />
@@ -206,6 +193,6 @@ export function AlertBanner({ alert, onDismiss }) {
       {onDismiss && (
         <button onClick={onDismiss} className="text-gray-500 hover:text-white flex-shrink-0 text-[10px]">✕</button>
       )}
-    </motion.div>
+    </div>
   );
 }

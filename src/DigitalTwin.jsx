@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Activity, Shield, Zap, Info, Play } from 'lucide-react';
+import { useState } from 'react';
+import { Shield, Zap } from 'lucide-react';
 
 const TwinMetric = ({ label, value, color, max = 100 }) => (
   <div className="flex flex-col gap-2">
@@ -8,15 +8,15 @@ const TwinMetric = ({ label, value, color, max = 100 }) => (
       <span className="text-xl font-bold text-white font-mono">{value.toFixed(1)}</span>
     </div>
     <div className="h-1.5 w-full bg-black/40 rounded-full overflow-hidden">
-      <div 
-        className="h-full rounded-full transition-all duration-1000" 
+      <div
+        className="h-full rounded-full transition-all duration-1000"
         style={{ width: `${(value / max) * 100}%`, backgroundColor: color }}
       ></div>
     </div>
   </div>
 );
 
-export default function DigitalTwin({ twin, onSimulate }) {
+export default function DigitalTwin({ twin }) {
   const [scenario, setScenario] = useState({ sleep_delta: 0, extra_load: 0 });
   const [simResults, setSimResults] = useState(null);
   const [isSimulating, setIsSimulating] = useState(false);
@@ -61,26 +61,26 @@ export default function DigitalTwin({ twin, onSimulate }) {
               <span className="text-xs text-[var(--color-pulse-green)] font-bold uppercase tracking-widest">Model: Active</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Readiness: {twinData.readiness_score.toFixed(1)}</h2>
-            
+
             <div className="space-y-6">
               <TwinMetric label="Body Readiness" value={twinData.readiness_score} color="var(--color-pulse-cyan)" />
               <TwinMetric label="Fatigue Index" value={twinData.fatigue_index} color="var(--color-pulse-amber)" />
               <TwinMetric label="Stress Resilience" value={twinData.stress_resilience} color="var(--color-pulse-green)" />
             </div>
           </div>
-          
+
           <div className="flex justify-center">
-             <div className="relative w-48 h-48 md:w-64 md:h-64">
-                {/* Simulated Human Outline Visualization */}
-                <svg viewBox="0 0 100 100" className="w-full h-full text-white/10 fill-current drop-shadow-[0_0_20px_rgba(0,229,255,0.2)]">
-                  <path d="M50 10 C55 10 58 15 58 20 C58 25 55 30 50 30 C45 30 42 25 42 20 C42 15 45 10 50 10 M30 40 L70 40 L75 70 L25 70 Z M40 70 L35 95 M60 70 L65 95" stroke="var(--color-pulse-cyan)" strokeWidth="1" fill="none" />
-                </svg>
-                {/* Floating particles */}
-                <div className="absolute inset-0 animate-spin-slow opacity-50">
-                  <div className="absolute top-0 left-1/2 w-1 h-1 bg-[var(--color-pulse-cyan)] rounded-full shadow-[0_0_8px_var(--color-pulse-cyan)]"></div>
-                  <div className="absolute bottom-0 left-1/2 w-1 h-1 bg-[var(--color-pulse-green)] rounded-full shadow-[0_0_8px_var(--color-pulse-green)]"></div>
-                </div>
-             </div>
+            <div className="relative w-48 h-48 md:w-64 md:h-64">
+              {/* Simulated Human Outline Visualization */}
+              <svg viewBox="0 0 100 100" className="w-full h-full text-white/10 fill-current drop-shadow-[0_0_20px_rgba(0,229,255,0.2)]">
+                <path d="M50 10 C55 10 58 15 58 20 C58 25 55 30 50 30 C45 30 42 25 42 20 C42 15 45 10 50 10 M30 40 L70 40 L75 70 L25 70 Z M40 70 L35 95 M60 70 L65 95" stroke="var(--color-pulse-cyan)" strokeWidth="1" fill="none" />
+              </svg>
+              {/* Floating particles */}
+              <div className="absolute inset-0 animate-spin-slow opacity-50">
+                <div className="absolute top-0 left-1/2 w-1 h-1 bg-[var(--color-pulse-cyan)] rounded-full shadow-[0_0_8px_var(--color-pulse-cyan)]"></div>
+                <div className="absolute bottom-0 left-1/2 w-1 h-1 bg-[var(--color-pulse-green)] rounded-full shadow-[0_0_8px_var(--color-pulse-green)]"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -92,10 +92,10 @@ export default function DigitalTwin({ twin, onSimulate }) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div className="space-y-2">
               <label className="text-xs text-gray-400 font-mono">Scenario: Sleep Change (Hours)</label>
-              <input 
-                type="range" min="-4" max="4" step="0.5" 
-                value={scenario.sleep_delta} 
-                onChange={(e) => setScenario({...scenario, sleep_delta: parseFloat(e.target.value)})}
+              <input
+                type="range" min="-4" max="4" step="0.5"
+                value={scenario.sleep_delta}
+                onChange={(e) => setScenario({ ...scenario, sleep_delta: parseFloat(e.target.value) })}
                 className="w-full accent-[var(--color-pulse-cyan)]"
               />
               <div className="flex justify-between text-[10px] font-mono text-gray-500">
@@ -106,10 +106,10 @@ export default function DigitalTwin({ twin, onSimulate }) {
             </div>
             <div className="space-y-2">
               <label className="text-xs text-gray-400 font-mono">Scenario: Extra Load (Intensity)</label>
-              <input 
-                type="range" min="0" max="100" 
-                value={scenario.extra_load} 
-                onChange={(e) => setScenario({...scenario, extra_load: parseInt(e.target.value)})}
+              <input
+                type="range" min="0" max="100"
+                value={scenario.extra_load}
+                onChange={(e) => setScenario({ ...scenario, extra_load: parseInt(e.target.value) })}
                 className="w-full accent-[var(--color-pulse-amber)]"
               />
               <div className="flex justify-between text-[10px] font-mono text-gray-500">
@@ -120,7 +120,7 @@ export default function DigitalTwin({ twin, onSimulate }) {
             </div>
           </div>
 
-          <button 
+          <button
             onClick={handleSimulate}
             disabled={isSimulating}
             className="w-full bg-[var(--color-pulse-cyan)]/20 hover:bg-[var(--color-pulse-cyan)]/30 text-[var(--color-pulse-cyan)] border border-[var(--color-pulse-cyan)]/30 rounded-xl py-3 flex items-center justify-center gap-2 font-bold transition-all disabled:opacity-50"

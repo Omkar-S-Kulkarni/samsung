@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { Lock, Shield, RefreshCw, Smartphone, Eye, Trash2, Download } from 'lucide-react';
 
 const Toggle = ({ enabled, onChange, label, sublabel, icon: Icon }) => (
@@ -12,7 +12,7 @@ const Toggle = ({ enabled, onChange, label, sublabel, icon: Icon }) => (
         <div className="text-[10px] text-gray-500">{sublabel}</div>
       </div>
     </div>
-    <button 
+    <button
       onClick={onChange}
       className={`w-12 h-6 rounded-full transition-colors relative ${enabled ? 'bg-[var(--color-pulse-cyan)]' : 'bg-white/10'}`}
     >
@@ -21,18 +21,12 @@ const Toggle = ({ enabled, onChange, label, sublabel, icon: Icon }) => (
   </div>
 );
 
-export default function Vault({ privacy }) {
-  const [permissions, setPermissions] = React.useState({
+export default function Vault() {
+  const [permissions, setPermissions] = useState({
     biometrics: true,
     location: false,
     cloud: false
   });
-
-  const syncStatus = {
-    connected: true,
-    last_sync: '2 mins ago',
-    pending: 0
-  };
 
   return (
     <div className="flex-1 overflow-y-auto p-4 pb-28 md:pb-6 hide-scrollbar flex flex-col w-full max-w-5xl mx-auto">
@@ -65,26 +59,26 @@ export default function Vault({ privacy }) {
       <div className="mb-8">
         <h2 className="text-xs text-[var(--color-pulse-cyan)] uppercase tracking-widest mb-4 font-mono">Data Sovereignty</h2>
         <div className="space-y-3">
-          <Toggle 
-            label="On-Device Encryption" 
-            sublabel="All health data is encrypted before saving" 
-            enabled={true} 
-            icon={Lock} 
-            onChange={() => {}} 
+          <Toggle
+            label="On-Device Encryption"
+            sublabel="All health data is encrypted before saving"
+            enabled={true}
+            icon={Lock}
+            onChange={() => { }}
           />
-          <Toggle 
-            label="Biometric Processing" 
-            sublabel="Allow heart rate and HRV intelligence" 
-            enabled={permissions.biometrics} 
-            icon={Shield} 
-            onChange={() => setPermissions({...permissions, biometrics: !permissions.biometrics})} 
+          <Toggle
+            label="Biometric Processing"
+            sublabel="Allow heart rate and HRV intelligence"
+            enabled={permissions.biometrics}
+            icon={Shield}
+            onChange={() => setPermissions({ ...permissions, biometrics: !permissions.biometrics })}
           />
-          <Toggle 
-            label="Zero Cloud Leakage" 
-            sublabel="Prevents any data from leaving the device" 
-            enabled={!permissions.cloud} 
-            icon={Eye} 
-            onChange={() => setPermissions({...permissions, cloud: !permissions.cloud})} 
+          <Toggle
+            label="Zero Cloud Leakage"
+            sublabel="Prevents any data from leaving the device"
+            enabled={!permissions.cloud}
+            icon={Eye}
+            onChange={() => setPermissions({ ...permissions, cloud: !permissions.cloud })}
           />
         </div>
       </div>
@@ -93,12 +87,12 @@ export default function Vault({ privacy }) {
       <div className="mb-8">
         <h2 className="text-xs text-[var(--color-pulse-cyan)] uppercase tracking-widest mb-4 font-mono">Visibility & Portability</h2>
         <div className="grid grid-cols-2 gap-3">
-           <button className="flex items-center justify-center gap-2 p-4 glass-card rounded-2xl border border-white/5 text-gray-300 hover:text-white hover:bg-white/5 transition-all text-sm font-medium">
-             <Download size={16} /> Export JSON
-           </button>
-           <button className="flex items-center justify-center gap-2 p-4 glass-card rounded-2xl border border-white/5 text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-all text-sm font-medium">
-             <Trash2 size={16} /> Purge Vault
-           </button>
+          <button className="flex items-center justify-center gap-2 p-4 glass-card rounded-2xl border border-white/5 text-gray-300 hover:text-white hover:bg-white/5 transition-all text-sm font-medium">
+            <Download size={16} /> Export JSON
+          </button>
+          <button className="flex items-center justify-center gap-2 p-4 glass-card rounded-2xl border border-white/5 text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-all text-sm font-medium">
+            <Trash2 size={16} /> Purge Vault
+          </button>
         </div>
       </div>
 

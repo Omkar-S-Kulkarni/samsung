@@ -43,16 +43,16 @@ async function startSimulation() {
         try {
             const resp = await fetch(`/api/health?battery=${state.battery}`);
             const json = await resp.json();
-            
+
             const data = json.data;
             state.hr = Math.round(data.heart_rate_bpm);
             state.stress = Math.round(data.computed_stress || 20);
             state.hrv = Math.round(data.hrv_ms);
-            
+
             if (json.insight) {
                 elements.insightText.innerText = json.insight;
             }
-            
+
             // Handle Alerts
             if (json.alerts && json.alerts.length > 0) {
                 elements.systemStatus.innerText = "🚨 Alert Detected";
@@ -117,10 +117,10 @@ async function sendMessage() {
             body: JSON.stringify({ message: text, battery: state.battery })
         });
         const json = await resp.json();
-        
+
         addChatMessage(json.response, 'system');
         speak(json.response);
-    } catch (e) {
+    } catch {
         addChatMessage("Sorry, I'm having trouble connecting to my brain.", 'system');
     }
 }
@@ -182,7 +182,7 @@ async function generateReports() {
     try {
         const resp = await fetch(`/api/insights?user_id=web_user_1`);
         const json = await resp.json();
-        
+
         // Weekly AI Outlook
         const weekly = json.weekly;
         if (weekly.status === "No data") {
@@ -197,7 +197,7 @@ async function generateReports() {
                 </div>
             `;
         }
-        
+
         // Progress Tracking
         const progress = json.progress;
         if (progress.status) {

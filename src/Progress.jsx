@@ -1,10 +1,9 @@
-import React from 'react';
-import { Trophy, Target, TrendingUp, Award, Zap } from 'lucide-react';
+import { Trophy, Target, TrendingUp, Award } from 'lucide-react';
 
 const ProgressBar = ({ progress, color }) => (
   <div className="h-2 w-full bg-black/40 rounded-full overflow-hidden shadow-inner">
-    <div 
-      className="h-full rounded-full transition-all duration-1000 ease-out" 
+    <div
+      className="h-full rounded-full transition-all duration-1000 ease-out"
       style={{ width: `${Math.min(100, progress)}%`, backgroundColor: color }}
     >
       <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/20"></div>

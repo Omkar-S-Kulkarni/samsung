@@ -28,11 +28,11 @@ function deriveHRV(hrHistory) {
  * Map HR + activity to activity zone.
  */
 function getActivityZone(hr, intensity) {
-  if (intensity < 10 && hr < 65)  return { name: 'Rest',     color: '#60a5fa', zone: 0 };
-  if (intensity < 30 || hr < 80)  return { name: 'Light',    color: '#34d399', zone: 1 };
+  if (intensity < 10 && hr < 65) return { name: 'Rest', color: '#60a5fa', zone: 0 };
+  if (intensity < 30 || hr < 80) return { name: 'Light', color: '#34d399', zone: 1 };
   if (intensity < 60 || hr < 110) return { name: 'Moderate', color: '#fbbf24', zone: 2 };
-  if (intensity < 80 || hr < 140) return { name: 'High',     color: '#f87171', zone: 3 };
-  return                                  { name: 'Peak',     color: '#e879f9', zone: 4 };
+  if (intensity < 80 || hr < 140) return { name: 'High', color: '#f87171', zone: 3 };
+  return { name: 'Peak', color: '#e879f9', zone: 4 };
 }
 
 /**
@@ -43,41 +43,41 @@ function computeSignalQuality(hrHistory) {
   const mean = hrHistory.reduce((s, v) => s + v, 0) / hrHistory.length;
   const variance = hrHistory.reduce((s, v) => s + (v - mean) ** 2, 0) / hrHistory.length;
   const noise = Math.sqrt(variance);
-  if (noise < 3)  return { score: 98,  label: 'Excellent', color: '#39FF6A' };
-  if (noise < 6)  return { score: 88,  label: 'Good',      color: '#39FF6A' };
-  if (noise < 12) return { score: 72,  label: 'Moderate',  color: '#fbbf24' };
-  return               { score: 50,  label: 'Poor',      color: '#FF4560' };
+  if (noise < 3) return { score: 98, label: 'Excellent', color: '#39FF6A' };
+  if (noise < 6) return { score: 88, label: 'Good', color: '#39FF6A' };
+  if (noise < 12) return { score: 72, label: 'Moderate', color: '#fbbf24' };
+  return { score: 50, label: 'Poor', color: '#FF4560' };
 }
 
-const useVitalsStore = create((set, get) => ({
+const useVitalsStore = create((set) => ({
   // ── Core Vitals ──────────────────────────────────────────────
-  hr:               72,
-  hrv:              52,
-  spO2:             98,
+  hr: 72,
+  hrv: 52,
+  spO2: 98,
   activityIntensity: 20,
-  steps:            4500,
-  stressScore:      35,
-  unifiedScore:     72.5,
+  steps: 4500,
+  stressScore: 35,
+  unifiedScore: 72.5,
 
   // ── History Arrays (for graphs) ──────────────────────────────
-  hrHistory:        Array.from({ length: HISTORY_LEN }, () => 72),
-  hrvHistory:       Array.from({ length: HISTORY_LEN }, () => 52),
+  hrHistory: Array.from({ length: HISTORY_LEN }, () => 72),
+  hrvHistory: Array.from({ length: HISTORY_LEN }, () => 52),
   intensityHistory: Array.from({ length: HISTORY_LEN }, () => 20),
-  spO2History:      Array.from({ length: HISTORY_LEN }, () => 98),
-  stressHistory:    Array.from({ length: HISTORY_LEN }, () => 35),
+  spO2History: Array.from({ length: HISTORY_LEN }, () => 98),
+  stressHistory: Array.from({ length: HISTORY_LEN }, () => 35),
 
   // ── Derived State ────────────────────────────────────────────
-  activityZone:   getActivityZone(72, 20),
-  signalQuality:  { score: 98, label: 'Excellent', color: '#39FF6A' },
-  goalSteps:      GOAL_STEPS,
+  activityZone: getActivityZone(72, 20),
+  signalQuality: { score: 98, label: 'Excellent', color: '#39FF6A' },
+  goalSteps: GOAL_STEPS,
 
   // ── Backend State ────────────────────────────────────────────
-  backendState:   null,
-  twin:           null,
-  rewards:        null,
-  isConnected:    false,
-  lastUpdated:    null,
-  alerts:         [],
+  backendState: null,
+  twin: null,
+  rewards: null,
+  isConnected: false,
+  lastUpdated: null,
+  alerts: [],
 
   // ── Time Window Selection ────────────────────────────────────
   timeWindow: 30, // seconds to display
@@ -89,38 +89,38 @@ const useVitalsStore = create((set, get) => ({
 
   // ── Update Vitals (called by polling loop) ───────────────────
   updateVitals: (newHr, newIntensity, newSpO2, newStress) => set((state) => {
-    const hrH    = pushHistory(state.hrHistory,        newHr);
-    const intH   = pushHistory(state.intensityHistory, newIntensity);
-    const spO2H  = pushHistory(state.spO2History,      newSpO2);
-    const stressH= pushHistory(state.stressHistory,    newStress);
+    const hrH = pushHistory(state.hrHistory, newHr);
+    const intH = pushHistory(state.intensityHistory, newIntensity);
+    const spO2H = pushHistory(state.spO2History, newSpO2);
+    const stressH = pushHistory(state.stressHistory, newStress);
     const newHrv = deriveHRV(hrH);
-    const hrvH   = pushHistory(state.hrvHistory,       newHrv);
+    const hrvH = pushHistory(state.hrvHistory, newHrv);
 
     return {
-      hr:               newHr,
-      hrv:              newHrv,
-      spO2:             newSpO2,
+      hr: newHr,
+      hrv: newHrv,
+      spO2: newSpO2,
       activityIntensity: newIntensity,
-      stressScore:      newStress,
-      hrHistory:        hrH,
-      hrvHistory:       hrvH,
+      stressScore: newStress,
+      hrHistory: hrH,
+      hrvHistory: hrvH,
       intensityHistory: intH,
-      spO2History:      spO2H,
-      stressHistory:    stressH,
-      activityZone:     getActivityZone(newHr, newIntensity),
-      signalQuality:    computeSignalQuality(hrH),
-      lastUpdated:      new Date(),
+      spO2History: spO2H,
+      stressHistory: stressH,
+      activityZone: getActivityZone(newHr, newIntensity),
+      signalQuality: computeSignalQuality(hrH),
+      lastUpdated: new Date(),
     };
   }),
 
   setBackendState: (data) => set({
-    backendState:  data,
-    twin:          data?.twin,
-    rewards:       data?.rewards,
-    unifiedScore:  data?.unified_score ?? 72.5,
-    isConnected:   true,
-    steps:         data?.twin?.daily_steps ?? 4500,
-    alerts:        [],
+    backendState: data,
+    twin: data?.twin,
+    rewards: data?.rewards,
+    unifiedScore: data?.unified_score ?? 72.5,
+    isConnected: true,
+    steps: data?.twin?.daily_steps ?? 4500,
+    alerts: [],
   }),
 
   setSteps: (s) => set({ steps: s }),

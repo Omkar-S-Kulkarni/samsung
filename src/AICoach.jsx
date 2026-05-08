@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import {
@@ -54,7 +54,7 @@ async function streamOllama(model, messages, systemPrompt, onChunk, onDone, onEr
           full += chunk;
           onChunk(full);
           if (json.done) { onDone(full); return; }
-        } catch {}
+        } catch { /* ignore invalid JSON */ }
       }
     }
     onDone(full);
@@ -353,6 +353,18 @@ RESPONSE FORMAT RULES (always follow):
 - If unsure, say so clearly and recommend consulting a professional.`;
   }, [hr, twin, backendState]);
 
+  // ── Voice output (Web Speech Synthesis) ─────────────────────────────────
+  const speakText = (text) => {
+    const synth = synthRef.current;
+    if (!synth) return;
+    synth.cancel();
+    const stripped = text.replace(/[*_`#]/g, '');
+    const utt = new SpeechSynthesisUtterance(stripped.slice(0, 400));
+    utt.rate = 1.05;
+    utt.pitch = 1;
+    synth.speak(utt);
+  };
+
   // ── Send message ─────────────────────────────────────────────────────────
   const sendMessage = useCallback(async (text) => {
     const trimmed = text.trim();
@@ -437,18 +449,6 @@ RESPONSE FORMAT RULES (always follow):
     setIsListening(true);
   };
 
-  // ── Voice output (Web Speech Synthesis) ─────────────────────────────────
-  const speakText = (text) => {
-    const synth = synthRef.current;
-    if (!synth) return;
-    synth.cancel();
-    const stripped = text.replace(/[*_`#]/g, '');
-    const utt = new SpeechSynthesisUtterance(stripped.slice(0, 400));
-    utt.rate = 1.05;
-    utt.pitch = 1;
-    synth.speak(utt);
-  };
-
   const toggleSpeaking = () => {
     if (isSpeaking) synthRef.current?.cancel();
     setIsSpeaking(p => !p);
@@ -483,7 +483,7 @@ RESPONSE FORMAT RULES (always follow):
             <span className={cn(
               'absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full border-2 border-[var(--color-pulse-bg)]',
               ollamaOnline === null ? 'bg-amber-400 animate-pulse' :
-              ollamaOnline ? 'bg-[var(--color-pulse-green)]' : 'bg-red-500'
+                ollamaOnline ? 'bg-[var(--color-pulse-green)]' : 'bg-red-500'
             )} />
           </div>
           <div>
@@ -638,7 +638,7 @@ RESPONSE FORMAT RULES (always follow):
           {/* Send */}
           <button
             onClick={() => sendMessage(input)}
-          disabled={isStreaming || !input.trim() || !selectedModel}
+            disabled={isStreaming || !input.trim() || !selectedModel}
             className={cn(
               'w-11 h-11 rounded-2xl flex items-center justify-center flex-shrink-0 transition-all',
               isStreaming || !input.trim()
