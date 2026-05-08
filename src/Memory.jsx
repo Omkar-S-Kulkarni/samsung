@@ -1,11 +1,35 @@
+import { useState, useEffect, useCallback } from 'react';
 import { Lock } from 'lucide-react';
 
-export default function Memory() {
-  const memories = [
+export default function Memory({ user_id = 'react_user_1' }) {
+  const [memories, setMemories] = useState([
     { text: "You sleep better on days with <8000 steps", score: 92, time: "2 hrs ago" },
     { text: "HRV drops after late meals", score: 88, time: "Yesterday" },
     { text: "Recovery peaks on Tuesdays", score: 76, time: "3 days ago" },
-  ];
+  ]);
+
+  const fetchMemory = useCallback(async () => {
+    try {
+      const res = await fetch(`http://localhost:8000/memory/${user_id}`);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.modifiers && data.modifiers.length > 0) {
+          const formatted = data.modifiers.map((m, i) => ({
+            text: m,
+            score: 95 - i * 5,
+            time: "Recently learned"
+          }));
+          setMemories(formatted);
+        }
+      }
+    } catch {
+      // Keep defaults
+    }
+  }, [user_id]);
+
+  useEffect(() => {
+    fetchMemory();
+  }, [fetchMemory]);
 
   return (
     <div className="flex-1 overflow-y-auto p-4 pb-28 md:pb-6 hide-scrollbar flex flex-col w-full max-w-5xl mx-auto">

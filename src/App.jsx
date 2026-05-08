@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { LineChart, Line, ResponsiveContainer } from 'recharts';
-import { Home, Brain, Zap, Database, Heart, Moon, Footprints, Activity, Send, X, Trophy, Shield, Terminal as TerminalIcon, Info, AlertTriangle, TrendingUp, Settings, Smile } from 'lucide-react';
+import { Home, Brain, Zap, Database, Heart, Moon, Footprints, Activity, Send, X, Trophy, Shield, Terminal as TerminalIcon, Info, AlertTriangle, TrendingUp, Settings, Smile, Network, ClipboardList, MessageCircle, Loader2, CheckCircle2 } from 'lucide-react';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -18,6 +18,8 @@ import VitalsPanel from './VitalsPanel';
 import AICoach from './AICoach';
 import PersonalizationSettings from './PersonalizationSettings';
 import EmotionalDashboard from './EmotionalDashboard';
+import PipelineVisualizer from './PipelineVisualizer';
+import AIReports from './AIReports';
 
 // Store
 import useVitalsStore from './store/vitalsStore';
@@ -57,19 +59,25 @@ const Sparkline = ({ data, color }) => (
 );
 
 // Glass Card Component
-const GlassCard = ({ title, value, unit, icon: Icon, color, data }) => (
-  <div className="glass-card rounded-2xl p-4 flex flex-col justify-between h-full">
-    <div className="flex justify-between items-start mb-2">
-      <div className="flex items-center gap-2">
-        <Icon size={16} color={color} />
-        <span className="text-sm text-gray-400">{title}</span>
+const GlassCard = ({ title, value, unit, ideal, icon: Icon, color, data }) => (
+  <div className="glass-card rounded-2xl p-4 flex flex-col justify-between h-full relative overflow-hidden group">
+    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+    <div className="flex justify-between items-start mb-2 relative z-10">
+      <div className="flex flex-col gap-1">
+        <div className="flex items-center gap-2">
+          <Icon size={16} color={color} />
+          <span className="text-sm text-gray-400">{title}</span>
+        </div>
+        {ideal && <span className="text-[10px] text-gray-500 font-mono opacity-80">Target: {ideal}</span>}
       </div>
-      <div className="text-right">
-        <span className="font-mono text-xl font-bold text-white">{value}</span>
-        {unit && <span className="text-xs text-gray-500 ml-1">{unit}</span>}
+      <div className="text-right flex flex-col items-end">
+        <div>
+          <span className="font-mono text-xl font-bold text-white">{value}</span>
+          {unit && <span className="text-xs text-gray-500 ml-1">{unit}</span>}
+        </div>
       </div>
     </div>
-    <div className="mt-auto">
+    <div className="mt-auto relative z-10">
       <Sparkline data={data} color={color} />
     </div>
   </div>
@@ -162,10 +170,10 @@ const Dashboard = ({ hr, hrData, twin, rewards, backendState }) => {
 
       {/* Vitals Snapshot Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 mt-auto">
-        <GlassCard title="Heart Rate" value={hr || 0} unit="bpm" icon={Heart} color="var(--color-pulse-cyan)" data={hrData} />
-        <GlassCard title="HRV" value="52" unit="ms" icon={Activity} color="var(--color-pulse-green)" data={mockHrvData} />
-        <GlassCard title="Sleep" value={twin?.readiness_score?.toFixed(0) || '81'} unit="/100" icon={Moon} color="var(--color-pulse-amber)" data={mockSleepData} />
-        <GlassCard title="Activity" value={rewards?.points || '67'} unit="pts" icon={Footprints} color="#c084fc" data={mockActivityData} />
+        <GlassCard title="Heart Rate" value={hr || 0} unit="bpm" ideal="50-70 bpm" icon={Heart} color="var(--color-pulse-cyan)" data={hrData} />
+        <GlassCard title="HRV" value="52" unit="ms" ideal="> 65 ms" icon={Activity} color="var(--color-pulse-green)" data={mockHrvData} />
+        <GlassCard title="Sleep" value={twin?.readiness_score?.toFixed(0) || '81'} unit="/100" ideal="> 85 /100" icon={Moon} color="var(--color-pulse-amber)" data={mockSleepData} />
+        <GlassCard title="Activity" value={rewards?.points || '67'} unit="pts" ideal="> 100 pts" icon={Footprints} color="#c084fc" data={mockActivityData} />
       </div>
     </div>
   );
@@ -247,6 +255,8 @@ export default function App() {
     { id: 'emotional', label: 'Emotional', icon: Smile },
     { id: 'progress', label: 'Progress', icon: Trophy },
     { id: 'coach', label: 'Coach', icon: Brain },
+    { id: 'reports', label: 'Reports', icon: ClipboardList },
+    { id: 'pipeline', label: 'Pipeline', icon: Network },
     { id: 'signals', label: 'Signals', icon: Zap },
     { id: 'memory', label: 'Memory', icon: Database },
     { id: 'vault', label: 'Vault', icon: Shield },
@@ -259,9 +269,13 @@ export default function App() {
 
   return (
     <div className="min-h-screen mesh-bg text-white flex flex-col md:flex-row font-sans selection:bg-[var(--color-pulse-cyan)]/30">
+      {/* WhatsApp Simulation FAB */}
+      <div className="fixed top-6 right-6 z-[100] hidden md:block">
+        <WhatsAppFAB />
+      </div>
       {/* Desktop Nav */}
-      <nav className="hidden md:flex flex-col w-24 lg:w-64 border-r border-white/5 glass-card p-4 h-screen sticky top-0 z-50">
-        <div className="mb-8 p-2 flex items-center justify-center lg:justify-start gap-3">
+      <nav className="hidden md:flex flex-col w-24 lg:w-64 border-r border-white/5 glass-card p-4 h-screen sticky top-0 z-50 overflow-y-auto hide-scrollbar">
+        <div className="mb-8 p-2 flex items-center justify-center lg:justify-start gap-3 shrink-0">
           <Activity className="text-[var(--color-pulse-cyan)]" size={24} />
           <span className="hidden lg:block font-bold text-2xl tracking-widest text-white">ADEO</span>
         </div>
@@ -281,17 +295,19 @@ export default function App() {
       <main className="flex-1 flex flex-col min-h-screen relative overflow-hidden">
         {activeTab === 'dashboard' ? <Dashboard hr={hr} hrData={hrData} twin={backendState?.twin} rewards={backendState?.rewards} backendState={backendState} /> :
          activeTab === 'vitals' ? <VitalsPanel /> :
-         activeTab === 'twin' ? <DigitalTwin twin={backendState?.twin} /> :
-         activeTab === 'alerts' ? <AnomalyAlertCenter /> :
+         activeTab === 'twin' ? <DigitalTwin twin={backendState?.twin} user_id={user_id} /> :
+         activeTab === 'alerts' ? <AnomalyAlertCenter user_id={user_id} /> :
          activeTab === 'progress' ? <Progress goals={backendState?.goals} rewards={backendState?.rewards} /> :
-         activeTab === 'signals' ? <Signals /> :
-         activeTab === 'memory' ? <Memory /> :
-         activeTab === 'vault' ? <Vault privacy={backendState?.privacy} /> :
-         activeTab === 'trends' ? <TrendsAnalytics /> :
-         activeTab === 'terminal' ? <Terminal /> :
          activeTab === 'coach' ? <AICoach hr={hr} twin={backendState?.twin} backendState={backendState} /> :
-         activeTab === 'settings' ? <PersonalizationSettings /> :
-         activeTab === 'emotional' ? <EmotionalDashboard /> :
+         activeTab === 'reports' ? <AIReports user_id={user_id} /> :
+         activeTab === 'pipeline' ? <PipelineVisualizer /> :
+         activeTab === 'signals' ? <Signals /> :
+         activeTab === 'memory' ? <Memory user_id={user_id} /> :
+         activeTab === 'vault' ? <Vault privacy={backendState?.privacy} user_id={user_id} /> :
+         activeTab === 'trends' ? <TrendsAnalytics user_id={user_id} /> :
+         activeTab === 'terminal' ? <Terminal /> :
+         activeTab === 'settings' ? <PersonalizationSettings user_id={user_id} /> :
+         activeTab === 'emotional' ? <EmotionalDashboard user_id={user_id} /> :
          <div className="flex-1 flex items-center justify-center text-gray-500 font-mono">Module Initializing...</div>}
       </main>
 
@@ -307,6 +323,85 @@ export default function App() {
           ))}
         </div>
       </nav>
+    </div>
+  );
+}
+// ── WhatsApp Automation Component ─────────────────────────────
+function WhatsAppFAB() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isSimulating, setIsSimulating] = useState(false);
+  const [lastSent, setLastSent] = useState(null);
+  const [phone, setPhone] = useState('9980819172');
+
+  const handleSimulate = async () => {
+    setIsSimulating(true);
+    try {
+      const response = await fetch('http://localhost:8000/whatsapp/simulate', { 
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone })
+      });
+      if (response.ok) {
+        setLastSent(new Date().toLocaleTimeString());
+      }
+    } catch (err) {
+      console.error("WhatsApp simulation failed", err);
+    } finally {
+      setTimeout(() => setIsSimulating(false), 1000);
+    }
+  };
+
+  return (
+    <div className="relative">
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-12 h-12 rounded-full bg-[#25D366] shadow-[0_0_15px_rgba(37,211,102,0.4)] flex items-center justify-center hover:scale-110 transition-transform active:scale-95 group"
+      >
+        <MessageCircle size={24} className="text-white group-hover:rotate-12 transition-transform" />
+        <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full border-2 border-[#030303] animate-pulse" />
+      </button>
+
+      {isOpen && (
+        <div className="absolute top-14 right-0 w-72 glass-card rounded-2xl p-5 border border-[#25D366]/30 shadow-2xl animate-vitals-slide-up z-[101]">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="p-2 rounded-xl bg-[#25D366]/10">
+              <MessageCircle size={18} className="text-[#25D366]" />
+            </div>
+            <div>
+              <h3 className="text-sm font-bold text-white uppercase tracking-wider">WhatsApp Agent</h3>
+              <p className="text-[10px] text-gray-500 font-mono">DIRECT DISPATCH</p>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <div className="bg-white/5 rounded-xl p-3 border border-white/10">
+              <label className="text-[10px] text-gray-400 font-mono block mb-2">TARGET NUMBER</label>
+              <input 
+                type="text" 
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="Enter phone number"
+                className="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-2 text-xs text-white font-mono focus:border-[#25D366]/50 outline-none transition-all"
+              />
+            </div>
+
+            <button 
+              onClick={handleSimulate}
+              disabled={isSimulating}
+              className="w-full py-3 rounded-xl bg-[#25D366] text-white text-xs font-bold uppercase tracking-widest hover:bg-[#1ebe57] transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+            >
+              {isSimulating ? <Loader2 size={14} className="animate-spin" /> : <Send size={14} />}
+              {isSimulating ? 'Sending...' : 'Instant Dispatch'}
+            </button>
+            
+            {lastSent && (
+              <p className="text-[9px] text-[#25D366] text-center font-mono animate-pulse">
+                Last alert triggered at {lastSent}
+              </p>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

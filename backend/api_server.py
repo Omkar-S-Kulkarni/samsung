@@ -5,11 +5,15 @@ import time
 import numpy as np
 from typing import Dict, List, Optional
 from fastapi import FastAPI, HTTPException, Body
+from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from pipeline.health_coach import HealthCoach
 from pipeline.config import PipelineConfig
+from pipeline.whatsapp_manager import WhatsAppManager
+import threading
+import asyncio
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -28,6 +32,29 @@ app.add_middleware(
 # Initialize HealthCoach
 config = PipelineConfig()
 coach = HealthCoach(config)
+whatsapp = WhatsAppManager()
+
+def whatsapp_scheduler():
+    """Background task to send WhatsApp updates every hour."""
+    while True:
+        try:
+            # Wait for 1 hour
+            time.sleep(3600) 
+            logger.info("Hourly WhatsApp update triggered")
+            # Pull daily plan for content
+            plan = coach.get_daily_plan("default_user")
+            data = {
+                "sleep": plan.get("sleep_guideline", "Optimized sleep recommended."),
+                "activity": plan.get("activity_target", "Active recovery suggested."),
+                "meals": "Targeting metabolic efficiency with balanced macros.",
+                "rest": "Scheduled rest intervals active."
+            }
+            whatsapp.send_instant_update(data)
+        except Exception as e:
+            logger.error(f"WhatsApp scheduler error: {e}")
+
+# Start the scheduler in a background thread
+threading.Thread(target=whatsapp_scheduler, daemon=True).start()
 
 class HealthSample(BaseModel):
     user_id: str = "default_user"
@@ -77,6 +104,10 @@ class TrendInsightRequest(BaseModel):
     user_id: str = "default_user"
     timeframe: str = "7d"
 
+class ReportRequest(BaseModel):
+    user_id: str = "default_user"
+    report_type: str
+    extra_context: str = ""
 
 @app.get("/")
 async def root():
@@ -156,6 +187,96 @@ async def trigger_sync(user_id: str):
 async def export_data(user_id: str):
     return coach.export_user_data(user_id)
 
+@app.get("/pipeline/status")
+async def get_pipeline_status():
+    """Retrieve full pipeline health and statistics for the visualizer."""
+    try:
+        try:
+            rag_stats = coach.memory.get_stats()
+        except Exception:
+            rag_stats = {"total_entries": 0}
+            
+        try:
+            intelligent_report = coach.get_intelligent_engine_report()
+        except Exception:
+            intelligent_report = {"status": "unknown"}
+
+        return {
+            "status": "online",
+            "ingestion": {
+                "active": True,
+                "components": ["StreamingPreprocessor", "AdvancedPreprocessor"]
+            },
+            "edge_ml": {
+                "models": ["GradientBoosting (Stress)", "IsolationForest (Anomaly)", "EdgeMLPredictor"],
+                "status": "active"
+            },
+            "personalization": {
+                "modules": ["BaselineTracker", "PrivacyManager", "SyncManager", "GoalManager"],
+                "privacy_rules": len(coach.personalization_engine.privacy._permissions)
+            },
+            "simulation": {
+                "core": "PhysiologicalTwin",
+                "engine": "TwinSimulator (Monte Carlo)",
+                "active": True
+            },
+            "cognitive": {
+                "rag_stats": rag_stats,
+                "llm_realtime": config.model.llm_model_name,
+                "llm_reasoning": config.model.llm_model_reasoning,
+                "hallucination_detector": config.intelligence.enable_hallucination_detection
+            },
+            "intelligent_engine": intelligent_report
+        }
+    except Exception as e:
+        logger.error(f"Pipeline status error: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/reports/build_prompt")
+async def build_report_prompt(req: ReportRequest):
+    """Builds the comprehensive prompt for client-side Ollama streaming."""
+    try:
+        profile = coach.personalization_engine.get_profile(req.user_id)
+        twin_data = coach.get_readiness_report(req.user_id)
+        
+        # Pull latest features if available to add richness
+        history = coach.feature_data[coach.feature_data["user_id"] == req.user_id] if coach.feature_data is not None else None
+        latest_hrv = history.iloc[-1].get("hrv_ms", 60) if history is not None and len(history) > 0 else 60
+        
+        health_data = {
+            "readiness_score": twin_data.get("readiness_score", 75),
+            "fatigue_index": twin_data.get("fatigue_index", 20),
+            "hrv": latest_hrv,
+            "extra_context": req.extra_context
+        }
+
+        if req.report_type == "schedule":
+            prompt = "Generate a complete, minute-by-minute daily schedule for today based on my current readiness and fatigue. Make it realistic and actionable in plain English. Format using markdown."
+        elif req.report_type == "meal_plan":
+            prompt = f"I have already eaten: '{req.extra_context}'. Based on my health metrics, give me a complete meal plan for the rest of the day in plain English. Suggest macros and specific foods. Format using markdown."
+        elif req.report_type == "health_report":
+            prompt = "Give me a complete, detailed report about my current health condition in plain English based on my metrics. What am I doing right, and what needs immediate attention? Format using markdown."
+        elif req.report_type == "mistakes":
+            prompt = "Analyze my health profile and tell me what common health mistakes I might have committed recently based on my metrics (or generally if data is sparse). Provide actionable solutions to fix them. Use plain English and markdown."
+        elif req.report_type == "sleep_plan":
+            prompt = "Create a complete, optimized sleep plan and wind-down routine for me tonight based on my current fatigue levels. Use plain English and markdown format."
+        else:
+            raise HTTPException(status_code=400, detail="Invalid report type")
+
+        full_prompt = f"Health Data:\n{json.dumps(health_data, indent=2)}\n\nRequest:\n{prompt}"
+        system_prompt = "You are a professional health AI coach. Provide direct, plain-English answers using Markdown formatting. Be specific and actionable. Do not use JSON."
+
+        return {
+            "user_id": req.user_id,
+            "report_type": req.report_type,
+            "prompt": full_prompt,
+            "system": system_prompt,
+            "model": config.model.llm_model_name
+        }
+        
+    except Exception as e:
+        logger.error(f"Report generation error: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))
 
 # =============================================================================
 # 🧬 DIGITAL TWIN DASHBOARD ENDPOINTS
@@ -905,6 +1026,29 @@ async def get_emotional_state(user_id: str):
         }
     except Exception as e:
         logger.error(f"Emotional state error: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))
+
+class WhatsAppSimRequest(BaseModel):
+    phone: str
+
+@app.post("/whatsapp/simulate")
+async def simulate_whatsapp(req: WhatsAppSimRequest):
+    """Trigger an immediate WhatsApp update with simple Hi for testing."""
+    try:
+        # SIMPLE HI FOR VERIFICATION
+        data = {
+            "is_test": True,
+            "message": "Hi"
+        }
+        
+        # Use the provided phone number
+        phone = req.phone
+        
+        # Run in background to not block the API response
+        threading.Thread(target=whatsapp.simulate_demo, args=(data, phone)).start()
+        return {"status": "success", "message": f"Test Hi triggered for {phone}"}
+    except Exception as e:
+        logger.error(f"WhatsApp simulation error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 

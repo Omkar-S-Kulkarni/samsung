@@ -4,9 +4,9 @@
  * Composed of modular sub-components, driven by Zustand store.
  * All graphs update live without reloads.
  */
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
-import { Heart, Activity, Droplets, Footprints, Wifi, WifiOff, Zap } from 'lucide-react';
+import { Heart, Activity, Droplets, Footprints, Wifi, WifiOff, Zap, Brain, Loader2, Sparkles } from 'lucide-react';
 
 // Store
 import useVitalsStore from './store/vitalsStore';
@@ -105,6 +105,12 @@ export default function VitalsPanel() {
     timeWindow, setTimeWindow,
   } = useVitalsStore();
 
+  const [isScanning, setIsScanning] = useState(false);
+  const handleRescan = () => {
+    setIsScanning(true);
+    setTimeout(() => setIsScanning(false), 2000);
+  };
+
   const handleDismissAlert = useCallback((idx) => {
     useVitalsStore.setState(s => ({
       alerts: s.alerts.filter((_, i) => i !== idx)
@@ -198,24 +204,41 @@ export default function VitalsPanel() {
 
       {/* ── Neural Insights ─────────────────────────────────────── */}
       <div
-        className="glass-card rounded-3xl p-5 vitals-slide-up"
+        className="glass-card rounded-3xl p-5 vitals-slide-up relative overflow-hidden group"
         style={{ animationDelay: '0.4s' }}
       >
-        <div className="flex items-center gap-3 mb-4">
-          <div className="p-2 rounded-xl bg-[var(--color-pulse-cyan)]/10 border border-[var(--color-pulse-cyan)]/20">
-            <Zap size={18} className="text-[var(--color-pulse-cyan)]" />
+        {isScanning && (
+          <div className="absolute inset-0 z-0 bg-gradient-to-b from-transparent via-[var(--color-pulse-cyan)]/10 to-transparent w-full h-[200%] animate-[slide_2s_ease-in-out_1]" />
+        )}
+        
+        <div className="flex items-center justify-between mb-4 relative z-10">
+          <div className="flex items-center gap-3">
+            <div className={`p-2 rounded-xl bg-[var(--color-pulse-cyan)]/10 border border-[var(--color-pulse-cyan)]/20 ${isScanning ? 'animate-pulse' : ''}`}>
+              {isScanning ? <Loader2 size={18} className="text-[var(--color-pulse-cyan)] animate-spin" /> : <Brain size={18} className="text-[var(--color-pulse-cyan)]" />}
+            </div>
+            <div>
+              <h3 className="text-sm font-bold text-white uppercase tracking-wider">Neural Insights</h3>
+              <p className="text-[10px] text-gray-500 font-mono">
+                {isScanning ? 'Scanning biometric state...' : 'AI-generated biometric analysis'}
+              </p>
+            </div>
           </div>
-          <div>
-            <h3 className="text-sm font-bold text-white uppercase tracking-wider">Neural Insights</h3>
-            <p className="text-[10px] text-gray-500 font-mono">AI-generated biometric analysis</p>
-          </div>
+          <button 
+            onClick={handleRescan}
+            disabled={isScanning}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-xs font-mono text-gray-300 transition-all disabled:opacity-50"
+          >
+            <Sparkles size={12} className={isScanning ? 'text-[var(--color-pulse-cyan)]' : ''} />
+            {isScanning ? 'Analyzing' : 'Rescan Vitals'}
+          </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 relative z-10">
           {[
             {
               label: 'HRV Correlation',
               color: 'var(--color-pulse-cyan)',
+              conf: 92,
               text: hrv >= 45
                 ? 'Parasympathetic activity dominant. Optimal recovery state.'
                 : 'Sympathetic drive elevated. Consider rest or relaxation.',
@@ -223,25 +246,46 @@ export default function VitalsPanel() {
             {
               label: 'Activity Sync',
               color: 'var(--color-pulse-green)',
+              conf: 88,
               text: `HR and intensity are ${Math.abs(hr - 72) < 15 ? 'well correlated' : 'diverging'}. Metabolic efficiency ${activityZone.zone <= 2 ? 'is high' : 'is strained'}.`,
             },
             {
               label: 'O₂ Status',
               color: spO2 >= 95 ? 'var(--color-pulse-green)' : '#fbbf24',
+              conf: 95,
               text: spO2 >= 95
                 ? 'Blood oxygen is optimal. Aerobic performance at peak capacity.'
                 : 'SpO₂ slightly reduced. Limit high-intensity activity.',
             },
-          ].map(insight => (
+          ].map((insight, idx) => (
             <div key={insight.label}
-              className="bg-white/5 rounded-2xl p-4 border border-white/5 hover:border-white/10 transition-all">
-              <div className="text-[10px] font-bold uppercase tracking-widest mb-2"
-                style={{ color: insight.color }}>
-                {insight.label}
+              className={`bg-black/40 rounded-2xl p-4 border border-white/5 hover:border-white/10 transition-all duration-500 ${isScanning ? 'blur-sm opacity-50 scale-95' : 'blur-0 opacity-100 scale-100'}`}
+              style={{ transitionDelay: isScanning ? '0ms' : `${idx * 150}ms` }}
+            >
+              <div className="flex justify-between items-start mb-2">
+                <div className="text-[10px] font-bold uppercase tracking-widest"
+                  style={{ color: insight.color }}>
+                  {insight.label}
+                </div>
+                {!isScanning && (
+                   <span className="text-[9px] font-mono text-gray-500">
+                     {insight.conf}% Conf
+                   </span>
+                )}
               </div>
-              <p className="text-[11px] text-gray-400 leading-relaxed font-medium">
+              <p className="text-[11px] text-gray-400 leading-relaxed font-medium mb-3 min-h-[40px]">
                 {insight.text}
               </p>
+              <div className="w-full bg-white/5 h-1 rounded-full overflow-hidden">
+                <div 
+                  className={`h-full transition-all duration-1000 ease-out`}
+                  style={{ 
+                    width: isScanning ? '0%' : `${insight.conf}%`,
+                    backgroundColor: insight.color,
+                    transitionDelay: isScanning ? '0ms' : `${500 + (idx * 200)}ms`
+                  }} 
+                />
+              </div>
             </div>
           ))}
         </div>

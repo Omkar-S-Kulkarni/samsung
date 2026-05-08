@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Lock, Shield, RefreshCw, Smartphone, Eye, Trash2, Download } from 'lucide-react';
 
 const Toggle = ({ enabled, onChange, label, sublabel, icon: Icon }) => (
@@ -21,12 +21,35 @@ const Toggle = ({ enabled, onChange, label, sublabel, icon: Icon }) => (
   </div>
 );
 
-export default function Vault() {
+export default function Vault({ privacy, user_id = 'react_user_1' }) {
   const [permissions, setPermissions] = useState({
-    biometrics: true,
-    location: false,
-    cloud: false
+    biometrics: privacy?.permissions?.biometrics ?? true,
+    location: privacy?.permissions?.location ?? false,
+    cloud: privacy?.permissions?.cloud ?? false
   });
+
+  useEffect(() => {
+    if (privacy && privacy.permissions) {
+      setPermissions({
+        biometrics: privacy.permissions.biometrics ?? true,
+        location: privacy.permissions.location ?? false,
+        cloud: privacy.permissions.cloud ?? false
+      });
+    }
+  }, [privacy]);
+
+  const updatePermissions = async (newPerms) => {
+    setPermissions(newPerms);
+    try {
+      await fetch(`http://localhost:8000/privacy/permissions?user_id=${user_id}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newPerms)
+      });
+    } catch {
+      // Ignore
+    }
+  };
 
   return (
     <div className="flex-1 overflow-y-auto p-4 pb-28 md:pb-6 hide-scrollbar flex flex-col w-full max-w-5xl mx-auto">
@@ -71,14 +94,14 @@ export default function Vault() {
             sublabel="Allow heart rate and HRV intelligence"
             enabled={permissions.biometrics}
             icon={Shield}
-            onChange={() => setPermissions({ ...permissions, biometrics: !permissions.biometrics })}
+            onChange={() => updatePermissions({ ...permissions, biometrics: !permissions.biometrics })}
           />
           <Toggle
             label="Zero Cloud Leakage"
             sublabel="Prevents any data from leaving the device"
             enabled={!permissions.cloud}
             icon={Eye}
-            onChange={() => setPermissions({ ...permissions, cloud: !permissions.cloud })}
+            onChange={() => updatePermissions({ ...permissions, cloud: !permissions.cloud })}
           />
         </div>
       </div>
