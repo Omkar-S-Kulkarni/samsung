@@ -1,9 +1,11 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Brain, Send, Mic, MicOff, Volume2, VolumeX, ThumbsUp, ThumbsDown,
-  ChevronDown, Zap, RotateCcw, Copy, Check, Cpu, Wifi, WifiOff
+  ChevronDown, Zap, RotateCcw, Copy, Check, Cpu, Wifi, WifiOff,
+  Heart, Activity, Droplets, Shield, Sparkles, MessageSquare
 } from 'lucide-react';
 
 // ─── Utility ────────────────────────────────────────────────────────────────
@@ -63,15 +65,38 @@ async function streamOllama(model, messages, systemPrompt, onChunk, onDone, onEr
   }
 }
 
-// ─── Quick Suggest Chips ────────────────────────────────────────────────────
-const QUICK_QUESTIONS = [
-  '💓 What does my current heart rate mean?',
-  '😴 How can I improve my sleep quality?',
-  '🏃 What workout suits my readiness today?',
-  '🧘 Stress management techniques for me?',
-  '💊 Should I take a rest day today?',
-  '📊 Explain my HRV trend this week',
+// ─── Quick Suggest Chips (categorized) ─────────────────────────────────────
+const QUICK_CATEGORIES = [
+  {
+    label: 'Heart', icon: '💓', color: '#00E5FF',
+    questions: [
+      'What does my current heart rate mean?',
+      'Explain my HRV trend this week',
+    ]
+  },
+  {
+    label: 'Recovery', icon: '😴', color: '#39FF6A',
+    questions: [
+      'How can I improve my sleep quality?',
+      'Should I take a rest day today?',
+    ]
+  },
+  {
+    label: 'Training', icon: '🏃', color: '#fbbf24',
+    questions: [
+      'What workout suits my readiness today?',
+      'What is my optimal training zone?',
+    ]
+  },
+  {
+    label: 'Wellness', icon: '🧘', color: '#c084fc',
+    questions: [
+      'Stress management techniques for me?',
+      'How is my overall health trending?',
+    ]
+  },
 ];
+const QUICK_QUESTIONS = QUICK_CATEGORIES.flatMap(c => c.questions.map(q => c.icon + ' ' + q));
 
 // ─── Typing dots ────────────────────────────────────────────────────────────
 const TypingDots = () => (
@@ -105,24 +130,38 @@ const MessageBubble = ({ msg, onExplain, onFeedback }) => {
   const isUser = msg.role === 'user';
 
   return (
-    <div className={cn('flex w-full', isUser ? 'justify-end' : 'justify-start')}>
+    <motion.div
+      initial={{ opacity: 0, y: 12, scale: 0.97 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.28, ease: 'easeOut' }}
+      className={cn('flex w-full', isUser ? 'justify-end' : 'justify-start')}
+    >
       {/* Avatar */}
       {!isUser && (
-        <div className="w-8 h-8 rounded-full bg-[var(--color-pulse-cyan)]/15 flex-shrink-0 flex items-center justify-center mr-2 mt-1 border border-[var(--color-pulse-cyan)]/30 self-start">
+        <div className="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center mr-2 mt-1 self-start"
+          style={{ background: 'rgba(0,229,255,0.1)', border: '1px solid rgba(0,229,255,0.25)', boxShadow: '0 0 12px rgba(0,229,255,0.15)' }}>
           <Brain size={14} className="text-[var(--color-pulse-cyan)]" />
         </div>
       )}
 
-      <div className={cn('flex flex-col max-w-[80%]', isUser && 'items-end')}>
+      <div className={cn('flex flex-col max-w-[82%]', isUser && 'items-end')}>
         {/* Bubble */}
         <div
-          className={cn(
-            'px-4 py-3 rounded-2xl text-sm leading-relaxed relative',
-            isUser
-              ? 'bg-[var(--color-pulse-cyan)]/20 text-white rounded-tr-sm border border-[var(--color-pulse-cyan)]/30 shadow-[0_2px_12px_rgba(0,229,255,0.12)]'
-              : 'bg-white/5 text-gray-200 rounded-tl-sm border border-white/8 shadow-[0_2px_12px_rgba(0,0,0,0.25)]'
-          )}
+          className={cn('px-4 py-3.5 rounded-2xl text-sm leading-relaxed relative overflow-hidden')}
+          style={isUser ? {
+            background: 'linear-gradient(135deg, rgba(0,229,255,0.18), rgba(0,229,255,0.08))',
+            border: '1px solid rgba(0,229,255,0.25)',
+            borderTopRightRadius: '4px',
+            boxShadow: '0 4px 20px rgba(0,229,255,0.1), inset 0 1px 0 rgba(255,255,255,0.05)'
+          } : {
+            background: 'rgba(255,255,255,0.04)',
+            border: '1px solid rgba(255,255,255,0.07)',
+            borderTopLeftRadius: '4px',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.04)'
+          }}
         >
+          {/* Top shimmer line for assistant messages */}
+          {!isUser && <div className="absolute top-0 left-4 right-4 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(0,229,255,0.2), transparent)' }} />}
           {msg.streaming && msg.content === '' ? (
             <TypingDots />
           ) : isUser ? (
@@ -270,7 +309,7 @@ const MessageBubble = ({ msg, onExplain, onFeedback }) => {
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -538,21 +577,24 @@ RESPONSE FORMAT RULES (always follow):
       </div>
 
       {/* ── Live context strip ── */}
-      <div className="flex-shrink-0 flex items-center gap-4 px-6 py-2.5 bg-white/[0.02] border-b border-white/5 overflow-x-auto hide-scrollbar">
+      <div className="flex-shrink-0 flex items-center gap-3 px-5 py-2 border-b border-white/5 overflow-x-auto hide-scrollbar"
+        style={{ background: 'rgba(0,229,255,0.02)' }}>
         {[
-          { label: 'HR', value: `${hr} bpm`, color: 'var(--color-pulse-cyan)' },
-          { label: 'Readiness', value: `${twin?.readiness_score?.toFixed(0) ?? '--'}%`, color: 'var(--color-pulse-green)' },
-          { label: 'Fatigue', value: `${twin?.fatigue_index?.toFixed(0) ?? '--'}%`, color: 'var(--color-pulse-amber)' },
-          { label: 'Risk', value: backendState?.risk_level ?? '--', color: backendState?.risk_level === 'high' ? '#f87171' : '#a3e635' },
-        ].map(({ label, value, color }) => (
-          <div key={label} className="flex items-center gap-1.5 flex-shrink-0">
-            <span className="text-[10px] text-gray-500 uppercase font-bold tracking-wider">{label}</span>
-            <span className="text-[11px] font-mono font-bold" style={{ color }}>{value}</span>
+          { label: 'HR', value: `${hr}`, unit: 'bpm', color: '#00E5FF', Icon: Heart },
+          { label: 'Readiness', value: twin?.readiness_score?.toFixed(0) ?? '--', unit: '%', color: '#39FF6A', Icon: Activity },
+          { label: 'Fatigue', value: twin?.fatigue_index?.toFixed(0) ?? '--', unit: '%', color: '#FF9A3C', Icon: Droplets },
+          { label: 'Risk', value: (backendState?.risk_level ?? '--').toUpperCase(), unit: '', color: backendState?.risk_level === 'high' ? '#f87171' : backendState?.risk_level === 'medium' ? '#fbbf24' : '#39FF6A', Icon: Shield },
+        ].map(({ label, value, unit, color, Icon }) => (
+          <div key={label} className="flex items-center gap-2 flex-shrink-0 px-3 py-1.5 rounded-xl"
+            style={{ background: `${color}08`, border: `1px solid ${color}18` }}>
+            <Icon size={10} style={{ color }} />
+            <span className="text-[9px] text-gray-500 uppercase font-bold tracking-wider">{label}</span>
+            <span className="text-[11px] font-mono font-bold" style={{ color }}>{value}{unit}</span>
           </div>
         ))}
-        <div className="flex items-center gap-1 ml-auto flex-shrink-0">
-          <Cpu size={10} className="text-gray-600" />
-          <span className="text-[10px] text-gray-600 font-mono">Context-aware</span>
+        <div className="flex items-center gap-1 ml-auto flex-shrink-0 px-2">
+          <Sparkles size={9} className="text-[var(--color-pulse-cyan)]" />
+          <span className="text-[9px] text-gray-600 font-mono uppercase tracking-wider">Context-aware</span>
         </div>
       </div>
 
@@ -567,26 +609,48 @@ RESPONSE FORMAT RULES (always follow):
           />
         ))}
 
-        {/* Quick suggestions (shown initially or when chat is fresh) */}
+        {/* Quick suggestions — categorized */}
+        <AnimatePresence>
         {showQuick && (
-          <div className="pt-2">
-            <p className="text-[10px] text-gray-600 uppercase font-bold tracking-widest mb-3 flex items-center gap-1.5">
-              <Zap size={10} className="text-[var(--color-pulse-cyan)]" />
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            className="pt-2 space-y-3"
+          >
+            <p className="text-[10px] text-gray-600 uppercase font-bold tracking-widest flex items-center gap-1.5">
+              <Sparkles size={9} className="text-[var(--color-pulse-cyan)]" />
               Suggested questions
             </p>
-            <div className="flex flex-wrap gap-2">
-              {QUICK_QUESTIONS.map((q, i) => (
-                <button
-                  key={i}
-                  onClick={() => sendMessage(q)}
-                  className="text-xs px-3 py-2 rounded-xl bg-white/5 border border-white/8 text-gray-300 hover:bg-[var(--color-pulse-cyan)]/10 hover:border-[var(--color-pulse-cyan)]/30 hover:text-white transition-all"
-                >
-                  {q}
-                </button>
-              ))}
-            </div>
-          </div>
+            {QUICK_CATEGORIES.map((cat) => (
+              <div key={cat.label}>
+                <p className="text-[9px] font-bold uppercase tracking-widest mb-1.5" style={{ color: cat.color }}>
+                  {cat.icon} {cat.label}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {cat.questions.map((q, i) => (
+                    <motion.button
+                      key={i}
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                      onClick={() => sendMessage(cat.icon + ' ' + q)}
+                      className="text-xs px-3 py-2 rounded-xl text-gray-300 hover:text-white transition-all"
+                      style={{
+                        background: `${cat.color}08`,
+                        border: `1px solid ${cat.color}20`,
+                      }}
+                      onMouseEnter={e => { e.currentTarget.style.background = `${cat.color}18`; e.currentTarget.style.borderColor = `${cat.color}40`; }}
+                      onMouseLeave={e => { e.currentTarget.style.background = `${cat.color}08`; e.currentTarget.style.borderColor = `${cat.color}20`; }}
+                    >
+                      {q}
+                    </motion.button>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </motion.div>
         )}
+        </AnimatePresence>
 
         <div ref={messagesEndRef} />
       </div>
@@ -622,17 +686,32 @@ RESPONSE FORMAT RULES (always follow):
             />
           </div>
 
-          {/* Mic */}
+          {/* Mic with waveform animation */}
           <button
             onClick={toggleListening}
             className={cn(
-              'w-11 h-11 rounded-2xl flex items-center justify-center flex-shrink-0 transition-all border',
+              'w-11 h-11 rounded-2xl flex items-center justify-center flex-shrink-0 transition-all border relative overflow-hidden',
               isListening
-                ? 'bg-[var(--color-pulse-cyan)] text-[var(--color-pulse-bg)] border-transparent shadow-[0_0_16px_rgba(0,229,255,0.5)] animate-pulse'
+                ? 'border-transparent text-[var(--color-pulse-bg)]'
                 : 'bg-white/5 text-gray-400 hover:text-white border-white/10'
             )}
+            style={isListening ? {
+              background: 'var(--color-pulse-cyan)',
+              boxShadow: '0 0 20px rgba(0,229,255,0.5), 0 0 40px rgba(0,229,255,0.2)'
+            } : {}}
           >
-            {isListening ? <MicOff size={18} /> : <Mic size={18} />}
+            {isListening ? (
+              <span className="flex items-end gap-0.5 h-4">
+                {[0.5,1,0.7,1,0.6].map((h,i) => (
+                  <motion.span key={i}
+                    animate={{ scaleY: [h, 1, h] }}
+                    transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.1 }}
+                    className="w-0.5 rounded-full bg-[var(--color-pulse-bg)]"
+                    style={{ height: `${h * 16}px`, transformOrigin: 'bottom' }}
+                  />
+                ))}
+              </span>
+            ) : <Mic size={18} />}
           </button>
 
           {/* Send */}
@@ -650,9 +729,13 @@ RESPONSE FORMAT RULES (always follow):
           </button>
         </div>
 
-        <p className="text-[10px] text-gray-700 font-mono text-center">
-          PULSE runs locally via Ollama • no data leaves your device
-        </p>
+        <div className="flex items-center justify-center gap-2">
+          <Shield size={9} className="text-gray-700" />
+          <p className="text-[9px] text-gray-700 font-mono tracking-wider uppercase">
+            On-device • Ollama • No data leaves your device
+          </p>
+          <Shield size={9} className="text-gray-700" />
+        </div>
       </div>
     </div>
   );

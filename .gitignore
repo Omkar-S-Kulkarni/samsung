@@ -1,6 +1,7 @@
 # =============================================================================
 # ADEO Health Intelligence Platform — Full Stack .gitignore
-# React (Vite) + FastAPI + Ollama
+# React (Vite) + FastAPI + Ollama + Zustand + Framer Motion
+# Last updated: 2026-05-05
 # =============================================================================
 
 # ─── Node / Frontend ─────────────────────────────────────────────────────────
@@ -165,3 +166,29 @@ $RECYCLE.BIN/
 *.orig
 *.rej
 .sass-cache/
+
+# ─── Frontend: New Architecture (Zustand / Framer Motion / D3) ────────────────
+# Zustand devtools persisted state (browser IndexedDB exports)
+zustand-devtools/
+
+# Framer Motion layout animation snapshots (if exported)
+*.framer-snapshot
+
+# D3 generated SVG exports
+*.d3export.svg
+
+# Vite chunk analysis
+stats.html
+rollup-stats.json
+
+# Component storybook (if added later)
+storybook-static/
+
+# Generated type declarations from vite-plugin-dts
+src/**/*.d.ts
+!src/vite-env.d.ts
+
+# ─── Frontend: src/store & src/components (keep source, ignore generated) ─────
+# Never ignore the actual source files — only generated artifacts
+src/store/*.generated.js
+src/components/*.generated.jsx
