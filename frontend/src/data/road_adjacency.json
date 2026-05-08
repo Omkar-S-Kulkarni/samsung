@@ -1,0 +1,191 @@
+{
+  "_meta": {
+    "description": "Zone adjacency graph for Bengaluru flood simulation. Each edge represents a road segment connecting two zones.",
+    "schema_version": "1.0",
+    "zones": [
+      "Whitefield",
+      "Koramangala",
+      "HSR Layout",
+      "Sarjapur",
+      "Indiranagar",
+      "Mahadevapura",
+      "Bellandur",
+      "Marathahalli",
+      "BTM Layout",
+      "Electronic City",
+      "Hebbal",
+      "Yelahanka"
+    ],
+    "capacity_pcu": {
+      "high": 3600,
+      "medium": 1800,
+      "low": 900
+    }
+  },
+  "edges": [
+    {
+      "from": "Whitefield",
+      "to": "Marathahalli",
+      "road_name": "Outer Ring Road",
+      "capacity": "high",
+      "flood_risk_threshold": 0.99,
+      "distance_km": 7.1
+    },
+    {
+      "from": "Whitefield",
+      "to": "Mahadevapura",
+      "road_name": "Whitefield - Mahadevapura Link",
+      "capacity": "medium",
+      "flood_risk_threshold": 0.6,
+      "distance_km": 9.0
+    },
+    {
+      "from": "Koramangala",
+      "to": "HSR Layout",
+      "road_name": "Koramangala - HSR Link",
+      "capacity": "medium",
+      "flood_risk_threshold": 0.55,
+      "distance_km": 4.5
+    },
+    {
+      "from": "Koramangala",
+      "to": "Indiranagar",
+      "road_name": "Koramangala - Indiranagar Road",
+      "capacity": "medium",
+      "flood_risk_threshold": 0.55,
+      "distance_km": 4.2
+    },
+    {
+      "from": "Koramangala",
+      "to": "BTM Layout",
+      "road_name": "Hosur Road",
+      "capacity": "medium",
+      "flood_risk_threshold": 0.6,
+      "distance_km": 3.0
+    },
+    {
+      "from": "HSR Layout",
+      "to": "Bellandur",
+      "road_name": "HSR - Bellandur Road",
+      "capacity": "low",
+      "flood_risk_threshold": 0.45,
+      "distance_km": 3.1
+    },
+    {
+      "from": "HSR Layout",
+      "to": "BTM Layout",
+      "road_name": "27th Main Road",
+      "capacity": "low",
+      "flood_risk_threshold": 0.45,
+      "distance_km": 2.4
+    },
+    {
+      "from": "Sarjapur",
+      "to": "Bellandur",
+      "road_name": "Sarjapur - Bellandur Road",
+      "capacity": "medium",
+      "flood_risk_threshold": 0.55,
+      "distance_km": 8.4
+    },
+    {
+      "from": "Sarjapur",
+      "to": "HSR Layout",
+      "road_name": "Sarjapur - HSR Outer Ring Road",
+      "capacity": "medium",
+      "flood_risk_threshold": 0.55,
+      "distance_km": 9.0
+    },
+    {
+      "from": "Indiranagar",
+      "to": "Hebbal",
+      "road_name": "Indiranagar - Hebbal Road",
+      "capacity": "medium",
+      "flood_risk_threshold": 0.55,
+      "distance_km": 11.0
+    },
+    {
+      "from": "Indiranagar",
+      "to": "Marathahalli",
+      "road_name": "Indiranagar - Marathahalli Road",
+      "capacity": "medium",
+      "flood_risk_threshold": 0.55,
+      "distance_km": 6.5
+    },
+    {
+      "from": "Mahadevapura",
+      "to": "Marathahalli",
+      "road_name": "Mahadevapura - Marathahalli Road",
+      "capacity": "medium",
+      "flood_risk_threshold": 0.55,
+      "distance_km": 6.0
+    },
+    {
+      "from": "Bellandur",
+      "to": "Marathahalli",
+      "road_name": "Outer Ring Road",
+      "capacity": "high",
+      "flood_risk_threshold": 0.99,
+      "distance_km": 13.5
+    },
+    {
+      "from": "Bellandur",
+      "to": "Electronic City",
+      "road_name": "Bellandur - Electronic City Road",
+      "capacity": "medium",
+      "flood_risk_threshold": 0.6,
+      "distance_km": 10.5
+    },
+    {
+      "from": "BTM Layout",
+      "to": "Electronic City",
+      "road_name": "BTM - Electronic City Road",
+      "capacity": "medium",
+      "flood_risk_threshold": 0.6,
+      "distance_km": 12.0
+    },
+    {
+      "from": "Electronic City",
+      "to": "Sarjapur",
+      "road_name": "Electronic City - Sarjapur Road",
+      "capacity": "medium",
+      "flood_risk_threshold": 0.55,
+      "distance_km": 8.4
+    },
+    {
+      "from": "Hebbal",
+      "to": "Yelahanka",
+      "road_name": "Hebbal - Yelahanka Road",
+      "capacity": "high",
+      "flood_risk_threshold": 0.99,
+      "distance_km": 8.0
+    },
+    {
+      "from": "Yelahanka",
+      "to": "Mahadevapura",
+      "road_name": "Yelahanka - Mahadevapura NH44",
+      "capacity": "high",
+      "flood_risk_threshold": 0.99,
+      "distance_km": 9.0
+    }
+  ],
+  "shelters": [
+    {
+      "id": "S01",
+      "name": "RMC Ground Hebbal",
+      "zone": "Hebbal",
+      "capacity": 5000
+    },
+    {
+      "id": "S02",
+      "name": "Kanteerava Stadium CBD",
+      "zone": "Yelahanka",
+      "capacity": 4000
+    },
+    {
+      "id": "S03",
+      "name": "ITPL Convention Centre",
+      "zone": "Whitefield",
+      "capacity": 3000
+    }
+  ]
+}

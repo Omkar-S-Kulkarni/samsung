@@ -1,0 +1,413 @@
+{
+  "meta": {
+    "city": "Bengaluru",
+    "version": "1.0.0",
+    "data_mode": "synthetic",
+    "source_notes": "Population from BBMP ward approximations (Census 2011). Elevation tiers from SRTM-derived estimates. Roads are a synthetic adjacency list. Hospital/shelter data approximated from OpenStreetMap.",
+    "last_updated": "2025-04-15"
+  },
+  "zones": [
+    {
+      "id": "Z01",
+      "name": "Whitefield",
+      "population": 285000,
+      "area_km2": 28.5,
+      "elderly_pct": 9.2,
+      "population_density": 10000,
+      "elevation_tier": "high",
+      "elevation_m": 920,
+      "hospitals": [
+        {
+          "name": "Columbia Asia Hospital Whitefield",
+          "beds": 200
+        }
+      ],
+      "hospital_count": 1,
+      "shelters": [
+        {
+          "name": "ITPL Convention Centre",
+          "capacity": 1000000,
+          "current_occupancy": 0
+        }
+      ],
+      "shelter_capacity_total": 1000000,
+      "flood_risk_base": 2.5
+    },
+    {
+      "id": "Z02",
+      "name": "Koramangala",
+      "population": 175000,
+      "area_km2": 12.0,
+      "elderly_pct": 11.4,
+      "population_density": 14583,
+      "elevation_tier": "mid",
+      "elevation_m": 885,
+      "hospitals": [
+        {
+          "name": "St. John's Medical College Hospital",
+          "beds": 1250
+        }
+      ],
+      "hospital_count": 1,
+      "shelters": [],
+      "shelter_capacity_total": 0,
+      "flood_risk_base": 5.0
+    },
+    {
+      "id": "Z03",
+      "name": "HSR Layout",
+      "population": 145000,
+      "area_km2": 11.5,
+      "elderly_pct": 10.1,
+      "population_density": 12609,
+      "elevation_tier": "mid",
+      "elevation_m": 895,
+      "hospitals": [],
+      "hospital_count": 0,
+      "shelters": [],
+      "shelter_capacity_total": 0,
+      "flood_risk_base": 4.0
+    },
+    {
+      "id": "Z04",
+      "name": "Sarjapur",
+      "population": 92000,
+      "area_km2": 22.0,
+      "elderly_pct": 7.8,
+      "population_density": 4182,
+      "elevation_tier": "low",
+      "elevation_m": 840,
+      "hospitals": [],
+      "hospital_count": 0,
+      "shelters": [],
+      "shelter_capacity_total": 0,
+      "flood_risk_base": 7.5
+    },
+    {
+      "id": "Z05",
+      "name": "Indiranagar",
+      "population": 165000,
+      "area_km2": 9.5,
+      "elderly_pct": 13.6,
+      "population_density": 17368,
+      "elevation_tier": "mid",
+      "elevation_m": 900,
+      "hospitals": [
+        {
+          "name": "Manipal Hospital Old Airport Road",
+          "beds": 600
+        }
+      ],
+      "hospital_count": 1,
+      "shelters": [],
+      "shelter_capacity_total": 0,
+      "flood_risk_base": 4.5
+    },
+    {
+      "id": "Z06",
+      "name": "Mahadevapura",
+      "population": 320000,
+      "area_km2": 30.0,
+      "elderly_pct": 8.5,
+      "population_density": 10667,
+      "elevation_tier": "low",
+      "elevation_m": 855,
+      "hospitals": [],
+      "hospital_count": 0,
+      "shelters": [],
+      "shelter_capacity_total": 0,
+      "flood_risk_base": 7.0
+    },
+    {
+      "id": "Z07",
+      "name": "Bellandur",
+      "population": 198000,
+      "area_km2": 25.5,
+      "elderly_pct": 8.0,
+      "population_density": 7765,
+      "elevation_tier": "low",
+      "elevation_m": 845,
+      "hospitals": [],
+      "hospital_count": 0,
+      "shelters": [],
+      "shelter_capacity_total": 0,
+      "flood_risk_base": 9.0,
+      "notes": "Adjacent to Bellandur Lake — historically highest flood risk zone in Bengaluru"
+    },
+    {
+      "id": "Z08",
+      "name": "Marathahalli",
+      "population": 210000,
+      "area_km2": 18.0,
+      "elderly_pct": 9.3,
+      "population_density": 11667,
+      "elevation_tier": "low",
+      "elevation_m": 865,
+      "hospitals": [
+        {
+          "name": "Sakra World Hospital",
+          "beds": 350
+        }
+      ],
+      "hospital_count": 1,
+      "shelters": [],
+      "shelter_capacity_total": 0,
+      "flood_risk_base": 6.5
+    },
+    {
+      "id": "Z09",
+      "name": "BTM Layout",
+      "population": 185000,
+      "area_km2": 13.5,
+      "elderly_pct": 12.0,
+      "population_density": 13704,
+      "elevation_tier": "mid",
+      "elevation_m": 880,
+      "hospitals": [],
+      "hospital_count": 0,
+      "shelters": [],
+      "shelter_capacity_total": 0,
+      "flood_risk_base": 5.5
+    },
+    {
+      "id": "Z10",
+      "name": "Electronic City",
+      "population": 240000,
+      "area_km2": 32.0,
+      "elderly_pct": 7.2,
+      "population_density": 7500,
+      "elevation_tier": "low",
+      "elevation_m": 850,
+      "hospitals": [
+        {
+          "name": "Narayana Health City",
+          "beds": 5000
+        }
+      ],
+      "hospital_count": 1,
+      "shelters": [],
+      "shelter_capacity_total": 0,
+      "flood_risk_base": 6.0
+    },
+    {
+      "id": "Z11",
+      "name": "Hebbal",
+      "population": 130000,
+      "area_km2": 15.5,
+      "elderly_pct": 14.8,
+      "population_density": 8387,
+      "elevation_tier": "mid",
+      "elevation_m": 910,
+      "hospitals": [
+        {
+          "name": "Baptist Hospital",
+          "beds": 650
+        }
+      ],
+      "hospital_count": 1,
+      "shelters": [
+        {
+          "name": "RMC Ground Hebbal",
+          "capacity": 1000000,
+          "current_occupancy": 0
+        }
+      ],
+      "shelter_capacity_total": 1000000,
+      "flood_risk_base": 4.0
+    },
+    {
+      "id": "Z12",
+      "name": "Yelahanka",
+      "population": 110000,
+      "area_km2": 20.0,
+      "elderly_pct": 15.5,
+      "population_density": 5500,
+      "elevation_tier": "high",
+      "elevation_m": 930,
+      "hospitals": [],
+      "hospital_count": 0,
+      "shelters": [
+        {
+          "name": "Kanteerava Stadium CBD",
+          "capacity": 1000000,
+          "current_occupancy": 0
+        }
+      ],
+      "shelter_capacity_total": 1000000,
+      "flood_risk_base": 2.0
+    }
+  ],
+  "shelters": [
+    {
+      "id": "S01",
+      "name": "RMC Ground Hebbal",
+      "zone_id": "Z11",
+      "capacity": 1000000,
+      "current_occupancy": 0,
+      "has_medical": true
+    },
+    {
+      "id": "S02",
+      "name": "Kanteerava Stadium CBD",
+      "zone_id": "Z12",
+      "capacity": 1000000,
+      "current_occupancy": 0,
+      "has_medical": false
+    },
+    {
+      "id": "S03",
+      "name": "ITPL Convention Centre",
+      "zone_id": "Z01",
+      "capacity": 1000000,
+      "current_occupancy": 0,
+      "has_medical": false
+    }
+  ],
+  "road_network": {
+    "description": "Adjacency list. Each entry: [zone_id, zone_id, capacity_vehicles_per_hour, road_name]",
+    "edges": [
+      [
+        "Z01",
+        "Z08",
+        1800,
+        "Whitefield–Marathahalli Outer Ring Road"
+      ],
+      [
+        "Z01",
+        "Z06",
+        1200,
+        "Whitefield–Mahadevapura Link"
+      ],
+      [
+        "Z02",
+        "Z03",
+        1500,
+        "Koramangala–HSR 27th Main"
+      ],
+      [
+        "Z02",
+        "Z05",
+        1600,
+        "Koramangala–Indiranagar 100ft Road"
+      ],
+      [
+        "Z02",
+        "Z09",
+        1400,
+        "Koramangala–BTM 80ft Road"
+      ],
+      [
+        "Z03",
+        "Z07",
+        1000,
+        "HSR–Bellandur Agara Road"
+      ],
+      [
+        "Z03",
+        "Z09",
+        1200,
+        "HSR–BTM Intermediate Ring Road"
+      ],
+      [
+        "Z04",
+        "Z07",
+        800,
+        "Sarjapur–Bellandur Road"
+      ],
+      [
+        "Z04",
+        "Z03",
+        900,
+        "Sarjapur–HSR Outer Ring Road"
+      ],
+      [
+        "Z05",
+        "Z11",
+        1600,
+        "Indiranagar–Hebbal Old Madras Road"
+      ],
+      [
+        "Z05",
+        "Z08",
+        1300,
+        "Indiranagar–Marathahalli HAL Airport Road"
+      ],
+      [
+        "Z06",
+        "Z08",
+        1500,
+        "Mahadevapura–Marathahalli Tin Factory Road"
+      ],
+      [
+        "Z07",
+        "Z08",
+        1100,
+        "Bellandur–Marathahalli ORR"
+      ],
+      [
+        "Z07",
+        "Z10",
+        900,
+        "Bellandur–Electronic City NICE Road"
+      ],
+      [
+        "Z08",
+        "Z01",
+        1800,
+        "Marathahalli–Whitefield ORR"
+      ],
+      [
+        "Z09",
+        "Z10",
+        1000,
+        "BTM–Electronic City Hosur Road"
+      ],
+      [
+        "Z10",
+        "Z04",
+        800,
+        "Electronic City–Sarjapur Road"
+      ],
+      [
+        "Z11",
+        "Z12",
+        1400,
+        "Hebbal–Yelahanka Bellary Road"
+      ],
+      [
+        "Z11",
+        "Z05",
+        1600,
+        "Hebbal–Indiranagar Old Madras Road"
+      ],
+      [
+        "Z12",
+        "Z06",
+        1000,
+        "Yelahanka–Mahadevapura NH44"
+      ]
+    ]
+  },
+  "scenario_risk_overrides": {
+    "moderate_flood": {
+      "description": "Moderate monsoon flood — ORR low-lying zones affected",
+      "zone_risk_multipliers": {
+        "Z04": 1.5,
+        "Z06": 1.4,
+        "Z07": 1.8,
+        "Z10": 1.3
+      }
+    },
+    "severe_flood": {
+      "description": "Severe flood — Bellandur, Sarjapur, Mahadevapura critical",
+      "zone_risk_multipliers": {
+        "Z04": 2.0,
+        "Z06": 1.9,
+        "Z07": 2.2,
+        "Z08": 1.6,
+        "Z10": 1.7,
+        "Z03": 1.4
+      }
+    }
+  }
+}
