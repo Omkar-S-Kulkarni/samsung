@@ -1,3 +1,5 @@
+import { Lock } from 'lucide-react';
+
 export default function Memory() {
   const memories = [
     { text: "You sleep better on days with <8000 steps", score: 92, time: "2 hrs ago" },

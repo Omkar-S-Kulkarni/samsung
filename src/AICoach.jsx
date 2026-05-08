@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { motion, AnimatePresence } from 'framer-motion';
+
 import {
   Brain, Send, Mic, MicOff, Volume2, VolumeX, ThumbsUp, ThumbsDown,
   ChevronDown, Zap, RotateCcw, Copy, Check, Cpu, Wifi, WifiOff,
@@ -130,11 +130,8 @@ const MessageBubble = ({ msg, onExplain, onFeedback }) => {
   const isUser = msg.role === 'user';
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 12, scale: 0.97 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.28, ease: 'easeOut' }}
-      className={cn('flex w-full', isUser ? 'justify-end' : 'justify-start')}
+    <div
+      className={cn('flex w-full vitals-fade-in', isUser ? 'justify-end' : 'justify-start')}
     >
       {/* Avatar */}
       {!isUser && (
@@ -309,7 +306,7 @@ const MessageBubble = ({ msg, onExplain, onFeedback }) => {
           )}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
@@ -610,13 +607,9 @@ RESPONSE FORMAT RULES (always follow):
         ))}
 
         {/* Quick suggestions — categorized */}
-        <AnimatePresence>
         {showQuick && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            className="pt-2 space-y-3"
+          <div
+            className="pt-2 space-y-3 vitals-fade-in"
           >
             <p className="text-[10px] text-gray-600 uppercase font-bold tracking-widest flex items-center gap-1.5">
               <Sparkles size={9} className="text-[var(--color-pulse-cyan)]" />
@@ -629,12 +622,10 @@ RESPONSE FORMAT RULES (always follow):
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {cat.questions.map((q, i) => (
-                    <motion.button
+                    <button
                       key={i}
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.97 }}
                       onClick={() => sendMessage(cat.icon + ' ' + q)}
-                      className="text-xs px-3 py-2 rounded-xl text-gray-300 hover:text-white transition-all"
+                      className="text-xs px-3 py-2 rounded-xl text-gray-300 hover:text-white transition-all hover:scale-[1.03] active:scale-[0.97]"
                       style={{
                         background: `${cat.color}08`,
                         border: `1px solid ${cat.color}20`,
@@ -643,14 +634,13 @@ RESPONSE FORMAT RULES (always follow):
                       onMouseLeave={e => { e.currentTarget.style.background = `${cat.color}08`; e.currentTarget.style.borderColor = `${cat.color}20`; }}
                     >
                       {q}
-                    </motion.button>
+                    </button>
                   ))}
                 </div>
               </div>
             ))}
-          </motion.div>
+          </div>
         )}
-        </AnimatePresence>
 
         <div ref={messagesEndRef} />
       </div>
@@ -703,11 +693,9 @@ RESPONSE FORMAT RULES (always follow):
             {isListening ? (
               <span className="flex items-end gap-0.5 h-4">
                 {[0.5,1,0.7,1,0.6].map((h,i) => (
-                  <motion.span key={i}
-                    animate={{ scaleY: [h, 1, h] }}
-                    transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.1 }}
-                    className="w-0.5 rounded-full bg-[var(--color-pulse-bg)]"
-                    style={{ height: `${h * 16}px`, transformOrigin: 'bottom' }}
+                  <span key={i}
+                    className="w-0.5 rounded-full bg-[var(--color-pulse-bg)] animate-pulse"
+                    style={{ height: `${h * 16}px`, transformOrigin: 'bottom', animationDelay: `${i * 0.1}s` }}
                   />
                 ))}
               </span>

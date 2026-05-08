@@ -672,6 +672,243 @@ async def simulate_scenario(req: SimulationRequest):
     return await simulate_twin_scenario(req)
 
 
+# =============================================================================
+# ⚙️ PERSONALIZATION SETTINGS ENDPOINTS
+# =============================================================================
+
+from pipeline.tone_adapter import ToneAdapter, TONE_TEMPLATES
+tone_adapter = ToneAdapter()
+
+class PersonalizationSettingsUpdate(BaseModel):
+    user_id: str = "default_user"
+    personality_mode: Optional[str] = None      # 'strict', 'friendly', 'coach'
+    notification_frequency: Optional[str] = None # 'low', 'medium', 'high'
+    alert_sensitivity: Optional[str] = None      # 'low', 'medium', 'high'
+    privacy_biometrics: Optional[bool] = None
+    privacy_location: Optional[bool] = None
+    privacy_cloud: Optional[bool] = None
+    data_visibility_hr: Optional[bool] = None
+    data_visibility_sleep: Optional[bool] = None
+    data_visibility_stress: Optional[bool] = None
+    data_visibility_activity: Optional[bool] = None
+
+# In-memory settings store (production would persist)
+_user_settings: Dict[str, Dict] = {}
+
+def _get_settings(user_id: str) -> Dict:
+    if user_id not in _user_settings:
+        _user_settings[user_id] = {
+            "personality_mode": tone_adapter.get_user_tone(user_id),
+            "notification_frequency": "medium",
+            "alert_sensitivity": "medium",
+            "privacy": {
+                "biometrics": coach.personalization_engine.privacy._permissions.get("biometrics", True),
+                "location": coach.personalization_engine.privacy._permissions.get("location", False),
+                "cloud": coach.personalization_engine.privacy._permissions.get("cloud", False),
+            },
+            "data_visibility": {
+                "heart_rate": True,
+                "sleep": True,
+                "stress": True,
+                "activity": True,
+            },
+        }
+    return _user_settings[user_id]
+
+
+@app.get("/settings/{user_id}")
+async def get_personalization_settings(user_id: str):
+    """Get all personalization settings for a user."""
+    try:
+        settings = _get_settings(user_id)
+        tone_info = tone_adapter.get_user_tone(user_id)
+        all_tones = tone_adapter.get_all_tones()
+
+        return {
+            "user_id": user_id,
+            "settings": settings,
+            "current_tone": tone_info,
+            "available_tones": all_tones,
+            "tone_descriptions": {k: v['description'] for k, v in TONE_TEMPLATES.items()},
+        }
+    except Exception as e:
+        logger.error(f"Settings GET error: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/settings/{user_id}")
+async def update_personalization_settings(user_id: str, req: PersonalizationSettingsUpdate):
+    """Update personalization settings for a user."""
+    try:
+        settings = _get_settings(user_id)
+
+        if req.personality_mode and req.personality_mode in TONE_TEMPLATES:
+            settings["personality_mode"] = req.personality_mode
+            tone_adapter.set_user_tone(user_id, req.personality_mode)
+
+        if req.notification_frequency:
+            settings["notification_frequency"] = req.notification_frequency
+        if req.alert_sensitivity:
+            settings["alert_sensitivity"] = req.alert_sensitivity
+
+        # Privacy
+        if req.privacy_biometrics is not None:
+            settings["privacy"]["biometrics"] = req.privacy_biometrics
+            coach.personalization_engine.privacy.set_permission("biometrics", req.privacy_biometrics)
+        if req.privacy_location is not None:
+            settings["privacy"]["location"] = req.privacy_location
+            coach.personalization_engine.privacy.set_permission("location", req.privacy_location)
+        if req.privacy_cloud is not None:
+            settings["privacy"]["cloud"] = req.privacy_cloud
+            coach.personalization_engine.privacy.set_permission("cloud", req.privacy_cloud)
+
+        # Data visibility
+        if req.data_visibility_hr is not None:
+            settings["data_visibility"]["heart_rate"] = req.data_visibility_hr
+        if req.data_visibility_sleep is not None:
+            settings["data_visibility"]["sleep"] = req.data_visibility_sleep
+        if req.data_visibility_stress is not None:
+            settings["data_visibility"]["stress"] = req.data_visibility_stress
+        if req.data_visibility_activity is not None:
+            settings["data_visibility"]["activity"] = req.data_visibility_activity
+
+        _user_settings[user_id] = settings
+        return {"status": "updated", "settings": settings}
+    except Exception as e:
+        logger.error(f"Settings POST error: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# =============================================================================
+# 🧠 EMOTIONAL STATE DASHBOARD ENDPOINTS
+# =============================================================================
+
+@app.get("/emotional/{user_id}")
+async def get_emotional_state(user_id: str):
+    """
+    Returns the user's emotional state, mood trend, stress level,
+    emotional insights, and suggested wellness actions.
+    """
+    try:
+        twin_state = coach.get_readiness_report(user_id)
+        profile = coach.personalization_engine.get_profile(user_id)
+
+        # Determine emotional state from physiological signals
+        readiness = float(twin_state.get("readiness_score", 75.0))
+        fatigue = float(twin_state.get("fatigue_index", 20.0))
+        resilience = float(twin_state.get("stress_resilience", 75.0))
+
+        # Compute stress level (0-100)
+        stress_level = max(0, min(100, 100 - resilience + fatigue * 0.5))
+
+        # Map to emotional state
+        if stress_level > 70:
+            emotional_state = "stressed"
+            state_color = "#f87171"
+            state_emoji = "😰"
+        elif stress_level > 50:
+            emotional_state = "anxious"
+            state_color = "#FF9A3C"
+            state_emoji = "😟"
+        elif fatigue > 60:
+            emotional_state = "fatigued"
+            state_color = "#fbbf24"
+            state_emoji = "😴"
+        elif readiness > 80 and resilience > 70:
+            emotional_state = "energized"
+            state_color = "#39FF6A"
+            state_emoji = "😊"
+        elif readiness > 60:
+            emotional_state = "calm"
+            state_color = "#00E5FF"
+            state_emoji = "😌"
+        else:
+            emotional_state = "neutral"
+            state_color = "#94a3b8"
+            state_emoji = "😐"
+
+        # Generate mood trend (last 7 days simulated)
+        now = time.time()
+        mood_trend = []
+        for i in range(7, -1, -1):
+            day_stress = max(0, min(100, stress_level + float(np.random.normal(0, 12)) - i * 2))
+            day_mood = max(0, min(100, 100 - day_stress))
+            mood_trend.append({
+                "date": time.strftime("%b %d", time.localtime(now - i * 86400)),
+                "mood_score": round(day_mood, 1),
+                "stress_score": round(day_stress, 1),
+            })
+
+        # Emotional insights
+        insights = []
+        if stress_level > 60:
+            insights.append({
+                "type": "warning",
+                "title": "Elevated Stress Detected",
+                "text": "Your HRV and resilience scores suggest your body is under higher-than-normal stress. Consider incorporating relaxation techniques.",
+            })
+        if fatigue > 50:
+            insights.append({
+                "type": "info",
+                "title": "Recovery Needed",
+                "text": f"Your fatigue index is at {fatigue:.0f}%. Prioritize sleep quality and reduce training intensity.",
+            })
+        if readiness > 80:
+            insights.append({
+                "type": "positive",
+                "title": "Strong Readiness",
+                "text": "Your body is well-recovered. This is a great day for challenging activities or focused work.",
+            })
+        if resilience > 70:
+            insights.append({
+                "type": "positive",
+                "title": "Good Stress Resilience",
+                "text": "Your autonomic nervous system is handling stress well. Keep up your current recovery habits.",
+            })
+        else:
+            insights.append({
+                "type": "info",
+                "title": "Building Resilience",
+                "text": "Regular breathing exercises and consistent sleep can improve your stress resilience over time.",
+            })
+
+        # Suggested wellness actions
+        actions = []
+        if stress_level > 50:
+            actions.extend([
+                {"action": "Box Breathing", "duration": "5 min", "impact": "high", "icon": "🫁", "description": "4-4-4-4 breathing pattern to activate parasympathetic response"},
+                {"action": "Progressive Relaxation", "duration": "10 min", "impact": "high", "icon": "🧘", "description": "Systematically tense and release muscle groups"},
+            ])
+        if fatigue > 40:
+            actions.extend([
+                {"action": "Power Nap", "duration": "20 min", "impact": "medium", "icon": "😴", "description": "Short nap to restore cognitive function and reduce fatigue"},
+            ])
+        actions.extend([
+            {"action": "Mindful Walk", "duration": "15 min", "impact": "medium", "icon": "🚶", "description": "Light outdoor walk with focus on surroundings"},
+            {"action": "Gratitude Journal", "duration": "5 min", "impact": "medium", "icon": "📝", "description": "Write 3 things you're grateful for to shift perspective"},
+            {"action": "Cold Exposure", "duration": "2 min", "impact": "high", "icon": "🧊", "description": "Cold shower to boost endorphins and reduce inflammation"},
+        ])
+
+        return {
+            "user_id": user_id,
+            "emotional_state": emotional_state,
+            "state_emoji": state_emoji,
+            "state_color": state_color,
+            "stress_level": round(stress_level, 1),
+            "readiness": round(readiness, 1),
+            "fatigue": round(fatigue, 1),
+            "resilience": round(resilience, 1),
+            "mood_trend": mood_trend,
+            "insights": insights,
+            "actions": actions,
+            "last_updated": time.strftime("%H:%M:%S"),
+        }
+    except Exception as e:
+        logger.error(f"Emotional state error: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
+

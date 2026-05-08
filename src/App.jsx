@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { LineChart, Line, ResponsiveContainer } from 'recharts';
-import { Home, Brain, Zap, Database, Heart, Moon, Footprints, Activity, Send, X, Trophy, Shield, Terminal as TerminalIcon, Info, AlertTriangle, TrendingUp } from 'lucide-react';
+import { Home, Brain, Zap, Database, Heart, Moon, Footprints, Activity, Send, X, Trophy, Shield, Terminal as TerminalIcon, Info, AlertTriangle, TrendingUp, Settings, Smile } from 'lucide-react';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -16,6 +16,8 @@ import TrendsAnalytics from './TrendsAnalytics';
 import Terminal from './Terminal';
 import VitalsPanel from './VitalsPanel';
 import AICoach from './AICoach';
+import PersonalizationSettings from './PersonalizationSettings';
+import EmotionalDashboard from './EmotionalDashboard';
 
 // Store
 import useVitalsStore from './store/vitalsStore';
@@ -242,12 +244,14 @@ export default function App() {
     { id: 'vitals', label: 'Vitals', icon: Activity },
     { id: 'twin', label: 'Twin', icon: Brain },
     { id: 'alerts', label: 'Alerts', icon: AlertTriangle },
+    { id: 'emotional', label: 'Emotional', icon: Smile },
     { id: 'progress', label: 'Progress', icon: Trophy },
     { id: 'coach', label: 'Coach', icon: Brain },
     { id: 'signals', label: 'Signals', icon: Zap },
     { id: 'memory', label: 'Memory', icon: Database },
     { id: 'vault', label: 'Vault', icon: Shield },
     { id: 'trends', label: 'Trends', icon: TrendingUp },
+    { id: 'settings', label: 'Settings', icon: Settings },
     { id: 'terminal', label: 'Terminal', icon: TerminalIcon },
   ];
 
@@ -286,6 +290,8 @@ export default function App() {
          activeTab === 'trends' ? <TrendsAnalytics /> :
          activeTab === 'terminal' ? <Terminal /> :
          activeTab === 'coach' ? <AICoach hr={hr} twin={backendState?.twin} backendState={backendState} /> :
+         activeTab === 'settings' ? <PersonalizationSettings /> :
+         activeTab === 'emotional' ? <EmotionalDashboard /> :
          <div className="flex-1 flex items-center justify-center text-gray-500 font-mono">Module Initializing...</div>}
       </main>
 
