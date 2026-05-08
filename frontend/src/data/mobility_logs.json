@@ -1,0 +1,5521 @@
+[
+  {
+    "tick": 1,
+    "event": "edge_removed",
+    "details": {
+      "from": "HSR Layout",
+      "to": "Bellandur",
+      "road": "HSR - Bellandur Road",
+      "risk": 0.507,
+      "threshold": 0.45
+    },
+    "timestamp": "2026-05-03T07:28:02.166452"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "Whitefield",
+      "to_zone": "S01",
+      "path": [
+        "Whitefield",
+        "Marathahalli",
+        "Indiranagar",
+        "Hebbal",
+        "S01"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Outer Ring Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 7.1,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "Marathahalli"
+        },
+        {
+          "road_name": "Indiranagar - Marathahalli Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 6.5,
+          "blocked": false,
+          "from": "Marathahalli",
+          "to": "Indiranagar"
+        },
+        {
+          "road_name": "Indiranagar - Hebbal Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 11.0,
+          "blocked": false,
+          "from": "Indiranagar",
+          "to": "Hebbal"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Hebbal",
+          "to": "S01"
+        }
+      ],
+      "total_distance_km": 25.1,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.168829"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "Whitefield",
+      "to_zone": "S02",
+      "path": [
+        "Whitefield",
+        "Mahadevapura",
+        "Yelahanka",
+        "S02"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Whitefield - Mahadevapura Link",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.6,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "Mahadevapura"
+        },
+        {
+          "road_name": "Yelahanka - Mahadevapura NH44",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Mahadevapura",
+          "to": "Yelahanka"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "S02"
+        }
+      ],
+      "total_distance_km": 18.5,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.168829"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "Whitefield",
+      "to_zone": "S03",
+      "path": [
+        "Whitefield",
+        "S03"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "S03"
+        }
+      ],
+      "total_distance_km": 0.5,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.168829"
+  },
+  {
+    "tick": 1,
+    "event": "recalculation",
+    "details": {
+      "from": "Whitefield",
+      "chosen_shelter": "S03",
+      "quality": 1.0,
+      "candidates_tried": 3
+    },
+    "timestamp": "2026-05-03T07:28:02.168829"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "Koramangala",
+      "to_zone": "S01",
+      "path": [
+        "Koramangala",
+        "Indiranagar",
+        "Hebbal",
+        "S01"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Koramangala - Indiranagar Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 4.2,
+          "blocked": false,
+          "from": "Koramangala",
+          "to": "Indiranagar"
+        },
+        {
+          "road_name": "Indiranagar - Hebbal Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 11.0,
+          "blocked": false,
+          "from": "Indiranagar",
+          "to": "Hebbal"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Hebbal",
+          "to": "S01"
+        }
+      ],
+      "total_distance_km": 15.7,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.169411"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "Koramangala",
+      "to_zone": "S02",
+      "path": [
+        "Koramangala",
+        "Indiranagar",
+        "Hebbal",
+        "Yelahanka",
+        "S02"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Koramangala - Indiranagar Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 4.2,
+          "blocked": false,
+          "from": "Koramangala",
+          "to": "Indiranagar"
+        },
+        {
+          "road_name": "Indiranagar - Hebbal Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 11.0,
+          "blocked": false,
+          "from": "Indiranagar",
+          "to": "Hebbal"
+        },
+        {
+          "road_name": "Hebbal - Yelahanka Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 8.0,
+          "blocked": false,
+          "from": "Hebbal",
+          "to": "Yelahanka"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "S02"
+        }
+      ],
+      "total_distance_km": 23.7,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.169411"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "Koramangala",
+      "to_zone": "S03",
+      "path": [
+        "Koramangala",
+        "Indiranagar",
+        "Marathahalli",
+        "Whitefield",
+        "S03"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Koramangala - Indiranagar Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 4.2,
+          "blocked": false,
+          "from": "Koramangala",
+          "to": "Indiranagar"
+        },
+        {
+          "road_name": "Indiranagar - Marathahalli Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 6.5,
+          "blocked": false,
+          "from": "Indiranagar",
+          "to": "Marathahalli"
+        },
+        {
+          "road_name": "Outer Ring Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 7.1,
+          "blocked": false,
+          "from": "Marathahalli",
+          "to": "Whitefield"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "S03"
+        }
+      ],
+      "total_distance_km": 18.3,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.169411"
+  },
+  {
+    "tick": 1,
+    "event": "recalculation",
+    "details": {
+      "from": "Koramangala",
+      "chosen_shelter": "S01",
+      "quality": 1.0,
+      "candidates_tried": 3
+    },
+    "timestamp": "2026-05-03T07:28:02.169411"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "HSR Layout",
+      "to_zone": "S01",
+      "path": [
+        "HSR Layout",
+        "Koramangala",
+        "Indiranagar",
+        "Hebbal",
+        "S01"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Koramangala - HSR Link",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 4.5,
+          "blocked": false,
+          "from": "HSR Layout",
+          "to": "Koramangala"
+        },
+        {
+          "road_name": "Koramangala - Indiranagar Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 4.2,
+          "blocked": false,
+          "from": "Koramangala",
+          "to": "Indiranagar"
+        },
+        {
+          "road_name": "Indiranagar - Hebbal Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 11.0,
+          "blocked": false,
+          "from": "Indiranagar",
+          "to": "Hebbal"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Hebbal",
+          "to": "S01"
+        }
+      ],
+      "total_distance_km": 20.2,
+      "congestion_score": 0.0,
+      "route_quality": 0.97,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.169411"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "HSR Layout",
+      "to_zone": "S02",
+      "path": [
+        "HSR Layout",
+        "Koramangala",
+        "Indiranagar",
+        "Hebbal",
+        "Yelahanka",
+        "S02"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Koramangala - HSR Link",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 4.5,
+          "blocked": false,
+          "from": "HSR Layout",
+          "to": "Koramangala"
+        },
+        {
+          "road_name": "Koramangala - Indiranagar Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 4.2,
+          "blocked": false,
+          "from": "Koramangala",
+          "to": "Indiranagar"
+        },
+        {
+          "road_name": "Indiranagar - Hebbal Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 11.0,
+          "blocked": false,
+          "from": "Indiranagar",
+          "to": "Hebbal"
+        },
+        {
+          "road_name": "Hebbal - Yelahanka Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 8.0,
+          "blocked": false,
+          "from": "Hebbal",
+          "to": "Yelahanka"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "S02"
+        }
+      ],
+      "total_distance_km": 28.2,
+      "congestion_score": 0.0,
+      "route_quality": 0.975,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.169411"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "HSR Layout",
+      "to_zone": "S03",
+      "path": [
+        "HSR Layout",
+        "Koramangala",
+        "Indiranagar",
+        "Marathahalli",
+        "Whitefield",
+        "S03"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Koramangala - HSR Link",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 4.5,
+          "blocked": false,
+          "from": "HSR Layout",
+          "to": "Koramangala"
+        },
+        {
+          "road_name": "Koramangala - Indiranagar Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 4.2,
+          "blocked": false,
+          "from": "Koramangala",
+          "to": "Indiranagar"
+        },
+        {
+          "road_name": "Indiranagar - Marathahalli Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 6.5,
+          "blocked": false,
+          "from": "Indiranagar",
+          "to": "Marathahalli"
+        },
+        {
+          "road_name": "Outer Ring Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 7.1,
+          "blocked": false,
+          "from": "Marathahalli",
+          "to": "Whitefield"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "S03"
+        }
+      ],
+      "total_distance_km": 22.8,
+      "congestion_score": 0.0,
+      "route_quality": 0.977,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.169411"
+  },
+  {
+    "tick": 1,
+    "event": "recalculation",
+    "details": {
+      "from": "HSR Layout",
+      "chosen_shelter": "S01",
+      "quality": 0.97,
+      "candidates_tried": 3
+    },
+    "timestamp": "2026-05-03T07:28:02.169411"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "Sarjapur",
+      "to_zone": "S01",
+      "path": [
+        "Sarjapur",
+        "HSR Layout",
+        "Koramangala",
+        "Indiranagar",
+        "Hebbal",
+        "S01"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Sarjapur - HSR Outer Ring Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Sarjapur",
+          "to": "HSR Layout"
+        },
+        {
+          "road_name": "Koramangala - HSR Link",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 4.5,
+          "blocked": false,
+          "from": "HSR Layout",
+          "to": "Koramangala"
+        },
+        {
+          "road_name": "Koramangala - Indiranagar Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 4.2,
+          "blocked": false,
+          "from": "Koramangala",
+          "to": "Indiranagar"
+        },
+        {
+          "road_name": "Indiranagar - Hebbal Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 11.0,
+          "blocked": false,
+          "from": "Indiranagar",
+          "to": "Hebbal"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Hebbal",
+          "to": "S01"
+        }
+      ],
+      "total_distance_km": 29.2,
+      "congestion_score": 0.0,
+      "route_quality": 0.975,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.169411"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "Sarjapur",
+      "to_zone": "S02",
+      "path": [
+        "Sarjapur",
+        "HSR Layout",
+        "Koramangala",
+        "Indiranagar",
+        "Hebbal",
+        "Yelahanka",
+        "S02"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Sarjapur - HSR Outer Ring Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Sarjapur",
+          "to": "HSR Layout"
+        },
+        {
+          "road_name": "Koramangala - HSR Link",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 4.5,
+          "blocked": false,
+          "from": "HSR Layout",
+          "to": "Koramangala"
+        },
+        {
+          "road_name": "Koramangala - Indiranagar Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 4.2,
+          "blocked": false,
+          "from": "Koramangala",
+          "to": "Indiranagar"
+        },
+        {
+          "road_name": "Indiranagar - Hebbal Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 11.0,
+          "blocked": false,
+          "from": "Indiranagar",
+          "to": "Hebbal"
+        },
+        {
+          "road_name": "Hebbal - Yelahanka Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 8.0,
+          "blocked": false,
+          "from": "Hebbal",
+          "to": "Yelahanka"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "S02"
+        }
+      ],
+      "total_distance_km": 37.2,
+      "congestion_score": 0.0,
+      "route_quality": 0.979,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.169411"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "Sarjapur",
+      "to_zone": "S03",
+      "path": [
+        "Sarjapur",
+        "Bellandur",
+        "Marathahalli",
+        "Whitefield",
+        "S03"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Sarjapur - Bellandur Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 8.4,
+          "blocked": false,
+          "from": "Sarjapur",
+          "to": "Bellandur"
+        },
+        {
+          "road_name": "Outer Ring Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 13.5,
+          "blocked": false,
+          "from": "Bellandur",
+          "to": "Marathahalli"
+        },
+        {
+          "road_name": "Outer Ring Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 7.1,
+          "blocked": false,
+          "from": "Marathahalli",
+          "to": "Whitefield"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "S03"
+        }
+      ],
+      "total_distance_km": 29.5,
+      "congestion_score": 0.0,
+      "route_quality": 0.973,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.169411"
+  },
+  {
+    "tick": 1,
+    "event": "recalculation",
+    "details": {
+      "from": "Sarjapur",
+      "chosen_shelter": "S01",
+      "quality": 0.975,
+      "candidates_tried": 3
+    },
+    "timestamp": "2026-05-03T07:28:02.169411"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "Indiranagar",
+      "to_zone": "S01",
+      "path": [
+        "Indiranagar",
+        "Hebbal",
+        "S01"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Indiranagar - Hebbal Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 11.0,
+          "blocked": false,
+          "from": "Indiranagar",
+          "to": "Hebbal"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Hebbal",
+          "to": "S01"
+        }
+      ],
+      "total_distance_km": 11.5,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.169411"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "Indiranagar",
+      "to_zone": "S02",
+      "path": [
+        "Indiranagar",
+        "Hebbal",
+        "Yelahanka",
+        "S02"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Indiranagar - Hebbal Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 11.0,
+          "blocked": false,
+          "from": "Indiranagar",
+          "to": "Hebbal"
+        },
+        {
+          "road_name": "Hebbal - Yelahanka Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 8.0,
+          "blocked": false,
+          "from": "Hebbal",
+          "to": "Yelahanka"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "S02"
+        }
+      ],
+      "total_distance_km": 19.5,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.170417"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "Indiranagar",
+      "to_zone": "S03",
+      "path": [
+        "Indiranagar",
+        "Marathahalli",
+        "Whitefield",
+        "S03"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Indiranagar - Marathahalli Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 6.5,
+          "blocked": false,
+          "from": "Indiranagar",
+          "to": "Marathahalli"
+        },
+        {
+          "road_name": "Outer Ring Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 7.1,
+          "blocked": false,
+          "from": "Marathahalli",
+          "to": "Whitefield"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "S03"
+        }
+      ],
+      "total_distance_km": 14.1,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.170417"
+  },
+  {
+    "tick": 1,
+    "event": "recalculation",
+    "details": {
+      "from": "Indiranagar",
+      "chosen_shelter": "S01",
+      "quality": 1.0,
+      "candidates_tried": 3
+    },
+    "timestamp": "2026-05-03T07:28:02.170417"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "Mahadevapura",
+      "to_zone": "S01",
+      "path": [
+        "Mahadevapura",
+        "Yelahanka",
+        "Hebbal",
+        "S01"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Yelahanka - Mahadevapura NH44",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Mahadevapura",
+          "to": "Yelahanka"
+        },
+        {
+          "road_name": "Hebbal - Yelahanka Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 8.0,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "Hebbal"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Hebbal",
+          "to": "S01"
+        }
+      ],
+      "total_distance_km": 17.5,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.170417"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "Mahadevapura",
+      "to_zone": "S02",
+      "path": [
+        "Mahadevapura",
+        "Yelahanka",
+        "S02"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Yelahanka - Mahadevapura NH44",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Mahadevapura",
+          "to": "Yelahanka"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "S02"
+        }
+      ],
+      "total_distance_km": 9.5,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.170417"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "Mahadevapura",
+      "to_zone": "S03",
+      "path": [
+        "Mahadevapura",
+        "Whitefield",
+        "S03"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Whitefield - Mahadevapura Link",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.6,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Mahadevapura",
+          "to": "Whitefield"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "S03"
+        }
+      ],
+      "total_distance_km": 9.5,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.170417"
+  },
+  {
+    "tick": 1,
+    "event": "recalculation",
+    "details": {
+      "from": "Mahadevapura",
+      "chosen_shelter": "S02",
+      "quality": 1.0,
+      "candidates_tried": 3
+    },
+    "timestamp": "2026-05-03T07:28:02.170417"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "Bellandur",
+      "to_zone": "S01",
+      "path": [
+        "Bellandur",
+        "Marathahalli",
+        "Indiranagar",
+        "Hebbal",
+        "S01"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Outer Ring Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 13.5,
+          "blocked": false,
+          "from": "Bellandur",
+          "to": "Marathahalli"
+        },
+        {
+          "road_name": "Indiranagar - Marathahalli Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 6.5,
+          "blocked": false,
+          "from": "Marathahalli",
+          "to": "Indiranagar"
+        },
+        {
+          "road_name": "Indiranagar - Hebbal Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 11.0,
+          "blocked": false,
+          "from": "Indiranagar",
+          "to": "Hebbal"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Hebbal",
+          "to": "S01"
+        }
+      ],
+      "total_distance_km": 31.5,
+      "congestion_score": 0.0,
+      "route_quality": 0.973,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.170417"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "Bellandur",
+      "to_zone": "S02",
+      "path": [
+        "Bellandur",
+        "Marathahalli",
+        "Mahadevapura",
+        "Yelahanka",
+        "S02"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Outer Ring Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 13.5,
+          "blocked": false,
+          "from": "Bellandur",
+          "to": "Marathahalli"
+        },
+        {
+          "road_name": "Mahadevapura - Marathahalli Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 6.0,
+          "blocked": false,
+          "from": "Marathahalli",
+          "to": "Mahadevapura"
+        },
+        {
+          "road_name": "Yelahanka - Mahadevapura NH44",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Mahadevapura",
+          "to": "Yelahanka"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "S02"
+        }
+      ],
+      "total_distance_km": 29.0,
+      "congestion_score": 0.0,
+      "route_quality": 0.973,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.170922"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "Bellandur",
+      "to_zone": "S03",
+      "path": [
+        "Bellandur",
+        "Marathahalli",
+        "Whitefield",
+        "S03"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Outer Ring Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 13.5,
+          "blocked": false,
+          "from": "Bellandur",
+          "to": "Marathahalli"
+        },
+        {
+          "road_name": "Outer Ring Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 7.1,
+          "blocked": false,
+          "from": "Marathahalli",
+          "to": "Whitefield"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "S03"
+        }
+      ],
+      "total_distance_km": 21.1,
+      "congestion_score": 0.0,
+      "route_quality": 0.967,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.170922"
+  },
+  {
+    "tick": 1,
+    "event": "recalculation",
+    "details": {
+      "from": "Bellandur",
+      "chosen_shelter": "S03",
+      "quality": 0.967,
+      "candidates_tried": 3
+    },
+    "timestamp": "2026-05-03T07:28:02.170922"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "Marathahalli",
+      "to_zone": "S01",
+      "path": [
+        "Marathahalli",
+        "Indiranagar",
+        "Hebbal",
+        "S01"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Indiranagar - Marathahalli Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 6.5,
+          "blocked": false,
+          "from": "Marathahalli",
+          "to": "Indiranagar"
+        },
+        {
+          "road_name": "Indiranagar - Hebbal Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 11.0,
+          "blocked": false,
+          "from": "Indiranagar",
+          "to": "Hebbal"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Hebbal",
+          "to": "S01"
+        }
+      ],
+      "total_distance_km": 18.0,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.170922"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "Marathahalli",
+      "to_zone": "S02",
+      "path": [
+        "Marathahalli",
+        "Mahadevapura",
+        "Yelahanka",
+        "S02"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Mahadevapura - Marathahalli Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 6.0,
+          "blocked": false,
+          "from": "Marathahalli",
+          "to": "Mahadevapura"
+        },
+        {
+          "road_name": "Yelahanka - Mahadevapura NH44",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Mahadevapura",
+          "to": "Yelahanka"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "S02"
+        }
+      ],
+      "total_distance_km": 15.5,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.170922"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "Marathahalli",
+      "to_zone": "S03",
+      "path": [
+        "Marathahalli",
+        "Whitefield",
+        "S03"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Outer Ring Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 7.1,
+          "blocked": false,
+          "from": "Marathahalli",
+          "to": "Whitefield"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "S03"
+        }
+      ],
+      "total_distance_km": 7.6,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.170922"
+  },
+  {
+    "tick": 1,
+    "event": "recalculation",
+    "details": {
+      "from": "Marathahalli",
+      "chosen_shelter": "S03",
+      "quality": 1.0,
+      "candidates_tried": 3
+    },
+    "timestamp": "2026-05-03T07:28:02.170922"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "BTM Layout",
+      "to_zone": "S01",
+      "path": [
+        "BTM Layout",
+        "Koramangala",
+        "Indiranagar",
+        "Hebbal",
+        "S01"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Hosur Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.6,
+          "distance_km": 3.0,
+          "blocked": false,
+          "from": "BTM Layout",
+          "to": "Koramangala"
+        },
+        {
+          "road_name": "Koramangala - Indiranagar Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 4.2,
+          "blocked": false,
+          "from": "Koramangala",
+          "to": "Indiranagar"
+        },
+        {
+          "road_name": "Indiranagar - Hebbal Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 11.0,
+          "blocked": false,
+          "from": "Indiranagar",
+          "to": "Hebbal"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Hebbal",
+          "to": "S01"
+        }
+      ],
+      "total_distance_km": 18.7,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.170922"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "BTM Layout",
+      "to_zone": "S02",
+      "path": [
+        "BTM Layout",
+        "Koramangala",
+        "Indiranagar",
+        "Hebbal",
+        "Yelahanka",
+        "S02"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Hosur Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.6,
+          "distance_km": 3.0,
+          "blocked": false,
+          "from": "BTM Layout",
+          "to": "Koramangala"
+        },
+        {
+          "road_name": "Koramangala - Indiranagar Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 4.2,
+          "blocked": false,
+          "from": "Koramangala",
+          "to": "Indiranagar"
+        },
+        {
+          "road_name": "Indiranagar - Hebbal Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 11.0,
+          "blocked": false,
+          "from": "Indiranagar",
+          "to": "Hebbal"
+        },
+        {
+          "road_name": "Hebbal - Yelahanka Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 8.0,
+          "blocked": false,
+          "from": "Hebbal",
+          "to": "Yelahanka"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "S02"
+        }
+      ],
+      "total_distance_km": 26.7,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.170922"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "BTM Layout",
+      "to_zone": "S03",
+      "path": [
+        "BTM Layout",
+        "Koramangala",
+        "Indiranagar",
+        "Marathahalli",
+        "Whitefield",
+        "S03"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Hosur Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.6,
+          "distance_km": 3.0,
+          "blocked": false,
+          "from": "BTM Layout",
+          "to": "Koramangala"
+        },
+        {
+          "road_name": "Koramangala - Indiranagar Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 4.2,
+          "blocked": false,
+          "from": "Koramangala",
+          "to": "Indiranagar"
+        },
+        {
+          "road_name": "Indiranagar - Marathahalli Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 6.5,
+          "blocked": false,
+          "from": "Indiranagar",
+          "to": "Marathahalli"
+        },
+        {
+          "road_name": "Outer Ring Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 7.1,
+          "blocked": false,
+          "from": "Marathahalli",
+          "to": "Whitefield"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "S03"
+        }
+      ],
+      "total_distance_km": 21.3,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.170922"
+  },
+  {
+    "tick": 1,
+    "event": "recalculation",
+    "details": {
+      "from": "BTM Layout",
+      "chosen_shelter": "S01",
+      "quality": 1.0,
+      "candidates_tried": 3
+    },
+    "timestamp": "2026-05-03T07:28:02.170922"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "Electronic City",
+      "to_zone": "S01",
+      "path": [
+        "Electronic City",
+        "BTM Layout",
+        "Koramangala",
+        "Indiranagar",
+        "Hebbal",
+        "S01"
+      ],
+      "edges_used": [
+        {
+          "road_name": "BTM - Electronic City Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.6,
+          "distance_km": 12.0,
+          "blocked": false,
+          "from": "Electronic City",
+          "to": "BTM Layout"
+        },
+        {
+          "road_name": "Hosur Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.6,
+          "distance_km": 3.0,
+          "blocked": false,
+          "from": "BTM Layout",
+          "to": "Koramangala"
+        },
+        {
+          "road_name": "Koramangala - Indiranagar Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 4.2,
+          "blocked": false,
+          "from": "Koramangala",
+          "to": "Indiranagar"
+        },
+        {
+          "road_name": "Indiranagar - Hebbal Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 11.0,
+          "blocked": false,
+          "from": "Indiranagar",
+          "to": "Hebbal"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Hebbal",
+          "to": "S01"
+        }
+      ],
+      "total_distance_km": 30.7,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.171926"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "Electronic City",
+      "to_zone": "S02",
+      "path": [
+        "Electronic City",
+        "BTM Layout",
+        "Koramangala",
+        "Indiranagar",
+        "Hebbal",
+        "Yelahanka",
+        "S02"
+      ],
+      "edges_used": [
+        {
+          "road_name": "BTM - Electronic City Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.6,
+          "distance_km": 12.0,
+          "blocked": false,
+          "from": "Electronic City",
+          "to": "BTM Layout"
+        },
+        {
+          "road_name": "Hosur Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.6,
+          "distance_km": 3.0,
+          "blocked": false,
+          "from": "BTM Layout",
+          "to": "Koramangala"
+        },
+        {
+          "road_name": "Koramangala - Indiranagar Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 4.2,
+          "blocked": false,
+          "from": "Koramangala",
+          "to": "Indiranagar"
+        },
+        {
+          "road_name": "Indiranagar - Hebbal Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 11.0,
+          "blocked": false,
+          "from": "Indiranagar",
+          "to": "Hebbal"
+        },
+        {
+          "road_name": "Hebbal - Yelahanka Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 8.0,
+          "blocked": false,
+          "from": "Hebbal",
+          "to": "Yelahanka"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "S02"
+        }
+      ],
+      "total_distance_km": 38.7,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.171926"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "Electronic City",
+      "to_zone": "S03",
+      "path": [
+        "Electronic City",
+        "Bellandur",
+        "Marathahalli",
+        "Whitefield",
+        "S03"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Bellandur - Electronic City Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.6,
+          "distance_km": 10.5,
+          "blocked": false,
+          "from": "Electronic City",
+          "to": "Bellandur"
+        },
+        {
+          "road_name": "Outer Ring Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 13.5,
+          "blocked": false,
+          "from": "Bellandur",
+          "to": "Marathahalli"
+        },
+        {
+          "road_name": "Outer Ring Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 7.1,
+          "blocked": false,
+          "from": "Marathahalli",
+          "to": "Whitefield"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "S03"
+        }
+      ],
+      "total_distance_km": 31.6,
+      "congestion_score": 0.0,
+      "route_quality": 0.973,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.171926"
+  },
+  {
+    "tick": 1,
+    "event": "recalculation",
+    "details": {
+      "from": "Electronic City",
+      "chosen_shelter": "S01",
+      "quality": 1.0,
+      "candidates_tried": 3
+    },
+    "timestamp": "2026-05-03T07:28:02.171926"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "Hebbal",
+      "to_zone": "S01",
+      "path": [
+        "Hebbal",
+        "S01"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Hebbal",
+          "to": "S01"
+        }
+      ],
+      "total_distance_km": 0.5,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.171926"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "Hebbal",
+      "to_zone": "S02",
+      "path": [
+        "Hebbal",
+        "Yelahanka",
+        "S02"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Hebbal - Yelahanka Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 8.0,
+          "blocked": false,
+          "from": "Hebbal",
+          "to": "Yelahanka"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "S02"
+        }
+      ],
+      "total_distance_km": 8.5,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.171926"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "Hebbal",
+      "to_zone": "S03",
+      "path": [
+        "Hebbal",
+        "Indiranagar",
+        "Marathahalli",
+        "Whitefield",
+        "S03"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Indiranagar - Hebbal Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 11.0,
+          "blocked": false,
+          "from": "Hebbal",
+          "to": "Indiranagar"
+        },
+        {
+          "road_name": "Indiranagar - Marathahalli Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 6.5,
+          "blocked": false,
+          "from": "Indiranagar",
+          "to": "Marathahalli"
+        },
+        {
+          "road_name": "Outer Ring Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 7.1,
+          "blocked": false,
+          "from": "Marathahalli",
+          "to": "Whitefield"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "S03"
+        }
+      ],
+      "total_distance_km": 25.1,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.171926"
+  },
+  {
+    "tick": 1,
+    "event": "recalculation",
+    "details": {
+      "from": "Hebbal",
+      "chosen_shelter": "S01",
+      "quality": 1.0,
+      "candidates_tried": 3
+    },
+    "timestamp": "2026-05-03T07:28:02.171926"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "Yelahanka",
+      "to_zone": "S01",
+      "path": [
+        "Yelahanka",
+        "Hebbal",
+        "S01"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Hebbal - Yelahanka Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 8.0,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "Hebbal"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Hebbal",
+          "to": "S01"
+        }
+      ],
+      "total_distance_km": 8.5,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.171926"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "Yelahanka",
+      "to_zone": "S02",
+      "path": [
+        "Yelahanka",
+        "S02"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "S02"
+        }
+      ],
+      "total_distance_km": 0.5,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.171926"
+  },
+  {
+    "tick": 1,
+    "event": "route_ok",
+    "details": {
+      "tick": 1,
+      "from_zone": "Yelahanka",
+      "to_zone": "S03",
+      "path": [
+        "Yelahanka",
+        "Mahadevapura",
+        "Whitefield",
+        "S03"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Yelahanka - Mahadevapura NH44",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "Mahadevapura"
+        },
+        {
+          "road_name": "Whitefield - Mahadevapura Link",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.6,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Mahadevapura",
+          "to": "Whitefield"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "S03"
+        }
+      ],
+      "total_distance_km": 18.5,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:02.171926"
+  },
+  {
+    "tick": 1,
+    "event": "recalculation",
+    "details": {
+      "from": "Yelahanka",
+      "chosen_shelter": "S02",
+      "quality": 1.0,
+      "candidates_tried": 3
+    },
+    "timestamp": "2026-05-03T07:28:02.171926"
+  },
+  {
+    "tick": 2,
+    "event": "edge_removed",
+    "details": {
+      "from": "HSR Layout",
+      "to": "Bellandur",
+      "road": "HSR - Bellandur Road",
+      "risk": 1.0,
+      "threshold": 0.45
+    },
+    "timestamp": "2026-05-03T07:28:25.987034"
+  },
+  {
+    "tick": 2,
+    "event": "edge_removed",
+    "details": {
+      "from": "HSR Layout",
+      "to": "Sarjapur",
+      "road": "Sarjapur - HSR Outer Ring Road",
+      "risk": 0.775,
+      "threshold": 0.55
+    },
+    "timestamp": "2026-05-03T07:28:25.987034"
+  },
+  {
+    "tick": 2,
+    "event": "edge_removed",
+    "details": {
+      "from": "Sarjapur",
+      "to": "Bellandur",
+      "road": "Sarjapur - Bellandur Road",
+      "risk": 1.0,
+      "threshold": 0.55
+    },
+    "timestamp": "2026-05-03T07:28:25.987034"
+  },
+  {
+    "tick": 2,
+    "event": "edge_removed",
+    "details": {
+      "from": "Sarjapur",
+      "to": "Electronic City",
+      "road": "Electronic City - Sarjapur Road",
+      "risk": 0.775,
+      "threshold": 0.55
+    },
+    "timestamp": "2026-05-03T07:28:25.987034"
+  },
+  {
+    "tick": 2,
+    "event": "edge_removed",
+    "details": {
+      "from": "Bellandur",
+      "to": "Marathahalli",
+      "road": "Outer Ring Road",
+      "risk": 1.0,
+      "threshold": 0.99
+    },
+    "timestamp": "2026-05-03T07:28:25.987034"
+  },
+  {
+    "tick": 2,
+    "event": "edge_removed",
+    "details": {
+      "from": "Bellandur",
+      "to": "Electronic City",
+      "road": "Bellandur - Electronic City Road",
+      "risk": 1.0,
+      "threshold": 0.6
+    },
+    "timestamp": "2026-05-03T07:28:25.987034"
+  },
+  {
+    "tick": 2,
+    "event": "edge_removed",
+    "details": {
+      "from": "BTM Layout",
+      "to": "Electronic City",
+      "road": "BTM - Electronic City Road",
+      "risk": 0.702,
+      "threshold": 0.6
+    },
+    "timestamp": "2026-05-03T07:28:25.987034"
+  },
+  {
+    "tick": 2,
+    "event": "edge_removed",
+    "details": {
+      "from": "Hebbal",
+      "to": "S01",
+      "road": "Local Access Road",
+      "risk": 0.44,
+      "threshold": 0.4
+    },
+    "timestamp": "2026-05-03T07:28:25.987034"
+  },
+  {
+    "tick": 2,
+    "event": "route_failed",
+    "details": {
+      "from": "Whitefield",
+      "to": "S01",
+      "reason": "All paths from Whitefield to S01 are flooded. Base-graph path would be: Whitefield \u2192 Marathahalli \u2192 Indiranagar \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:28:25.988053"
+  },
+  {
+    "tick": 2,
+    "event": "route_ok",
+    "details": {
+      "tick": 2,
+      "from_zone": "Whitefield",
+      "to_zone": "S02",
+      "path": [
+        "Whitefield",
+        "Mahadevapura",
+        "Yelahanka",
+        "S02"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Whitefield - Mahadevapura Link",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.6,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "Mahadevapura"
+        },
+        {
+          "road_name": "Yelahanka - Mahadevapura NH44",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Mahadevapura",
+          "to": "Yelahanka"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "S02"
+        }
+      ],
+      "total_distance_km": 18.5,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:25.989052"
+  },
+  {
+    "tick": 2,
+    "event": "route_ok",
+    "details": {
+      "tick": 2,
+      "from_zone": "Whitefield",
+      "to_zone": "S03",
+      "path": [
+        "Whitefield",
+        "S03"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "S03"
+        }
+      ],
+      "total_distance_km": 0.5,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:25.989052"
+  },
+  {
+    "tick": 2,
+    "event": "recalculation",
+    "details": {
+      "from": "Whitefield",
+      "chosen_shelter": "S03",
+      "quality": 1.0,
+      "candidates_tried": 2
+    },
+    "timestamp": "2026-05-03T07:28:25.989052"
+  },
+  {
+    "tick": 2,
+    "event": "route_failed",
+    "details": {
+      "from": "Koramangala",
+      "to": "S01",
+      "reason": "All paths from Koramangala to S01 are flooded. Base-graph path would be: Koramangala \u2192 Indiranagar \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:28:25.989052"
+  },
+  {
+    "tick": 2,
+    "event": "route_ok",
+    "details": {
+      "tick": 2,
+      "from_zone": "Koramangala",
+      "to_zone": "S02",
+      "path": [
+        "Koramangala",
+        "Indiranagar",
+        "Hebbal",
+        "Yelahanka",
+        "S02"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Koramangala - Indiranagar Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 4.2,
+          "blocked": false,
+          "from": "Koramangala",
+          "to": "Indiranagar"
+        },
+        {
+          "road_name": "Indiranagar - Hebbal Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 11.0,
+          "blocked": false,
+          "from": "Indiranagar",
+          "to": "Hebbal"
+        },
+        {
+          "road_name": "Hebbal - Yelahanka Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 8.0,
+          "blocked": false,
+          "from": "Hebbal",
+          "to": "Yelahanka"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "S02"
+        }
+      ],
+      "total_distance_km": 23.7,
+      "congestion_score": 0.0,
+      "route_quality": 0.967,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:25.989052"
+  },
+  {
+    "tick": 2,
+    "event": "route_ok",
+    "details": {
+      "tick": 2,
+      "from_zone": "Koramangala",
+      "to_zone": "S03",
+      "path": [
+        "Koramangala",
+        "Indiranagar",
+        "Marathahalli",
+        "Whitefield",
+        "S03"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Koramangala - Indiranagar Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 4.2,
+          "blocked": false,
+          "from": "Koramangala",
+          "to": "Indiranagar"
+        },
+        {
+          "road_name": "Indiranagar - Marathahalli Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 6.5,
+          "blocked": false,
+          "from": "Indiranagar",
+          "to": "Marathahalli"
+        },
+        {
+          "road_name": "Outer Ring Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 7.1,
+          "blocked": false,
+          "from": "Marathahalli",
+          "to": "Whitefield"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "S03"
+        }
+      ],
+      "total_distance_km": 18.3,
+      "congestion_score": 0.0,
+      "route_quality": 0.97,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:25.990048"
+  },
+  {
+    "tick": 2,
+    "event": "recalculation",
+    "details": {
+      "from": "Koramangala",
+      "chosen_shelter": "S03",
+      "quality": 0.97,
+      "candidates_tried": 2
+    },
+    "timestamp": "2026-05-03T07:28:25.990048"
+  },
+  {
+    "tick": 2,
+    "event": "route_failed",
+    "details": {
+      "from": "HSR Layout",
+      "to": "S01",
+      "reason": "All paths from HSR Layout to S01 are flooded. Base-graph path would be: HSR Layout \u2192 Koramangala \u2192 Indiranagar \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:28:25.990048"
+  },
+  {
+    "tick": 2,
+    "event": "route_ok",
+    "details": {
+      "tick": 2,
+      "from_zone": "HSR Layout",
+      "to_zone": "S02",
+      "path": [
+        "HSR Layout",
+        "Koramangala",
+        "Indiranagar",
+        "Hebbal",
+        "Yelahanka",
+        "S02"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Koramangala - HSR Link",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 4.5,
+          "blocked": false,
+          "from": "HSR Layout",
+          "to": "Koramangala"
+        },
+        {
+          "road_name": "Koramangala - Indiranagar Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 4.2,
+          "blocked": false,
+          "from": "Koramangala",
+          "to": "Indiranagar"
+        },
+        {
+          "road_name": "Indiranagar - Hebbal Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 11.0,
+          "blocked": false,
+          "from": "Indiranagar",
+          "to": "Hebbal"
+        },
+        {
+          "road_name": "Hebbal - Yelahanka Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 8.0,
+          "blocked": false,
+          "from": "Hebbal",
+          "to": "Yelahanka"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "S02"
+        }
+      ],
+      "total_distance_km": 28.2,
+      "congestion_score": 0.0,
+      "route_quality": 0.925,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:25.990048"
+  },
+  {
+    "tick": 2,
+    "event": "route_ok",
+    "details": {
+      "tick": 2,
+      "from_zone": "HSR Layout",
+      "to_zone": "S03",
+      "path": [
+        "HSR Layout",
+        "Koramangala",
+        "Indiranagar",
+        "Marathahalli",
+        "Whitefield",
+        "S03"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Koramangala - HSR Link",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 4.5,
+          "blocked": false,
+          "from": "HSR Layout",
+          "to": "Koramangala"
+        },
+        {
+          "road_name": "Koramangala - Indiranagar Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 4.2,
+          "blocked": false,
+          "from": "Koramangala",
+          "to": "Indiranagar"
+        },
+        {
+          "road_name": "Indiranagar - Marathahalli Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 6.5,
+          "blocked": false,
+          "from": "Indiranagar",
+          "to": "Marathahalli"
+        },
+        {
+          "road_name": "Outer Ring Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 7.1,
+          "blocked": false,
+          "from": "Marathahalli",
+          "to": "Whitefield"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "S03"
+        }
+      ],
+      "total_distance_km": 22.8,
+      "congestion_score": 0.0,
+      "route_quality": 0.931,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:25.990048"
+  },
+  {
+    "tick": 2,
+    "event": "recalculation",
+    "details": {
+      "from": "HSR Layout",
+      "chosen_shelter": "S03",
+      "quality": 0.931,
+      "candidates_tried": 2
+    },
+    "timestamp": "2026-05-03T07:28:25.990048"
+  },
+  {
+    "tick": 2,
+    "event": "route_failed",
+    "details": {
+      "from": "Sarjapur",
+      "to": "S01",
+      "reason": "All paths from Sarjapur to S01 are flooded. Base-graph path would be: Sarjapur \u2192 HSR Layout \u2192 Koramangala \u2192 Indiranagar \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:28:25.990048"
+  },
+  {
+    "tick": 2,
+    "event": "route_failed",
+    "details": {
+      "from": "Sarjapur",
+      "to": "S02",
+      "reason": "All paths from Sarjapur to S02 are flooded. Base-graph path would be: Sarjapur \u2192 HSR Layout \u2192 Koramangala \u2192 Indiranagar \u2192 Hebbal \u2192 Yelahanka \u2192 S02"
+    },
+    "timestamp": "2026-05-03T07:28:25.991046"
+  },
+  {
+    "tick": 2,
+    "event": "route_failed",
+    "details": {
+      "from": "Sarjapur",
+      "to": "S03",
+      "reason": "All paths from Sarjapur to S03 are flooded. Base-graph path would be: Sarjapur \u2192 Bellandur \u2192 Marathahalli \u2192 Whitefield \u2192 S03"
+    },
+    "timestamp": "2026-05-03T07:28:25.991046"
+  },
+  {
+    "tick": 2,
+    "event": "route_failed",
+    "details": {
+      "from": "Sarjapur",
+      "to": "any_shelter",
+      "reason": "No reachable shelters from Sarjapur \u2014 all full, forbidden, or flooded out."
+    },
+    "timestamp": "2026-05-03T07:28:25.991046"
+  },
+  {
+    "tick": 2,
+    "event": "route_failed",
+    "details": {
+      "from": "Indiranagar",
+      "to": "S01",
+      "reason": "All paths from Indiranagar to S01 are flooded. Base-graph path would be: Indiranagar \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:28:25.991046"
+  },
+  {
+    "tick": 2,
+    "event": "route_ok",
+    "details": {
+      "tick": 2,
+      "from_zone": "Indiranagar",
+      "to_zone": "S02",
+      "path": [
+        "Indiranagar",
+        "Hebbal",
+        "Yelahanka",
+        "S02"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Indiranagar - Hebbal Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 11.0,
+          "blocked": false,
+          "from": "Indiranagar",
+          "to": "Hebbal"
+        },
+        {
+          "road_name": "Hebbal - Yelahanka Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 8.0,
+          "blocked": false,
+          "from": "Hebbal",
+          "to": "Yelahanka"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "S02"
+        }
+      ],
+      "total_distance_km": 19.5,
+      "congestion_score": 0.0,
+      "route_quality": 0.957,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:25.991046"
+  },
+  {
+    "tick": 2,
+    "event": "route_ok",
+    "details": {
+      "tick": 2,
+      "from_zone": "Indiranagar",
+      "to_zone": "S03",
+      "path": [
+        "Indiranagar",
+        "Marathahalli",
+        "Whitefield",
+        "S03"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Indiranagar - Marathahalli Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 6.5,
+          "blocked": false,
+          "from": "Indiranagar",
+          "to": "Marathahalli"
+        },
+        {
+          "road_name": "Outer Ring Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 7.1,
+          "blocked": false,
+          "from": "Marathahalli",
+          "to": "Whitefield"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "S03"
+        }
+      ],
+      "total_distance_km": 14.1,
+      "congestion_score": 0.0,
+      "route_quality": 0.963,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:25.991046"
+  },
+  {
+    "tick": 2,
+    "event": "recalculation",
+    "details": {
+      "from": "Indiranagar",
+      "chosen_shelter": "S03",
+      "quality": 0.963,
+      "candidates_tried": 2
+    },
+    "timestamp": "2026-05-03T07:28:25.991046"
+  },
+  {
+    "tick": 2,
+    "event": "route_failed",
+    "details": {
+      "from": "Mahadevapura",
+      "to": "S01",
+      "reason": "All paths from Mahadevapura to S01 are flooded. Base-graph path would be: Mahadevapura \u2192 Yelahanka \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:28:25.991046"
+  },
+  {
+    "tick": 2,
+    "event": "route_ok",
+    "details": {
+      "tick": 2,
+      "from_zone": "Mahadevapura",
+      "to_zone": "S02",
+      "path": [
+        "Mahadevapura",
+        "Yelahanka",
+        "S02"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Yelahanka - Mahadevapura NH44",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Mahadevapura",
+          "to": "Yelahanka"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "S02"
+        }
+      ],
+      "total_distance_km": 9.5,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:25.992339"
+  },
+  {
+    "tick": 2,
+    "event": "route_ok",
+    "details": {
+      "tick": 2,
+      "from_zone": "Mahadevapura",
+      "to_zone": "S03",
+      "path": [
+        "Mahadevapura",
+        "Whitefield",
+        "S03"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Whitefield - Mahadevapura Link",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.6,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Mahadevapura",
+          "to": "Whitefield"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "S03"
+        }
+      ],
+      "total_distance_km": 9.5,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:25.992339"
+  },
+  {
+    "tick": 2,
+    "event": "recalculation",
+    "details": {
+      "from": "Mahadevapura",
+      "chosen_shelter": "S02",
+      "quality": 1.0,
+      "candidates_tried": 2
+    },
+    "timestamp": "2026-05-03T07:28:25.992339"
+  },
+  {
+    "tick": 2,
+    "event": "route_failed",
+    "details": {
+      "from": "Bellandur",
+      "to": "S01",
+      "reason": "All paths from Bellandur to S01 are flooded. Base-graph path would be: Bellandur \u2192 HSR Layout \u2192 Koramangala \u2192 Indiranagar \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:28:25.992339"
+  },
+  {
+    "tick": 2,
+    "event": "route_failed",
+    "details": {
+      "from": "Bellandur",
+      "to": "S02",
+      "reason": "All paths from Bellandur to S02 are flooded. Base-graph path would be: Bellandur \u2192 Marathahalli \u2192 Mahadevapura \u2192 Yelahanka \u2192 S02"
+    },
+    "timestamp": "2026-05-03T07:28:25.992339"
+  },
+  {
+    "tick": 2,
+    "event": "route_failed",
+    "details": {
+      "from": "Bellandur",
+      "to": "S03",
+      "reason": "All paths from Bellandur to S03 are flooded. Base-graph path would be: Bellandur \u2192 Marathahalli \u2192 Whitefield \u2192 S03"
+    },
+    "timestamp": "2026-05-03T07:28:25.993348"
+  },
+  {
+    "tick": 2,
+    "event": "route_failed",
+    "details": {
+      "from": "Bellandur",
+      "to": "any_shelter",
+      "reason": "No reachable shelters from Bellandur \u2014 all full, forbidden, or flooded out."
+    },
+    "timestamp": "2026-05-03T07:28:25.993348"
+  },
+  {
+    "tick": 2,
+    "event": "route_failed",
+    "details": {
+      "from": "Marathahalli",
+      "to": "S01",
+      "reason": "All paths from Marathahalli to S01 are flooded. Base-graph path would be: Marathahalli \u2192 Indiranagar \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:28:25.993348"
+  },
+  {
+    "tick": 2,
+    "event": "route_ok",
+    "details": {
+      "tick": 2,
+      "from_zone": "Marathahalli",
+      "to_zone": "S02",
+      "path": [
+        "Marathahalli",
+        "Mahadevapura",
+        "Yelahanka",
+        "S02"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Mahadevapura - Marathahalli Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 6.0,
+          "blocked": false,
+          "from": "Marathahalli",
+          "to": "Mahadevapura"
+        },
+        {
+          "road_name": "Yelahanka - Mahadevapura NH44",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Mahadevapura",
+          "to": "Yelahanka"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "S02"
+        }
+      ],
+      "total_distance_km": 15.5,
+      "congestion_score": 0.0,
+      "route_quality": 0.963,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:25.993348"
+  },
+  {
+    "tick": 2,
+    "event": "route_ok",
+    "details": {
+      "tick": 2,
+      "from_zone": "Marathahalli",
+      "to_zone": "S03",
+      "path": [
+        "Marathahalli",
+        "Whitefield",
+        "S03"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Outer Ring Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 7.1,
+          "blocked": false,
+          "from": "Marathahalli",
+          "to": "Whitefield"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "S03"
+        }
+      ],
+      "total_distance_km": 7.6,
+      "congestion_score": 0.0,
+      "route_quality": 0.95,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:25.993348"
+  },
+  {
+    "tick": 2,
+    "event": "recalculation",
+    "details": {
+      "from": "Marathahalli",
+      "chosen_shelter": "S03",
+      "quality": 0.95,
+      "candidates_tried": 2
+    },
+    "timestamp": "2026-05-03T07:28:25.993348"
+  },
+  {
+    "tick": 2,
+    "event": "route_failed",
+    "details": {
+      "from": "BTM Layout",
+      "to": "S01",
+      "reason": "All paths from BTM Layout to S01 are flooded. Base-graph path would be: BTM Layout \u2192 Koramangala \u2192 Indiranagar \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:28:25.994864"
+  },
+  {
+    "tick": 2,
+    "event": "route_ok",
+    "details": {
+      "tick": 2,
+      "from_zone": "BTM Layout",
+      "to_zone": "S02",
+      "path": [
+        "BTM Layout",
+        "Koramangala",
+        "Indiranagar",
+        "Hebbal",
+        "Yelahanka",
+        "S02"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Hosur Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.6,
+          "distance_km": 3.0,
+          "blocked": false,
+          "from": "BTM Layout",
+          "to": "Koramangala"
+        },
+        {
+          "road_name": "Koramangala - Indiranagar Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 4.2,
+          "blocked": false,
+          "from": "Koramangala",
+          "to": "Indiranagar"
+        },
+        {
+          "road_name": "Indiranagar - Hebbal Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 11.0,
+          "blocked": false,
+          "from": "Indiranagar",
+          "to": "Hebbal"
+        },
+        {
+          "road_name": "Hebbal - Yelahanka Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 8.0,
+          "blocked": false,
+          "from": "Hebbal",
+          "to": "Yelahanka"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "S02"
+        }
+      ],
+      "total_distance_km": 26.7,
+      "congestion_score": 0.0,
+      "route_quality": 0.945,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:25.994864"
+  },
+  {
+    "tick": 2,
+    "event": "route_ok",
+    "details": {
+      "tick": 2,
+      "from_zone": "BTM Layout",
+      "to_zone": "S03",
+      "path": [
+        "BTM Layout",
+        "Koramangala",
+        "Indiranagar",
+        "Marathahalli",
+        "Whitefield",
+        "S03"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Hosur Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.6,
+          "distance_km": 3.0,
+          "blocked": false,
+          "from": "BTM Layout",
+          "to": "Koramangala"
+        },
+        {
+          "road_name": "Koramangala - Indiranagar Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 4.2,
+          "blocked": false,
+          "from": "Koramangala",
+          "to": "Indiranagar"
+        },
+        {
+          "road_name": "Indiranagar - Marathahalli Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 6.5,
+          "blocked": false,
+          "from": "Indiranagar",
+          "to": "Marathahalli"
+        },
+        {
+          "road_name": "Outer Ring Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 7.1,
+          "blocked": false,
+          "from": "Marathahalli",
+          "to": "Whitefield"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "S03"
+        }
+      ],
+      "total_distance_km": 21.3,
+      "congestion_score": 0.0,
+      "route_quality": 0.95,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:25.994864"
+  },
+  {
+    "tick": 2,
+    "event": "recalculation",
+    "details": {
+      "from": "BTM Layout",
+      "chosen_shelter": "S03",
+      "quality": 0.95,
+      "candidates_tried": 2
+    },
+    "timestamp": "2026-05-03T07:28:25.994864"
+  },
+  {
+    "tick": 2,
+    "event": "route_failed",
+    "details": {
+      "from": "Electronic City",
+      "to": "S01",
+      "reason": "All paths from Electronic City to S01 are flooded. Base-graph path would be: Electronic City \u2192 BTM Layout \u2192 Koramangala \u2192 Indiranagar \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:28:25.994864"
+  },
+  {
+    "tick": 2,
+    "event": "route_failed",
+    "details": {
+      "from": "Electronic City",
+      "to": "S02",
+      "reason": "All paths from Electronic City to S02 are flooded. Base-graph path would be: Electronic City \u2192 BTM Layout \u2192 Koramangala \u2192 Indiranagar \u2192 Hebbal \u2192 Yelahanka \u2192 S02"
+    },
+    "timestamp": "2026-05-03T07:28:25.995880"
+  },
+  {
+    "tick": 2,
+    "event": "route_failed",
+    "details": {
+      "from": "Electronic City",
+      "to": "S03",
+      "reason": "All paths from Electronic City to S03 are flooded. Base-graph path would be: Electronic City \u2192 Bellandur \u2192 Marathahalli \u2192 Whitefield \u2192 S03"
+    },
+    "timestamp": "2026-05-03T07:28:25.995880"
+  },
+  {
+    "tick": 2,
+    "event": "route_failed",
+    "details": {
+      "from": "Electronic City",
+      "to": "any_shelter",
+      "reason": "No reachable shelters from Electronic City \u2014 all full, forbidden, or flooded out."
+    },
+    "timestamp": "2026-05-03T07:28:25.995880"
+  },
+  {
+    "tick": 2,
+    "event": "route_failed",
+    "details": {
+      "from": "Hebbal",
+      "to": "S01",
+      "reason": "All paths from Hebbal to S01 are flooded. Base-graph path would be: Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:28:25.995880"
+  },
+  {
+    "tick": 2,
+    "event": "route_ok",
+    "details": {
+      "tick": 2,
+      "from_zone": "Hebbal",
+      "to_zone": "S02",
+      "path": [
+        "Hebbal",
+        "Yelahanka",
+        "S02"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Hebbal - Yelahanka Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 8.0,
+          "blocked": false,
+          "from": "Hebbal",
+          "to": "Yelahanka"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "S02"
+        }
+      ],
+      "total_distance_km": 8.5,
+      "congestion_score": 0.0,
+      "route_quality": 0.94,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:25.995880"
+  },
+  {
+    "tick": 2,
+    "event": "route_ok",
+    "details": {
+      "tick": 2,
+      "from_zone": "Hebbal",
+      "to_zone": "S03",
+      "path": [
+        "Hebbal",
+        "Indiranagar",
+        "Marathahalli",
+        "Whitefield",
+        "S03"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Indiranagar - Hebbal Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 11.0,
+          "blocked": false,
+          "from": "Hebbal",
+          "to": "Indiranagar"
+        },
+        {
+          "road_name": "Indiranagar - Marathahalli Road",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.55,
+          "distance_km": 6.5,
+          "blocked": false,
+          "from": "Indiranagar",
+          "to": "Marathahalli"
+        },
+        {
+          "road_name": "Outer Ring Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 7.1,
+          "blocked": false,
+          "from": "Marathahalli",
+          "to": "Whitefield"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "S03"
+        }
+      ],
+      "total_distance_km": 25.1,
+      "congestion_score": 0.0,
+      "route_quality": 0.94,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:25.996876"
+  },
+  {
+    "tick": 2,
+    "event": "recalculation",
+    "details": {
+      "from": "Hebbal",
+      "chosen_shelter": "S02",
+      "quality": 0.94,
+      "candidates_tried": 2
+    },
+    "timestamp": "2026-05-03T07:28:25.996876"
+  },
+  {
+    "tick": 2,
+    "event": "route_failed",
+    "details": {
+      "from": "Yelahanka",
+      "to": "S01",
+      "reason": "All paths from Yelahanka to S01 are flooded. Base-graph path would be: Yelahanka \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:28:25.996876"
+  },
+  {
+    "tick": 2,
+    "event": "route_ok",
+    "details": {
+      "tick": 2,
+      "from_zone": "Yelahanka",
+      "to_zone": "S02",
+      "path": [
+        "Yelahanka",
+        "S02"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "S02"
+        }
+      ],
+      "total_distance_km": 0.5,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:25.999650"
+  },
+  {
+    "tick": 2,
+    "event": "route_ok",
+    "details": {
+      "tick": 2,
+      "from_zone": "Yelahanka",
+      "to_zone": "S03",
+      "path": [
+        "Yelahanka",
+        "Mahadevapura",
+        "Whitefield",
+        "S03"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Yelahanka - Mahadevapura NH44",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "Mahadevapura"
+        },
+        {
+          "road_name": "Whitefield - Mahadevapura Link",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.6,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Mahadevapura",
+          "to": "Whitefield"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "S03"
+        }
+      ],
+      "total_distance_km": 18.5,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:26.000162"
+  },
+  {
+    "tick": 2,
+    "event": "recalculation",
+    "details": {
+      "from": "Yelahanka",
+      "chosen_shelter": "S02",
+      "quality": 1.0,
+      "candidates_tried": 2
+    },
+    "timestamp": "2026-05-03T07:28:26.000162"
+  },
+  {
+    "tick": 3,
+    "event": "edge_removed",
+    "details": {
+      "from": "HSR Layout",
+      "to": "Bellandur",
+      "road": "HSR - Bellandur Road",
+      "risk": 1.0,
+      "threshold": 0.45
+    },
+    "timestamp": "2026-05-03T07:28:53.025462"
+  },
+  {
+    "tick": 3,
+    "event": "edge_removed",
+    "details": {
+      "from": "HSR Layout",
+      "to": "Sarjapur",
+      "road": "Sarjapur - HSR Outer Ring Road",
+      "risk": 1.0,
+      "threshold": 0.55
+    },
+    "timestamp": "2026-05-03T07:28:53.025462"
+  },
+  {
+    "tick": 3,
+    "event": "edge_removed",
+    "details": {
+      "from": "Sarjapur",
+      "to": "Bellandur",
+      "road": "Sarjapur - Bellandur Road",
+      "risk": 1.0,
+      "threshold": 0.55
+    },
+    "timestamp": "2026-05-03T07:28:53.025462"
+  },
+  {
+    "tick": 3,
+    "event": "edge_removed",
+    "details": {
+      "from": "Sarjapur",
+      "to": "Electronic City",
+      "road": "Electronic City - Sarjapur Road",
+      "risk": 1.0,
+      "threshold": 0.55
+    },
+    "timestamp": "2026-05-03T07:28:53.025462"
+  },
+  {
+    "tick": 3,
+    "event": "edge_removed",
+    "details": {
+      "from": "Indiranagar",
+      "to": "Hebbal",
+      "road": "Indiranagar - Hebbal Road",
+      "risk": 0.621,
+      "threshold": 0.55
+    },
+    "timestamp": "2026-05-03T07:28:53.025462"
+  },
+  {
+    "tick": 3,
+    "event": "edge_removed",
+    "details": {
+      "from": "Indiranagar",
+      "to": "Marathahalli",
+      "road": "Indiranagar - Marathahalli Road",
+      "risk": 0.795,
+      "threshold": 0.55
+    },
+    "timestamp": "2026-05-03T07:28:53.025462"
+  },
+  {
+    "tick": 3,
+    "event": "edge_removed",
+    "details": {
+      "from": "Mahadevapura",
+      "to": "Marathahalli",
+      "road": "Mahadevapura - Marathahalli Road",
+      "risk": 0.795,
+      "threshold": 0.55
+    },
+    "timestamp": "2026-05-03T07:28:53.025462"
+  },
+  {
+    "tick": 3,
+    "event": "edge_removed",
+    "details": {
+      "from": "Bellandur",
+      "to": "Marathahalli",
+      "road": "Outer Ring Road",
+      "risk": 1.0,
+      "threshold": 0.99
+    },
+    "timestamp": "2026-05-03T07:28:53.025462"
+  },
+  {
+    "tick": 3,
+    "event": "edge_removed",
+    "details": {
+      "from": "Bellandur",
+      "to": "Electronic City",
+      "road": "Bellandur - Electronic City Road",
+      "risk": 1.0,
+      "threshold": 0.6
+    },
+    "timestamp": "2026-05-03T07:28:53.025462"
+  },
+  {
+    "tick": 3,
+    "event": "edge_removed",
+    "details": {
+      "from": "BTM Layout",
+      "to": "Electronic City",
+      "road": "BTM - Electronic City Road",
+      "risk": 1.0,
+      "threshold": 0.6
+    },
+    "timestamp": "2026-05-03T07:28:53.025462"
+  },
+  {
+    "tick": 3,
+    "event": "edge_removed",
+    "details": {
+      "from": "Hebbal",
+      "to": "S01",
+      "road": "Local Access Road",
+      "risk": 0.621,
+      "threshold": 0.4
+    },
+    "timestamp": "2026-05-03T07:28:53.025462"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "Whitefield",
+      "to": "S01",
+      "reason": "All paths from Whitefield to S01 are flooded. Base-graph path would be: Whitefield \u2192 Marathahalli \u2192 Indiranagar \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:28:53.026473"
+  },
+  {
+    "tick": 3,
+    "event": "route_ok",
+    "details": {
+      "tick": 3,
+      "from_zone": "Whitefield",
+      "to_zone": "S02",
+      "path": [
+        "Whitefield",
+        "Mahadevapura",
+        "Yelahanka",
+        "S02"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Whitefield - Mahadevapura Link",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.6,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "Mahadevapura"
+        },
+        {
+          "road_name": "Yelahanka - Mahadevapura NH44",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Mahadevapura",
+          "to": "Yelahanka"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "S02"
+        }
+      ],
+      "total_distance_km": 18.5,
+      "congestion_score": 0.0,
+      "route_quality": 0.957,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:53.027957"
+  },
+  {
+    "tick": 3,
+    "event": "route_ok",
+    "details": {
+      "tick": 3,
+      "from_zone": "Whitefield",
+      "to_zone": "S03",
+      "path": [
+        "Whitefield",
+        "S03"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "S03"
+        }
+      ],
+      "total_distance_km": 0.5,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:53.027957"
+  },
+  {
+    "tick": 3,
+    "event": "recalculation",
+    "details": {
+      "from": "Whitefield",
+      "chosen_shelter": "S03",
+      "quality": 1.0,
+      "candidates_tried": 2
+    },
+    "timestamp": "2026-05-03T07:28:53.027957"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "Koramangala",
+      "to": "S01",
+      "reason": "All paths from Koramangala to S01 are flooded. Base-graph path would be: Koramangala \u2192 Indiranagar \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:28:53.027957"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "Koramangala",
+      "to": "S02",
+      "reason": "All paths from Koramangala to S02 are flooded. Base-graph path would be: Koramangala \u2192 Indiranagar \u2192 Hebbal \u2192 Yelahanka \u2192 S02"
+    },
+    "timestamp": "2026-05-03T07:28:53.031721"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "Koramangala",
+      "to": "S03",
+      "reason": "All paths from Koramangala to S03 are flooded. Base-graph path would be: Koramangala \u2192 Indiranagar \u2192 Marathahalli \u2192 Whitefield \u2192 S03"
+    },
+    "timestamp": "2026-05-03T07:28:53.032730"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "Koramangala",
+      "to": "any_shelter",
+      "reason": "No reachable shelters from Koramangala \u2014 all full, forbidden, or flooded out."
+    },
+    "timestamp": "2026-05-03T07:28:53.032730"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "HSR Layout",
+      "to": "S01",
+      "reason": "All paths from HSR Layout to S01 are flooded. Base-graph path would be: HSR Layout \u2192 Koramangala \u2192 Indiranagar \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:28:53.032730"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "HSR Layout",
+      "to": "S02",
+      "reason": "All paths from HSR Layout to S02 are flooded. Base-graph path would be: HSR Layout \u2192 Koramangala \u2192 Indiranagar \u2192 Hebbal \u2192 Yelahanka \u2192 S02"
+    },
+    "timestamp": "2026-05-03T07:28:53.032730"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "HSR Layout",
+      "to": "S03",
+      "reason": "All paths from HSR Layout to S03 are flooded. Base-graph path would be: HSR Layout \u2192 Koramangala \u2192 Indiranagar \u2192 Marathahalli \u2192 Whitefield \u2192 S03"
+    },
+    "timestamp": "2026-05-03T07:28:53.033741"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "HSR Layout",
+      "to": "any_shelter",
+      "reason": "No reachable shelters from HSR Layout \u2014 all full, forbidden, or flooded out."
+    },
+    "timestamp": "2026-05-03T07:28:53.033741"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "Sarjapur",
+      "to": "S01",
+      "reason": "All paths from Sarjapur to S01 are flooded. Base-graph path would be: Sarjapur \u2192 HSR Layout \u2192 Koramangala \u2192 Indiranagar \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:28:53.033741"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "Sarjapur",
+      "to": "S02",
+      "reason": "All paths from Sarjapur to S02 are flooded. Base-graph path would be: Sarjapur \u2192 HSR Layout \u2192 Koramangala \u2192 Indiranagar \u2192 Hebbal \u2192 Yelahanka \u2192 S02"
+    },
+    "timestamp": "2026-05-03T07:28:53.033741"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "Sarjapur",
+      "to": "S03",
+      "reason": "All paths from Sarjapur to S03 are flooded. Base-graph path would be: Sarjapur \u2192 Bellandur \u2192 Marathahalli \u2192 Whitefield \u2192 S03"
+    },
+    "timestamp": "2026-05-03T07:28:53.034879"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "Sarjapur",
+      "to": "any_shelter",
+      "reason": "No reachable shelters from Sarjapur \u2014 all full, forbidden, or flooded out."
+    },
+    "timestamp": "2026-05-03T07:28:53.034879"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "Indiranagar",
+      "to": "S01",
+      "reason": "All paths from Indiranagar to S01 are flooded. Base-graph path would be: Indiranagar \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:28:53.034879"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "Indiranagar",
+      "to": "S02",
+      "reason": "All paths from Indiranagar to S02 are flooded. Base-graph path would be: Indiranagar \u2192 Hebbal \u2192 Yelahanka \u2192 S02"
+    },
+    "timestamp": "2026-05-03T07:28:53.034879"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "Indiranagar",
+      "to": "S03",
+      "reason": "All paths from Indiranagar to S03 are flooded. Base-graph path would be: Indiranagar \u2192 Marathahalli \u2192 Whitefield \u2192 S03"
+    },
+    "timestamp": "2026-05-03T07:28:53.034879"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "Indiranagar",
+      "to": "any_shelter",
+      "reason": "No reachable shelters from Indiranagar \u2014 all full, forbidden, or flooded out."
+    },
+    "timestamp": "2026-05-03T07:28:53.034879"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "Mahadevapura",
+      "to": "S01",
+      "reason": "All paths from Mahadevapura to S01 are flooded. Base-graph path would be: Mahadevapura \u2192 Yelahanka \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:28:53.034879"
+  },
+  {
+    "tick": 3,
+    "event": "route_ok",
+    "details": {
+      "tick": 3,
+      "from_zone": "Mahadevapura",
+      "to_zone": "S02",
+      "path": [
+        "Mahadevapura",
+        "Yelahanka",
+        "S02"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Yelahanka - Mahadevapura NH44",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Mahadevapura",
+          "to": "Yelahanka"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "S02"
+        }
+      ],
+      "total_distance_km": 9.5,
+      "congestion_score": 0.0,
+      "route_quality": 0.94,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:53.034879"
+  },
+  {
+    "tick": 3,
+    "event": "route_ok",
+    "details": {
+      "tick": 3,
+      "from_zone": "Mahadevapura",
+      "to_zone": "S03",
+      "path": [
+        "Mahadevapura",
+        "Whitefield",
+        "S03"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Whitefield - Mahadevapura Link",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.6,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Mahadevapura",
+          "to": "Whitefield"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "S03"
+        }
+      ],
+      "total_distance_km": 9.5,
+      "congestion_score": 0.0,
+      "route_quality": 0.94,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:53.036386"
+  },
+  {
+    "tick": 3,
+    "event": "recalculation",
+    "details": {
+      "from": "Mahadevapura",
+      "chosen_shelter": "S02",
+      "quality": 0.94,
+      "candidates_tried": 2
+    },
+    "timestamp": "2026-05-03T07:28:53.036386"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "Bellandur",
+      "to": "S01",
+      "reason": "All paths from Bellandur to S01 are flooded. Base-graph path would be: Bellandur \u2192 HSR Layout \u2192 Koramangala \u2192 Indiranagar \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:28:53.036386"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "Bellandur",
+      "to": "S02",
+      "reason": "All paths from Bellandur to S02 are flooded. Base-graph path would be: Bellandur \u2192 Marathahalli \u2192 Mahadevapura \u2192 Yelahanka \u2192 S02"
+    },
+    "timestamp": "2026-05-03T07:28:53.036386"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "Bellandur",
+      "to": "S03",
+      "reason": "All paths from Bellandur to S03 are flooded. Base-graph path would be: Bellandur \u2192 Marathahalli \u2192 Whitefield \u2192 S03"
+    },
+    "timestamp": "2026-05-03T07:28:53.036386"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "Bellandur",
+      "to": "any_shelter",
+      "reason": "No reachable shelters from Bellandur \u2014 all full, forbidden, or flooded out."
+    },
+    "timestamp": "2026-05-03T07:28:53.036386"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "Marathahalli",
+      "to": "S01",
+      "reason": "All paths from Marathahalli to S01 are flooded. Base-graph path would be: Marathahalli \u2192 Indiranagar \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:28:53.037396"
+  },
+  {
+    "tick": 3,
+    "event": "route_ok",
+    "details": {
+      "tick": 3,
+      "from_zone": "Marathahalli",
+      "to_zone": "S02",
+      "path": [
+        "Marathahalli",
+        "Whitefield",
+        "Mahadevapura",
+        "Yelahanka",
+        "S02"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Outer Ring Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 7.1,
+          "blocked": false,
+          "from": "Marathahalli",
+          "to": "Whitefield"
+        },
+        {
+          "road_name": "Whitefield - Mahadevapura Link",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.6,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "Mahadevapura"
+        },
+        {
+          "road_name": "Yelahanka - Mahadevapura NH44",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Mahadevapura",
+          "to": "Yelahanka"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "S02"
+        }
+      ],
+      "total_distance_km": 25.6,
+      "congestion_score": 0.0,
+      "route_quality": 0.9,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:53.037396"
+  },
+  {
+    "tick": 3,
+    "event": "route_ok",
+    "details": {
+      "tick": 3,
+      "from_zone": "Marathahalli",
+      "to_zone": "S03",
+      "path": [
+        "Marathahalli",
+        "Whitefield",
+        "S03"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Outer Ring Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 7.1,
+          "blocked": false,
+          "from": "Marathahalli",
+          "to": "Whitefield"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "S03"
+        }
+      ],
+      "total_distance_km": 7.6,
+      "congestion_score": 0.0,
+      "route_quality": 0.85,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:53.037396"
+  },
+  {
+    "tick": 3,
+    "event": "recalculation",
+    "details": {
+      "from": "Marathahalli",
+      "chosen_shelter": "S03",
+      "quality": 0.85,
+      "candidates_tried": 2
+    },
+    "timestamp": "2026-05-03T07:28:53.037396"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "BTM Layout",
+      "to": "S01",
+      "reason": "All paths from BTM Layout to S01 are flooded. Base-graph path would be: BTM Layout \u2192 Koramangala \u2192 Indiranagar \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:28:53.037396"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "BTM Layout",
+      "to": "S02",
+      "reason": "All paths from BTM Layout to S02 are flooded. Base-graph path would be: BTM Layout \u2192 Koramangala \u2192 Indiranagar \u2192 Hebbal \u2192 Yelahanka \u2192 S02"
+    },
+    "timestamp": "2026-05-03T07:28:53.037396"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "BTM Layout",
+      "to": "S03",
+      "reason": "All paths from BTM Layout to S03 are flooded. Base-graph path would be: BTM Layout \u2192 Koramangala \u2192 Indiranagar \u2192 Marathahalli \u2192 Whitefield \u2192 S03"
+    },
+    "timestamp": "2026-05-03T07:28:53.038397"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "BTM Layout",
+      "to": "any_shelter",
+      "reason": "No reachable shelters from BTM Layout \u2014 all full, forbidden, or flooded out."
+    },
+    "timestamp": "2026-05-03T07:28:53.038397"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "Electronic City",
+      "to": "S01",
+      "reason": "All paths from Electronic City to S01 are flooded. Base-graph path would be: Electronic City \u2192 BTM Layout \u2192 Koramangala \u2192 Indiranagar \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:28:53.038397"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "Electronic City",
+      "to": "S02",
+      "reason": "All paths from Electronic City to S02 are flooded. Base-graph path would be: Electronic City \u2192 BTM Layout \u2192 Koramangala \u2192 Indiranagar \u2192 Hebbal \u2192 Yelahanka \u2192 S02"
+    },
+    "timestamp": "2026-05-03T07:28:53.039401"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "Electronic City",
+      "to": "S03",
+      "reason": "All paths from Electronic City to S03 are flooded. Base-graph path would be: Electronic City \u2192 Bellandur \u2192 Marathahalli \u2192 Whitefield \u2192 S03"
+    },
+    "timestamp": "2026-05-03T07:28:53.040092"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "Electronic City",
+      "to": "any_shelter",
+      "reason": "No reachable shelters from Electronic City \u2014 all full, forbidden, or flooded out."
+    },
+    "timestamp": "2026-05-03T07:28:53.040092"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "Hebbal",
+      "to": "S01",
+      "reason": "All paths from Hebbal to S01 are flooded. Base-graph path would be: Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:28:53.040092"
+  },
+  {
+    "tick": 3,
+    "event": "route_ok",
+    "details": {
+      "tick": 3,
+      "from_zone": "Hebbal",
+      "to_zone": "S02",
+      "path": [
+        "Hebbal",
+        "Yelahanka",
+        "S02"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Hebbal - Yelahanka Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 8.0,
+          "blocked": false,
+          "from": "Hebbal",
+          "to": "Yelahanka"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "S02"
+        }
+      ],
+      "total_distance_km": 8.5,
+      "congestion_score": 0.0,
+      "route_quality": 0.88,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:53.041123"
+  },
+  {
+    "tick": 3,
+    "event": "route_ok",
+    "details": {
+      "tick": 3,
+      "from_zone": "Hebbal",
+      "to_zone": "S03",
+      "path": [
+        "Hebbal",
+        "Yelahanka",
+        "Mahadevapura",
+        "Whitefield",
+        "S03"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Hebbal - Yelahanka Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 8.0,
+          "blocked": false,
+          "from": "Hebbal",
+          "to": "Yelahanka"
+        },
+        {
+          "road_name": "Yelahanka - Mahadevapura NH44",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "Mahadevapura"
+        },
+        {
+          "road_name": "Whitefield - Mahadevapura Link",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.6,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Mahadevapura",
+          "to": "Whitefield"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "S03"
+        }
+      ],
+      "total_distance_km": 26.5,
+      "congestion_score": 0.0,
+      "route_quality": 0.9,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:53.041123"
+  },
+  {
+    "tick": 3,
+    "event": "recalculation",
+    "details": {
+      "from": "Hebbal",
+      "chosen_shelter": "S02",
+      "quality": 0.88,
+      "candidates_tried": 2
+    },
+    "timestamp": "2026-05-03T07:28:53.041123"
+  },
+  {
+    "tick": 3,
+    "event": "route_failed",
+    "details": {
+      "from": "Yelahanka",
+      "to": "S01",
+      "reason": "All paths from Yelahanka to S01 are flooded. Base-graph path would be: Yelahanka \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:28:53.041123"
+  },
+  {
+    "tick": 3,
+    "event": "route_ok",
+    "details": {
+      "tick": 3,
+      "from_zone": "Yelahanka",
+      "to_zone": "S02",
+      "path": [
+        "Yelahanka",
+        "S02"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "S02"
+        }
+      ],
+      "total_distance_km": 0.5,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:53.041123"
+  },
+  {
+    "tick": 3,
+    "event": "route_ok",
+    "details": {
+      "tick": 3,
+      "from_zone": "Yelahanka",
+      "to_zone": "S03",
+      "path": [
+        "Yelahanka",
+        "Mahadevapura",
+        "Whitefield",
+        "S03"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Yelahanka - Mahadevapura NH44",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "Mahadevapura"
+        },
+        {
+          "road_name": "Whitefield - Mahadevapura Link",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.6,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Mahadevapura",
+          "to": "Whitefield"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "S03"
+        }
+      ],
+      "total_distance_km": 18.5,
+      "congestion_score": 0.0,
+      "route_quality": 0.957,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:28:53.041123"
+  },
+  {
+    "tick": 3,
+    "event": "recalculation",
+    "details": {
+      "from": "Yelahanka",
+      "chosen_shelter": "S02",
+      "quality": 1.0,
+      "candidates_tried": 2
+    },
+    "timestamp": "2026-05-03T07:28:53.041123"
+  },
+  {
+    "tick": 4,
+    "event": "edge_removed",
+    "details": {
+      "from": "Whitefield",
+      "to": "Marathahalli",
+      "road": "Outer Ring Road",
+      "risk": 1.0,
+      "threshold": 0.99
+    },
+    "timestamp": "2026-05-03T07:29:13.320774"
+  },
+  {
+    "tick": 4,
+    "event": "edge_removed",
+    "details": {
+      "from": "HSR Layout",
+      "to": "Bellandur",
+      "road": "HSR - Bellandur Road",
+      "risk": 1.0,
+      "threshold": 0.45
+    },
+    "timestamp": "2026-05-03T07:29:13.320774"
+  },
+  {
+    "tick": 4,
+    "event": "edge_removed",
+    "details": {
+      "from": "HSR Layout",
+      "to": "BTM Layout",
+      "road": "27th Main Road",
+      "risk": 0.537,
+      "threshold": 0.45
+    },
+    "timestamp": "2026-05-03T07:29:13.320774"
+  },
+  {
+    "tick": 4,
+    "event": "edge_removed",
+    "details": {
+      "from": "HSR Layout",
+      "to": "Sarjapur",
+      "road": "Sarjapur - HSR Outer Ring Road",
+      "risk": 1.0,
+      "threshold": 0.55
+    },
+    "timestamp": "2026-05-03T07:29:13.320774"
+  },
+  {
+    "tick": 4,
+    "event": "edge_removed",
+    "details": {
+      "from": "Sarjapur",
+      "to": "Bellandur",
+      "road": "Sarjapur - Bellandur Road",
+      "risk": 1.0,
+      "threshold": 0.55
+    },
+    "timestamp": "2026-05-03T07:29:13.320774"
+  },
+  {
+    "tick": 4,
+    "event": "edge_removed",
+    "details": {
+      "from": "Sarjapur",
+      "to": "Electronic City",
+      "road": "Electronic City - Sarjapur Road",
+      "risk": 1.0,
+      "threshold": 0.55
+    },
+    "timestamp": "2026-05-03T07:29:13.320774"
+  },
+  {
+    "tick": 4,
+    "event": "edge_removed",
+    "details": {
+      "from": "Indiranagar",
+      "to": "Hebbal",
+      "road": "Indiranagar - Hebbal Road",
+      "risk": 0.837,
+      "threshold": 0.55
+    },
+    "timestamp": "2026-05-03T07:29:13.320774"
+  },
+  {
+    "tick": 4,
+    "event": "edge_removed",
+    "details": {
+      "from": "Indiranagar",
+      "to": "Marathahalli",
+      "road": "Indiranagar - Marathahalli Road",
+      "risk": 1.0,
+      "threshold": 0.55
+    },
+    "timestamp": "2026-05-03T07:29:13.320774"
+  },
+  {
+    "tick": 4,
+    "event": "edge_removed",
+    "details": {
+      "from": "Mahadevapura",
+      "to": "Marathahalli",
+      "road": "Mahadevapura - Marathahalli Road",
+      "risk": 1.0,
+      "threshold": 0.55
+    },
+    "timestamp": "2026-05-03T07:29:13.320774"
+  },
+  {
+    "tick": 4,
+    "event": "edge_removed",
+    "details": {
+      "from": "Bellandur",
+      "to": "Marathahalli",
+      "road": "Outer Ring Road",
+      "risk": 1.0,
+      "threshold": 0.99
+    },
+    "timestamp": "2026-05-03T07:29:13.320774"
+  },
+  {
+    "tick": 4,
+    "event": "edge_removed",
+    "details": {
+      "from": "Bellandur",
+      "to": "Electronic City",
+      "road": "Bellandur - Electronic City Road",
+      "risk": 1.0,
+      "threshold": 0.6
+    },
+    "timestamp": "2026-05-03T07:29:13.320774"
+  },
+  {
+    "tick": 4,
+    "event": "edge_removed",
+    "details": {
+      "from": "BTM Layout",
+      "to": "Electronic City",
+      "road": "BTM - Electronic City Road",
+      "risk": 1.0,
+      "threshold": 0.6
+    },
+    "timestamp": "2026-05-03T07:29:13.320774"
+  },
+  {
+    "tick": 4,
+    "event": "edge_removed",
+    "details": {
+      "from": "Hebbal",
+      "to": "S01",
+      "road": "Local Access Road",
+      "risk": 0.837,
+      "threshold": 0.4
+    },
+    "timestamp": "2026-05-03T07:29:13.320774"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "Whitefield",
+      "to": "S01",
+      "reason": "All paths from Whitefield to S01 are flooded. Base-graph path would be: Whitefield \u2192 Marathahalli \u2192 Indiranagar \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:29:13.321797"
+  },
+  {
+    "tick": 4,
+    "event": "route_ok",
+    "details": {
+      "tick": 4,
+      "from_zone": "Whitefield",
+      "to_zone": "S02",
+      "path": [
+        "Whitefield",
+        "Mahadevapura",
+        "Yelahanka",
+        "S02"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Whitefield - Mahadevapura Link",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.6,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "Mahadevapura"
+        },
+        {
+          "road_name": "Yelahanka - Mahadevapura NH44",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Mahadevapura",
+          "to": "Yelahanka"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "S02"
+        }
+      ],
+      "total_distance_km": 18.5,
+      "congestion_score": 0.0,
+      "route_quality": 0.914,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:29:13.322307"
+  },
+  {
+    "tick": 4,
+    "event": "route_ok",
+    "details": {
+      "tick": 4,
+      "from_zone": "Whitefield",
+      "to_zone": "S03",
+      "path": [
+        "Whitefield",
+        "S03"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "S03"
+        }
+      ],
+      "total_distance_km": 0.5,
+      "congestion_score": 0.0,
+      "route_quality": 0.9,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:29:13.322307"
+  },
+  {
+    "tick": 4,
+    "event": "recalculation",
+    "details": {
+      "from": "Whitefield",
+      "chosen_shelter": "S03",
+      "quality": 0.9,
+      "candidates_tried": 2
+    },
+    "timestamp": "2026-05-03T07:29:13.322307"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "Koramangala",
+      "to": "S01",
+      "reason": "All paths from Koramangala to S01 are flooded. Base-graph path would be: Koramangala \u2192 Indiranagar \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:29:13.322307"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "Koramangala",
+      "to": "S02",
+      "reason": "All paths from Koramangala to S02 are flooded. Base-graph path would be: Koramangala \u2192 Indiranagar \u2192 Hebbal \u2192 Yelahanka \u2192 S02"
+    },
+    "timestamp": "2026-05-03T07:29:13.322307"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "Koramangala",
+      "to": "S03",
+      "reason": "All paths from Koramangala to S03 are flooded. Base-graph path would be: Koramangala \u2192 Indiranagar \u2192 Marathahalli \u2192 Whitefield \u2192 S03"
+    },
+    "timestamp": "2026-05-03T07:29:13.323317"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "Koramangala",
+      "to": "any_shelter",
+      "reason": "No reachable shelters from Koramangala \u2014 all full, forbidden, or flooded out."
+    },
+    "timestamp": "2026-05-03T07:29:13.323317"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "HSR Layout",
+      "to": "S01",
+      "reason": "All paths from HSR Layout to S01 are flooded. Base-graph path would be: HSR Layout \u2192 Koramangala \u2192 Indiranagar \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:29:13.323317"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "HSR Layout",
+      "to": "S02",
+      "reason": "All paths from HSR Layout to S02 are flooded. Base-graph path would be: HSR Layout \u2192 Koramangala \u2192 Indiranagar \u2192 Hebbal \u2192 Yelahanka \u2192 S02"
+    },
+    "timestamp": "2026-05-03T07:29:13.323317"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "HSR Layout",
+      "to": "S03",
+      "reason": "All paths from HSR Layout to S03 are flooded. Base-graph path would be: HSR Layout \u2192 Koramangala \u2192 Indiranagar \u2192 Marathahalli \u2192 Whitefield \u2192 S03"
+    },
+    "timestamp": "2026-05-03T07:29:13.324317"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "HSR Layout",
+      "to": "any_shelter",
+      "reason": "No reachable shelters from HSR Layout \u2014 all full, forbidden, or flooded out."
+    },
+    "timestamp": "2026-05-03T07:29:13.324317"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "Sarjapur",
+      "to": "S01",
+      "reason": "All paths from Sarjapur to S01 are flooded. Base-graph path would be: Sarjapur \u2192 HSR Layout \u2192 Koramangala \u2192 Indiranagar \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:29:13.324317"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "Sarjapur",
+      "to": "S02",
+      "reason": "All paths from Sarjapur to S02 are flooded. Base-graph path would be: Sarjapur \u2192 HSR Layout \u2192 Koramangala \u2192 Indiranagar \u2192 Hebbal \u2192 Yelahanka \u2192 S02"
+    },
+    "timestamp": "2026-05-03T07:29:13.324317"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "Sarjapur",
+      "to": "S03",
+      "reason": "All paths from Sarjapur to S03 are flooded. Base-graph path would be: Sarjapur \u2192 Bellandur \u2192 Marathahalli \u2192 Whitefield \u2192 S03"
+    },
+    "timestamp": "2026-05-03T07:29:13.325539"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "Sarjapur",
+      "to": "any_shelter",
+      "reason": "No reachable shelters from Sarjapur \u2014 all full, forbidden, or flooded out."
+    },
+    "timestamp": "2026-05-03T07:29:13.325539"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "Indiranagar",
+      "to": "S01",
+      "reason": "All paths from Indiranagar to S01 are flooded. Base-graph path would be: Indiranagar \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:29:13.325539"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "Indiranagar",
+      "to": "S02",
+      "reason": "All paths from Indiranagar to S02 are flooded. Base-graph path would be: Indiranagar \u2192 Hebbal \u2192 Yelahanka \u2192 S02"
+    },
+    "timestamp": "2026-05-03T07:29:13.325539"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "Indiranagar",
+      "to": "S03",
+      "reason": "All paths from Indiranagar to S03 are flooded. Base-graph path would be: Indiranagar \u2192 Marathahalli \u2192 Whitefield \u2192 S03"
+    },
+    "timestamp": "2026-05-03T07:29:13.325539"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "Indiranagar",
+      "to": "any_shelter",
+      "reason": "No reachable shelters from Indiranagar \u2014 all full, forbidden, or flooded out."
+    },
+    "timestamp": "2026-05-03T07:29:13.325539"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "Mahadevapura",
+      "to": "S01",
+      "reason": "All paths from Mahadevapura to S01 are flooded. Base-graph path would be: Mahadevapura \u2192 Yelahanka \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:29:13.325539"
+  },
+  {
+    "tick": 4,
+    "event": "route_ok",
+    "details": {
+      "tick": 4,
+      "from_zone": "Mahadevapura",
+      "to_zone": "S02",
+      "path": [
+        "Mahadevapura",
+        "Yelahanka",
+        "S02"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Yelahanka - Mahadevapura NH44",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Mahadevapura",
+          "to": "Yelahanka"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "S02"
+        }
+      ],
+      "total_distance_km": 9.5,
+      "congestion_score": 0.0,
+      "route_quality": 0.94,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:29:13.326946"
+  },
+  {
+    "tick": 4,
+    "event": "route_ok",
+    "details": {
+      "tick": 4,
+      "from_zone": "Mahadevapura",
+      "to_zone": "S03",
+      "path": [
+        "Mahadevapura",
+        "Whitefield",
+        "S03"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Whitefield - Mahadevapura Link",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.6,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Mahadevapura",
+          "to": "Whitefield"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "S03"
+        }
+      ],
+      "total_distance_km": 9.5,
+      "congestion_score": 0.0,
+      "route_quality": 0.88,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:29:13.327457"
+  },
+  {
+    "tick": 4,
+    "event": "recalculation",
+    "details": {
+      "from": "Mahadevapura",
+      "chosen_shelter": "S02",
+      "quality": 0.94,
+      "candidates_tried": 2
+    },
+    "timestamp": "2026-05-03T07:29:13.327457"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "Bellandur",
+      "to": "S01",
+      "reason": "All paths from Bellandur to S01 are flooded. Base-graph path would be: Bellandur \u2192 HSR Layout \u2192 Koramangala \u2192 Indiranagar \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:29:13.327457"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "Bellandur",
+      "to": "S02",
+      "reason": "All paths from Bellandur to S02 are flooded. Base-graph path would be: Bellandur \u2192 Marathahalli \u2192 Mahadevapura \u2192 Yelahanka \u2192 S02"
+    },
+    "timestamp": "2026-05-03T07:29:13.333567"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "Bellandur",
+      "to": "S03",
+      "reason": "All paths from Bellandur to S03 are flooded. Base-graph path would be: Bellandur \u2192 Marathahalli \u2192 Whitefield \u2192 S03"
+    },
+    "timestamp": "2026-05-03T07:29:13.334080"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "Bellandur",
+      "to": "any_shelter",
+      "reason": "No reachable shelters from Bellandur \u2014 all full, forbidden, or flooded out."
+    },
+    "timestamp": "2026-05-03T07:29:13.336161"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "Marathahalli",
+      "to": "S01",
+      "reason": "All paths from Marathahalli to S01 are flooded. Base-graph path would be: Marathahalli \u2192 Indiranagar \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:29:13.336161"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "Marathahalli",
+      "to": "S02",
+      "reason": "All paths from Marathahalli to S02 are flooded. Base-graph path would be: Marathahalli \u2192 Mahadevapura \u2192 Yelahanka \u2192 S02"
+    },
+    "timestamp": "2026-05-03T07:29:13.337112"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "Marathahalli",
+      "to": "S03",
+      "reason": "All paths from Marathahalli to S03 are flooded. Base-graph path would be: Marathahalli \u2192 Whitefield \u2192 S03"
+    },
+    "timestamp": "2026-05-03T07:29:13.337623"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "Marathahalli",
+      "to": "any_shelter",
+      "reason": "No reachable shelters from Marathahalli \u2014 all full, forbidden, or flooded out."
+    },
+    "timestamp": "2026-05-03T07:29:13.337623"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "BTM Layout",
+      "to": "S01",
+      "reason": "All paths from BTM Layout to S01 are flooded. Base-graph path would be: BTM Layout \u2192 Koramangala \u2192 Indiranagar \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:29:13.337623"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "BTM Layout",
+      "to": "S02",
+      "reason": "All paths from BTM Layout to S02 are flooded. Base-graph path would be: BTM Layout \u2192 Koramangala \u2192 Indiranagar \u2192 Hebbal \u2192 Yelahanka \u2192 S02"
+    },
+    "timestamp": "2026-05-03T07:29:13.337623"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "BTM Layout",
+      "to": "S03",
+      "reason": "All paths from BTM Layout to S03 are flooded. Base-graph path would be: BTM Layout \u2192 Koramangala \u2192 Indiranagar \u2192 Marathahalli \u2192 Whitefield \u2192 S03"
+    },
+    "timestamp": "2026-05-03T07:29:13.338760"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "BTM Layout",
+      "to": "any_shelter",
+      "reason": "No reachable shelters from BTM Layout \u2014 all full, forbidden, or flooded out."
+    },
+    "timestamp": "2026-05-03T07:29:13.338760"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "Electronic City",
+      "to": "S01",
+      "reason": "All paths from Electronic City to S01 are flooded. Base-graph path would be: Electronic City \u2192 BTM Layout \u2192 Koramangala \u2192 Indiranagar \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:29:13.338760"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "Electronic City",
+      "to": "S02",
+      "reason": "All paths from Electronic City to S02 are flooded. Base-graph path would be: Electronic City \u2192 BTM Layout \u2192 Koramangala \u2192 Indiranagar \u2192 Hebbal \u2192 Yelahanka \u2192 S02"
+    },
+    "timestamp": "2026-05-03T07:29:13.338760"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "Electronic City",
+      "to": "S03",
+      "reason": "All paths from Electronic City to S03 are flooded. Base-graph path would be: Electronic City \u2192 Bellandur \u2192 Marathahalli \u2192 Whitefield \u2192 S03"
+    },
+    "timestamp": "2026-05-03T07:29:13.338760"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "Electronic City",
+      "to": "any_shelter",
+      "reason": "No reachable shelters from Electronic City \u2014 all full, forbidden, or flooded out."
+    },
+    "timestamp": "2026-05-03T07:29:13.340112"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "Hebbal",
+      "to": "S01",
+      "reason": "All paths from Hebbal to S01 are flooded. Base-graph path would be: Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:29:13.340112"
+  },
+  {
+    "tick": 4,
+    "event": "route_ok",
+    "details": {
+      "tick": 4,
+      "from_zone": "Hebbal",
+      "to_zone": "S02",
+      "path": [
+        "Hebbal",
+        "Yelahanka",
+        "S02"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Hebbal - Yelahanka Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 8.0,
+          "blocked": false,
+          "from": "Hebbal",
+          "to": "Yelahanka"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "S02"
+        }
+      ],
+      "total_distance_km": 8.5,
+      "congestion_score": 0.0,
+      "route_quality": 0.88,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:29:13.340112"
+  },
+  {
+    "tick": 4,
+    "event": "route_ok",
+    "details": {
+      "tick": 4,
+      "from_zone": "Hebbal",
+      "to_zone": "S03",
+      "path": [
+        "Hebbal",
+        "Yelahanka",
+        "Mahadevapura",
+        "Whitefield",
+        "S03"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Hebbal - Yelahanka Road",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 8.0,
+          "blocked": false,
+          "from": "Hebbal",
+          "to": "Yelahanka"
+        },
+        {
+          "road_name": "Yelahanka - Mahadevapura NH44",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "Mahadevapura"
+        },
+        {
+          "road_name": "Whitefield - Mahadevapura Link",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.6,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Mahadevapura",
+          "to": "Whitefield"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "S03"
+        }
+      ],
+      "total_distance_km": 26.5,
+      "congestion_score": 0.0,
+      "route_quality": 0.867,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:29:13.340112"
+  },
+  {
+    "tick": 4,
+    "event": "recalculation",
+    "details": {
+      "from": "Hebbal",
+      "chosen_shelter": "S02",
+      "quality": 0.88,
+      "candidates_tried": 2
+    },
+    "timestamp": "2026-05-03T07:29:13.340112"
+  },
+  {
+    "tick": 4,
+    "event": "route_failed",
+    "details": {
+      "from": "Yelahanka",
+      "to": "S01",
+      "reason": "All paths from Yelahanka to S01 are flooded. Base-graph path would be: Yelahanka \u2192 Hebbal \u2192 S01"
+    },
+    "timestamp": "2026-05-03T07:29:13.343140"
+  },
+  {
+    "tick": 4,
+    "event": "route_ok",
+    "details": {
+      "tick": 4,
+      "from_zone": "Yelahanka",
+      "to_zone": "S02",
+      "path": [
+        "Yelahanka",
+        "S02"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "S02"
+        }
+      ],
+      "total_distance_km": 0.5,
+      "congestion_score": 0.0,
+      "route_quality": 1.0,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:29:13.343140"
+  },
+  {
+    "tick": 4,
+    "event": "route_ok",
+    "details": {
+      "tick": 4,
+      "from_zone": "Yelahanka",
+      "to_zone": "S03",
+      "path": [
+        "Yelahanka",
+        "Mahadevapura",
+        "Whitefield",
+        "S03"
+      ],
+      "edges_used": [
+        {
+          "road_name": "Yelahanka - Mahadevapura NH44",
+          "capacity": "high",
+          "capacity_pcu": 3600,
+          "flood_risk_threshold": 0.99,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Yelahanka",
+          "to": "Mahadevapura"
+        },
+        {
+          "road_name": "Whitefield - Mahadevapura Link",
+          "capacity": "medium",
+          "capacity_pcu": 1800,
+          "flood_risk_threshold": 0.6,
+          "distance_km": 9.0,
+          "blocked": false,
+          "from": "Mahadevapura",
+          "to": "Whitefield"
+        },
+        {
+          "road_name": "Local Access Road",
+          "capacity": "low",
+          "capacity_pcu": 900,
+          "flood_risk_threshold": 0.4,
+          "distance_km": 0.5,
+          "blocked": false,
+          "from": "Whitefield",
+          "to": "S03"
+        }
+      ],
+      "total_distance_km": 18.5,
+      "congestion_score": 0.0,
+      "route_quality": 0.914,
+      "status": "ok",
+      "reason": ""
+    },
+    "timestamp": "2026-05-03T07:29:13.343140"
+  },
+  {
+    "tick": 4,
+    "event": "recalculation",
+    "details": {
+      "from": "Yelahanka",
+      "chosen_shelter": "S02",
+      "quality": 1.0,
+      "candidates_tried": 2
+    },
+    "timestamp": "2026-05-03T07:29:13.343140"
+  }
+]
