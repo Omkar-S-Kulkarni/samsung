@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { LineChart, Line, ResponsiveContainer } from 'recharts';
-import { Home, Brain, Zap, Database, Heart, Moon, Footprints, Activity, Trophy, Shield, Terminal as TerminalIcon, Info } from 'lucide-react';
+import { Home, Brain, Zap, Database, Heart, Moon, Footprints, Activity, Send, X, Trophy, Shield, Terminal as TerminalIcon, Info, AlertTriangle, TrendingUp } from 'lucide-react';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -10,7 +10,9 @@ import Memory from './Memory';
 import WatchFace from './WatchFace';
 import Progress from './Progress';
 import DigitalTwin from './DigitalTwin';
+import AnomalyAlertCenter from './AnomalyAlertCenter';
 import Vault from './Vault';
+import TrendsAnalytics from './TrendsAnalytics';
 import Terminal from './Terminal';
 import VitalsPanel from './VitalsPanel';
 import AICoach from './AICoach';
@@ -239,11 +241,13 @@ export default function App() {
     { id: 'dashboard', label: 'Home', icon: Home },
     { id: 'vitals', label: 'Vitals', icon: Activity },
     { id: 'twin', label: 'Twin', icon: Brain },
+    { id: 'alerts', label: 'Alerts', icon: AlertTriangle },
     { id: 'progress', label: 'Progress', icon: Trophy },
     { id: 'coach', label: 'Coach', icon: Brain },
     { id: 'signals', label: 'Signals', icon: Zap },
     { id: 'memory', label: 'Memory', icon: Database },
     { id: 'vault', label: 'Vault', icon: Shield },
+    { id: 'trends', label: 'Trends', icon: TrendingUp },
     { id: 'terminal', label: 'Terminal', icon: TerminalIcon },
   ];
 
@@ -272,15 +276,17 @@ export default function App() {
       {/* Main Content */}
       <main className="flex-1 flex flex-col min-h-screen relative overflow-hidden">
         {activeTab === 'dashboard' ? <Dashboard hr={hr} hrData={hrData} twin={backendState?.twin} rewards={backendState?.rewards} backendState={backendState} /> :
-          activeTab === 'vitals' ? <VitalsPanel /> :
-            activeTab === 'twin' ? <DigitalTwin twin={backendState?.twin} /> :
-              activeTab === 'progress' ? <Progress goals={backendState?.goals} rewards={backendState?.rewards} /> :
-                activeTab === 'signals' ? <Signals /> :
-                  activeTab === 'memory' ? <Memory /> :
-                    activeTab === 'vault' ? <Vault privacy={backendState?.privacy} /> :
-                      activeTab === 'terminal' ? <Terminal /> :
-                        activeTab === 'coach' ? <AICoach hr={hr} twin={backendState?.twin} backendState={backendState} /> :
-                          <div className="flex-1 flex items-center justify-center text-gray-500 font-mono">Module Initializing...</div>}
+         activeTab === 'vitals' ? <VitalsPanel /> :
+         activeTab === 'twin' ? <DigitalTwin twin={backendState?.twin} /> :
+         activeTab === 'alerts' ? <AnomalyAlertCenter /> :
+         activeTab === 'progress' ? <Progress goals={backendState?.goals} rewards={backendState?.rewards} /> :
+         activeTab === 'signals' ? <Signals /> :
+         activeTab === 'memory' ? <Memory /> :
+         activeTab === 'vault' ? <Vault privacy={backendState?.privacy} /> :
+         activeTab === 'trends' ? <TrendsAnalytics /> :
+         activeTab === 'terminal' ? <Terminal /> :
+         activeTab === 'coach' ? <AICoach hr={hr} twin={backendState?.twin} backendState={backendState} /> :
+         <div className="flex-1 flex items-center justify-center text-gray-500 font-mono">Module Initializing...</div>}
       </main>
 
       {/* Mobile Nav */}
